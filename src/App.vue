@@ -1,17 +1,24 @@
 <script setup lang="ts">
+import Bubbles from './components/background/Bubbles.vue';
+import CosmeticGrid from './components/background/CosmeticGrid.vue';
+import Waves from './components/background/Waves.vue';
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <div>
     <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
+      <img src="/starstruck.svg" class="logo" alt="Vite logo" />
     </a>
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Bubbles />
+  <CosmeticGrid />
+  <Waves />
+  <HelloWorld />
+  <!-- probably have a temporary width of 1000vh or more to test the flow of scrolling through it -->
 </template>
 
 <style scoped>
