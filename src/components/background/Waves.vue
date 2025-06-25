@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 </template>
 
-<style>
+<style scoped>
 
 
 

@@ -14,7 +14,7 @@ import Waves from './components/background/Waves.vue';
       <p>And another one for good measure!</p>
       </div>
     <div class="background">
-      <Bubbles />
+      <Bubbles :count="120" />
       <CosmeticGrid />
       <Waves />
     </div>
@@ -37,6 +37,8 @@ html, body {
 }
 
 .content {
+  color: lightgray;
+
   grid-area: stack;
   position: relative; 
   z-index: 1;
