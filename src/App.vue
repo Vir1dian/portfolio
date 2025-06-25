@@ -37,7 +37,7 @@ html, body {
 }
 
 .content {
-  color: lightgray;
+  color: #304654;
 
   grid-area: stack;
   position: relative; 
