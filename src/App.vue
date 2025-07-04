@@ -14,7 +14,12 @@ import Waves from './components/background/Waves.vue';
       <p>And another one for good measure!</p>
       </div>
     <div class="background">
-      <Bubbles :count="120" />
+      <Bubbles 
+        :count="150" 
+        :min_radius="50" 
+        :max_radius="150" 
+        :color="'8BD3E3'"
+      />
       <CosmeticGrid />
       <Waves />
     </div>
@@ -56,7 +61,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #DBF1F4;
+  background-color: #b7e8ee;
 }
 
 /* Background components, e.g. Bubbles, CosmeticGrid, Waves */

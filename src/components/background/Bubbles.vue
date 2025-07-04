@@ -3,7 +3,7 @@ import { computed, ref, onMounted, onUnmounted } from 'vue';
 import type { BubbleData } from './Bubble.vue';
 import Bubble from './Bubble.vue';
 
-const COLOR_PALETTE: string[] = ["4AD2A9", "38F9E2", "DA1CE0", "A9DAE5", "9872DF", "304654", "5894BC", "4E7699", "C99EFE"] as const; 
+const COLOR_PALETTE: string[] = ["4AD2A9", "38F9E2", "DA1CE0", "8BD3E3", "9872DF", "304654", "5894BC", "4E7699", "C99EFE"] as const; 
 
 interface Props {
   count?: number;
@@ -14,10 +14,10 @@ interface Props {
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  count: 500,
+  count: 50,
   min_radius: 25,
   max_radius: 100,
-  scroll_velocity_ratio: 0.05,
+  scroll_velocity_ratio: 0.025,
   color: "random",
 });
 
@@ -69,7 +69,7 @@ const all_bubbles = computed<BubbleData[]>(() => {
     bubble_arr.push({
       radius: radius,
       position: {   // (s - radius) for cosmetic purposes, just to allow bubbles to clip at most halfway into the edges
-        x: getRandomInt(0 - radius, wrapper_width.value - radius), 
+        x: getRandomInt(0 - radius, wrapper_width.value), 
         y: getRandomInt(0 - radius, adjusted_wrapper_height - radius)
       },
       scroll_velocity: vel,

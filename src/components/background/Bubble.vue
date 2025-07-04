@@ -40,9 +40,9 @@ export type { BubbleData };
 .bubble {
   position: absolute;
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 1;
 
-  animation: bubble-float linear;
+  animation: bubble-float ease-in-out;
   animation-timeline: scroll(root);
 }
 

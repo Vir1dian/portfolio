@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const COLOR_PALETTE: string[] = ["4AD2A9", "38F9E2", "DA1CE0", "DBF1F4", "A9DAE5", "9872DF", "304654", "5894BC", "4E7699", "C99EFE"] as const; 
+const COLOR_PALETTE: string[] = ["4AD2A9", "38F9E2", "DA1CE0", "DBF1F4", "8BD3E3", "9872DF", "304654", "5894BC", "4E7699", "C99EFE"] as const; 
 
 interface Props {
   height?: number;
@@ -23,6 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 
   <!-- initial debug element -->
   <div>
+    <!-- IF NOT SOME FORMULA, THEN SOME IMAGES OF A WAVE SHAPE TO BE REUSED -->
     <p>Waves</p>
     <p v-for="(prop, key) in props">{{ key }} : {{ prop }}</p>
   </div>
