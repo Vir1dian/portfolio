@@ -4,14 +4,11 @@ import { computed } from 'vue';
 interface BubbleData {
   radius: number;
   position: { x: number, y: number};
-  scroll_velocity: number;  // used for the parallax effect
+  velocity: number;  // base speed of bubble when not scrolling
   color: string;
 };
-interface Props extends BubbleData {
-  animation_scroll_height: number;
-}
 
-const props = defineProps<Props>();
+const props = defineProps<BubbleData>();
 
 const bubble_style = computed(() => {
   return {
@@ -21,8 +18,6 @@ const bubble_style = computed(() => {
     left: `${props.position.x}px`,
     top: `${props.position.y}px`,
     backgroundColor: `#${props.color}`,
-    '--bubble-parallax-multiplier': props.scroll_velocity, 
-    '--animation-scroll-distance-px': `${props.animation_scroll_height}px`, 
   };
 });
 
@@ -37,24 +32,11 @@ export type { BubbleData };
 </template>
 
 <style scoped>
+
 .bubble {
   position: absolute;
   pointer-events: none;
   opacity: 1;
-
-  animation: bubble-float ease-in-out;
-  animation-timeline: scroll(root);
 }
 
-@keyframes bubble-float {
-  from {
-    transform: translate(-50%, -50%);
-  }
-  to {
-    transform: translate(
-      -50%, 
-      calc(-50% + (var(--bubble-parallax-multiplier) * var(--animation-scroll-distance-px) * -1))
-    );
-  }
-}
 </style>

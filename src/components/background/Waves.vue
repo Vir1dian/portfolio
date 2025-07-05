@@ -31,7 +31,13 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
-
-
-
+/* 
+Background components, e.g. Bubbles, CosmeticGrid, Waves (stolen from parent App.vue)
+.background > * {  <-- rename background > * to whatever the div for this background component will be
+  position: relative;  (had to remove from App.vue because this styling conflicts with Bubble's unique dynamic behavior)
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+} */
 </style>

@@ -21,10 +21,9 @@ import SectionHeader from './components/content/SectionHeader.vue';
 
     <div class="background">
       <Bubbles 
-        :count="150" 
+        :count="50" 
         :min_radius="50" 
         :max_radius="150" 
-        :color="'8BD3E3'"
       />
       <CosmeticGrid />
       <Waves />
@@ -34,15 +33,8 @@ import SectionHeader from './components/content/SectionHeader.vue';
 </template>
 
 <style scoped>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 .page-wrapper {
   display: grid;
-  /* Define a single grid area named 'stack' */
   grid-template-areas: "stack";
   min-height: 100vh; /* Ensure wrapper takes at least full viewport height */
 }
@@ -59,6 +51,8 @@ html, body {
   width: 1080px;  /* 1280, 1140, 1080, 960 */
   margin-left: auto;
   margin-right: auto;
+
+  min-height: calc(100vh - 40px);  /* 100vh minus total vertical padding (currently 20px top and 20px bottom) */
 }
 
 .background {
@@ -68,14 +62,5 @@ html, body {
   height: 100%;
   overflow: hidden;
   background-color: #b7e8ee;
-}
-
-/* Background components, e.g. Bubbles, CosmeticGrid, Waves */
-.background > * {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
 }
 </style>
