@@ -21,9 +21,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
 
     <div class="background">
       <Bubbles 
-        :count="50" 
-        :min_radius="50" 
-        :max_radius="150" 
+        :velocity_ratio="0.5"
       />
       <CosmeticGrid />
       <Waves />
