@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Bubbles from './components/background/Bubbles.vue';
-import CosmeticGrid from './components/background/CosmeticGrid.vue';
-import Waves from './components/background/Waves.vue';
+import DottedGrid from './components/background/DottedGrid.vue';
+// import Waves from './components/background/Waves.vue';
 import Navbar from './components/content/Navbar.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
@@ -23,7 +23,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
       <Bubbles 
         :velocity_ratio="0.5"
       />
-      <!-- <CosmeticGrid /> -->
+      <DottedGrid />
       <!-- <Waves /> -->
     </div>
   </div>
