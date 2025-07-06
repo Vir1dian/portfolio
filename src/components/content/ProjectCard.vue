@@ -39,8 +39,8 @@ const props = withDefaults(defineProps<Props>(), {
   padding: 16px;
   margin-bottom: 32px;
 
+  background-color: #d7fffa;
   border: solid 2px #2B6BA3;
-  background-color: #9cf5ffe8;
 
   text-align: justify;
 }

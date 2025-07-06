@@ -61,7 +61,7 @@ nav {
 
   padding: 8px;
 
-  background-color: #9CF5FF;
+  background-color: #d7fffa;
   border-bottom: solid 2px #2B6BA3;
 
   font-size: 24px;

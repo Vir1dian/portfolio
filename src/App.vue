@@ -60,6 +60,6 @@ import SectionHeader from './components/content/SectionHeader.vue';
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #9CF5FF;
+  background-color: #d7fffa;
 }
 </style>

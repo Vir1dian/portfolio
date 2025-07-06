@@ -3,7 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import type { BubbleData } from './Bubble.vue';
 import Bubble from './Bubble.vue';
 
-const COLOR_PALETTE: string[] = ["4AD2A9", "42FFE9", "44E7DF", "C99EFE"] as const; 
+const COLOR_PALETTE: string[] = ["f1fffd", "befff7", "95fff2", "6affed"] as const; 
+// see https://www.color-hex.com/color-palette/13978
 
 interface Props {
   count?: number;
