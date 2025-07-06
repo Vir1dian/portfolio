@@ -36,10 +36,11 @@ const props = withDefaults(defineProps<Props>(), {
   display: block;
   width: inherit;
   border-radius: 8px;
-  border: solid 2px #4E7699;
-  background-color: #FFFFFF;
   padding: 16px;
   margin-bottom: 32px;
+
+  border: solid 2px #2B6BA3;
+  background-color: #9cf5ffe8;
 
   text-align: justify;
 }

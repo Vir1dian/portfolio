@@ -56,10 +56,15 @@ nav {
   width: 100%;
 
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
-  background-color: #fff;
-  border-bottom: solid 2px gray;
+  padding: 8px;
+
+  background-color: #9CF5FF;
+  border-bottom: solid 2px #2B6BA3;
+
+  font-size: 24px;
 
   z-index: 999;
 }

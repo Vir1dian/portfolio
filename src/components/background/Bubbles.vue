@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import type { BubbleData } from './Bubble.vue';
 import Bubble from './Bubble.vue';
 
-const COLOR_PALETTE: string[] = ["8BD3E3", "C99EFE", "5894BC", "4AD2A9"] as const; 
+const COLOR_PALETTE: string[] = ["4AD2A9", "42FFE9", "44E7DF", "C99EFE"] as const; 
 
 interface Props {
   count?: number;
@@ -89,7 +89,7 @@ function step(timestamp: DOMHighResTimeStamp) {
   const dt = Math.min((timestamp - previous_time) / 1000, 1 / 60);
   previous_time = timestamp;
 
-  setVelocityMultiplier(dt);
+  setVelocityMultiplier();
 
   animated_bubbles.value.forEach(bubble => {
     move(bubble, dt, velocity_multiplier.value);
@@ -104,11 +104,11 @@ function move(bubble: BubbleData, dt: number, multiplier: number) {
 
   if (bubble.position.y < -(bubble.radius * 2)) {   // if outside of screen, cycle back to the bottom
     bubble.position.y = viewport_height.value + bubble.radius * 2;
-    // bubble.position.x = getRandomInt(0 - bubble.radius, viewport_width.value - bubble.radius);
+    bubble.position.x = getRandomInt(0 - bubble.radius, viewport_width.value - bubble.radius);
   }
   else if (bubble.position.y > viewport_height.value + (bubble.radius * 2)) {   // if outside of screen, cycle back to the bottom
     bubble.position.y = -(bubble.radius * 2);
-    // bubble.position.x = getRandomInt(0 - bubble.radius, viewport_width.value - bubble.radius);
+    bubble.position.x = getRandomInt(0 - bubble.radius, viewport_width.value - bubble.radius);
   }
 }
 
@@ -139,7 +139,7 @@ function handleScroll() {
 };
 
 // to be used within step()
-function setVelocityMultiplier(dt: number) {
+function setVelocityMultiplier() {
   const scroll_delta = curr_scroll_y.value - prev_scroll_y;
   prev_scroll_y = curr_scroll_y.value; // Update previous for next frame request
 

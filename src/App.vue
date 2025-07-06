@@ -23,8 +23,8 @@ import SectionHeader from './components/content/SectionHeader.vue';
       <Bubbles 
         :velocity_ratio="0.5"
       />
-      <CosmeticGrid />
-      <Waves />
+      <!-- <CosmeticGrid /> -->
+      <!-- <Waves /> -->
     </div>
   </div>
   <!-- probably have a temporary width of 1000vh or more to test the flow of scrolling through it -->
@@ -44,6 +44,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
   position: relative; 
   z-index: 1;
   padding: 20px; 
+  padding-top: 64px;
   box-sizing: border-box;
 
   width: 1080px;  /* 1280, 1140, 1080, 960 */
@@ -59,6 +60,6 @@ import SectionHeader from './components/content/SectionHeader.vue';
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #b7e8ee;
+  background-color: #9CF5FF;
 }
 </style>
