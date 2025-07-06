@@ -19,8 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
   count: 50,
   min_radius: 25,
   max_radius: 75,
-  velocity_ratio: 1,
-  velocity_scroll_multiplier: 10,  // 1: does not affect the base speed when scrolling, >1: speeds up when scrolling, <1: slows down when scrolling
+  velocity_ratio: 0.5,
+  velocity_scroll_multiplier: 10,  // 1: does not affect the base speed when scrolling, >1: speeds up in the same direction, <1 slows down, <0: speeds up in the opposite direction
   color: "random",
 });
 

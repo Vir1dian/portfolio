@@ -20,9 +20,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
     </div>
 
     <div class="background">
-      <Bubbles 
-        :velocity_ratio="0.5"
-      />
+      <Bubbles />
       <DottedGrid />
       <!-- <Waves /> -->
     </div>
