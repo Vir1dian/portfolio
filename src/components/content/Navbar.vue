@@ -13,6 +13,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 function scrollToSection(id: string) {
+  if (id === '_start') {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+    history.pushState(null, '', window.location.pathname);
+  }
   const section_header = document.getElementById(`section-header-id-${id}`);
   if (section_header) {
     section_header.scrollIntoView({ behavior: 'smooth' });
@@ -27,7 +34,14 @@ function scrollToSection(id: string) {
   <!-- initial debug element -->
   <nav>
     <div id="nav-left">
-      <div>Gavin Torrecampo | Student Developer</div>
+      <div>
+        <a
+          href="/"
+          @click.prevent="scrollToSection('_start')"
+        >
+          Gavin Torrecampo | Student Developer
+        </a>
+      </div>
     </div>
     <div id="nav-right">
       <div>
