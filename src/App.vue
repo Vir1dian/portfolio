@@ -13,7 +13,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
 
     <div class="content">
       <section v-for="n in 3" :key="n">
-        <SectionHeader content="Section Header" />
+        <SectionHeader :title="`Section ${n}`" />
         <ProjectCard />
         <ProjectCard />
       </section>

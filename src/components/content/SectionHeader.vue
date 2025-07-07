@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
 interface Props {
-  content?: string;
+  title?: string;
   icon?: string;
   icon_pos?: 'prepend' | 'append';
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  content: '',
+  title: '',
   icon: '',
   icon_pos: 'prepend',
 });
@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   <!-- initial debug element -->
   <div class="section-header">
     <span v-if="props.icon_pos === 'prepend'">{{ props.icon }}</span>
-    <span>{{ props.content }}</span>
+    <span>{{ props.title }}</span>
     <span v-if="props.icon_pos === 'append'">{{ props.icon }}</span>
   </div>
 

@@ -69,4 +69,36 @@ nav {
   z-index: 999;
 }
 
+nav a {
+  background: linear-gradient(90deg, #2B6BA3, #C99EFE, #C99EFE, #2B6BA3);
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+
+  animation: fancy-highlight-reversed 0.5s ease-out forwards;
+}
+
+nav a:hover {
+  animation: fancy-highlight 0.5s ease-out forwards;
+}
+
+@keyframes fancy-highlight {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -100% 0%;
+  }
+}
+
+@keyframes fancy-highlight-reversed {
+  from {
+    background-position: -100% 0%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
 </style>
