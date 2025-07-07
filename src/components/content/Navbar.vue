@@ -12,6 +12,14 @@ const props = withDefaults(defineProps<Props>(), {
   sections: () => [],
 });
 
+function scrollToSection(id: string) {
+  const section_header = document.getElementById(`section-header-id-${id}`);
+  if (section_header) {
+    section_header.scrollIntoView({ behavior: 'smooth' });
+    history.pushState(null, '', `#${section_header.id}`);
+  }
+}
+
 </script>
 
 <template>
@@ -27,6 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
           v-for="section in props.sections"
           :key="section.id"
           :href="`#section-header-id-${section.id}`"
+          @click.prevent="scrollToSection(section.id)"
         >
           {{ section.title }}
         </a>
