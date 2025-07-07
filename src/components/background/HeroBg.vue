@@ -26,7 +26,13 @@ const herobg_style = computed(() => {
 </template>
 
 <style scoped>
+.hero-background {  
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-
-
+  border-bottom: solid 2px #0E6875;
+}
 </style>

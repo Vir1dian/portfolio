@@ -2,28 +2,33 @@
 import { ref } from 'vue';
 
 import Bubbles from './components/background/Bubbles.vue';
+import HeroBg from './components/background/HeroBg.vue';
 import DottedGrid from './components/background/DottedGrid.vue';
 // import Waves from './components/background/Waves.vue';
 import Navbar from './components/content/Navbar.vue';
-import ProjectCard from './components/content/ProjectCard.vue';
+import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
+import ProjectCard from './components/content/ProjectCard.vue';
 
-const section_headers = ref([
+const SECTION_HEADERS = ref([
   { id: 'projects', title: 'Projects' },
   { id: 'about', title: 'About' },
   { id: 'contact', title: 'Contact' },
 ]);
 
-const hero_nav_color = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for the hero/nav area
+const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('0E6875');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
+
+const CONTENT_TOP_OFFSET: number = 64;
 
 </script>
 
 <template>
   <div id="page-wrapper">
-    <Navbar :color="hero_nav_color" :sections="section_headers" />
+    <Navbar :color="HERO_NAV_COLOR" :sections="SECTION_HEADERS" />
 
-    <div id="content">
-      <section v-for="header in section_headers" :key="header.id">
+    <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
+      <Hero :offset_top="CONTENT_TOP_OFFSET" :color="HERO_NAV_COLOR" />
+      <section v-for="header in SECTION_HEADERS" :key="header.id">
         <SectionHeader :title="header.title" :id="header.id" />
         <ProjectCard />
         <ProjectCard />
@@ -32,11 +37,11 @@ const hero_nav_color = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for 
 
     <div id="background">
       <Bubbles />
+      <HeroBg :color="HERO_NAV_COLOR" />
       <DottedGrid />
       <!-- <Waves /> -->
     </div>
   </div>
-  <!-- probably have a temporary width of 1000vh or more to test the flow of scrolling through it -->
 </template>
 
 <style scoped>
@@ -53,7 +58,6 @@ const hero_nav_color = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for 
   position: relative; 
   z-index: 1;
   padding: 20px; 
-  padding-top: 64px;
   box-sizing: border-box;
 
   width: 1080px;  /* 1280, 1140, 1080, 960 */
