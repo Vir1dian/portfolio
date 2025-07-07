@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import type { BubbleData } from './Bubble.vue';
-import Bubble from './Bubble.vue';
+import type { BubbleData } from '../minis/Bubble.vue';
+import Bubble from '../minis/Bubble.vue';
 
 const COLOR_PALETTE: string[] = ["f1fffd", "befff7", "95fff2", "6affed"] as const; 
 // see https://www.color-hex.com/color-palette/13978

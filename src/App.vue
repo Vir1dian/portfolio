@@ -16,7 +16,7 @@ const SECTION_HEADERS = ref([
   { id: 'contact', title: 'Contact' },
 ]);
 
-const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('0E6875');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
+const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
 
 const CONTENT_TOP_OFFSET: number = 64;
 
@@ -27,7 +27,7 @@ const CONTENT_TOP_OFFSET: number = 64;
     <Navbar :color="HERO_NAV_COLOR" :sections="SECTION_HEADERS" />
 
     <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
-      <Hero :offset_top="CONTENT_TOP_OFFSET" :color="HERO_NAV_COLOR" />
+      <Hero :offset_top="CONTENT_TOP_OFFSET" />
       <section v-for="header in SECTION_HEADERS" :key="header.id">
         <SectionHeader :title="header.title" :id="header.id" />
         <ProjectCard />
