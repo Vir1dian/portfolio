@@ -14,11 +14,13 @@ const section_headers = ref([
   { id: 'contact', title: 'Contact' },
 ]);
 
+const hero_nav_color = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for the hero/nav area
+
 </script>
 
 <template>
   <div id="page-wrapper">
-    <Navbar :sections="section_headers" />
+    <Navbar :color="hero_nav_color" :sections="section_headers" />
 
     <div id="content">
       <section v-for="header in section_headers" :key="header.id">

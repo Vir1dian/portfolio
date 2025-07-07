@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
   color: '',
 });
 
-const hero_style = computed(() => {
+const herobg_style = computed(() => {
   return {
     backgroundColor: `#${props.color}`,
   };
@@ -19,7 +19,7 @@ const hero_style = computed(() => {
 
 <template>
 
-  <div class="hero" :style="hero_style">
+  <div class="hero-background" :style="herobg_style">
     
   </div>
 

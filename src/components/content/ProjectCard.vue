@@ -40,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   margin-bottom: 32px;
 
   background-color: #d7fffa;
-  border: solid 2px #2B6BA3;
+  border: solid 2px #0E6875;
 
   text-align: justify;
 }

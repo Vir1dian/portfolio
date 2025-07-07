@@ -1,15 +1,25 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 interface SectionLink {
   id: string;
   title: string;
 }
 
 interface Props {
+  color: string;
   sections: SectionLink[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  color: '',
   sections: () => [],
+});
+
+const nav_style = computed(() => {
+  return {
+    backgroundColor: `#${props.color}`,
+  };
 });
 
 function scrollToSection(id: string) {
@@ -32,7 +42,7 @@ function scrollToSection(id: string) {
 <template>
 
   <!-- initial debug element -->
-  <nav>
+  <nav :style="nav_style">
     <div id="nav-left">
       <div>
         <a
@@ -85,8 +95,8 @@ nav {
 
   padding: 8px;
 
-  background-color: #d7fffa;
-  border-bottom: solid 2px #2B6BA3;
+  background-color: #0E6875;
+  border-bottom: solid 2px #0E6875;
 
   font-size: 24px;
 
@@ -94,7 +104,7 @@ nav {
 }
 
 nav a {
-  background: linear-gradient(90deg, #2B6BA3, #C99EFE, #C99EFE, #2B6BA3);
+  background: linear-gradient(90deg, #BD82E5, #C99EFE, #C99EFE, #BD82E5);
   background-size: 200% 100%;
   background-position: 0% 0%;
   background-clip: text;
