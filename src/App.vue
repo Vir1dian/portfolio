@@ -1,25 +1,34 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import Bubbles from './components/background/Bubbles.vue';
 import DottedGrid from './components/background/DottedGrid.vue';
 // import Waves from './components/background/Waves.vue';
 import Navbar from './components/content/Navbar.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
+
+const section_headers = ref([
+  { id: 'projects', title: 'Projects' },
+  { id: 'about', title: 'About' },
+  { id: 'contact', title: 'Contact' },
+]);
+
 </script>
 
 <template>
-  <div class="page-wrapper">
-    <Navbar />
+  <div id="page-wrapper">
+    <Navbar :sections="section_headers" />
 
-    <div class="content">
-      <section v-for="n in 3" :key="n">
-        <SectionHeader :title="`Section ${n}`" />
+    <div id="content">
+      <section v-for="header in section_headers" :key="header.id">
+        <SectionHeader :title="header.title" :id="header.id" />
         <ProjectCard />
         <ProjectCard />
       </section>
     </div>
 
-    <div class="background">
+    <div id="background">
       <Bubbles />
       <DottedGrid />
       <!-- <Waves /> -->
@@ -29,13 +38,13 @@ import SectionHeader from './components/content/SectionHeader.vue';
 </template>
 
 <style scoped>
-.page-wrapper {
+#page-wrapper {
   display: grid;
   grid-template-areas: "stack";
   min-height: 100vh; /* Ensure wrapper takes at least full viewport height */
 }
 
-.content {
+#content {
   color: #304654;
 
   grid-area: stack;
@@ -52,7 +61,7 @@ import SectionHeader from './components/content/SectionHeader.vue';
   min-height: calc(100vh - 40px);  /* 100vh minus total vertical padding (currently 20px top and 20px bottom) */
 }
 
-.background {
+#background {
   grid-area: stack;
   z-index: -1;
   width: 100%;

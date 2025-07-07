@@ -1,23 +1,16 @@
 <script setup lang="ts">
+interface SectionLink {
+  id: string;
+  title: string;
+}
 
-interface Anchors {
-  projects?: string;
-  about?: string;
-  contact?: string;
-  resume?: string;
+interface Props {
+  sections: SectionLink[];
 };
 
-const props = withDefaults(defineProps<Anchors>(), {
-  projects: '',
-  about: '',
-  contact: '',
-  resume: '',
+const props = withDefaults(defineProps<Props>(), {
+  sections: () => [],
 });
-
-function capFirst(input: string): string {
-  if (input.length === 0) return "";
-  return input.charAt(0).toUpperCase() + input.slice(1);
-}
 
 </script>
 
@@ -29,7 +22,15 @@ function capFirst(input: string): string {
       <div>Gavin Torrecampo | Student Developer</div>
     </div>
     <div id="nav-right">
-      <a v-for="(anchor, key) in props" :key="key" :href="`#${anchor}`">{{ capFirst(key) }}</a>
+      <div>
+        <a
+          v-for="section in props.sections"
+          :key="section.id"
+          :href="`#section-header-id-${section.id}`"
+        >
+          {{ section.title }}
+        </a>
+      </div>
     </div>
   </nav>
 
