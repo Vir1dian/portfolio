@@ -64,8 +64,8 @@ function generateBubbles() {
   for (let i = 0; i < props.count; i++) {
     const radius = getRandomInt(props.min_radius, props.max_radius);
     const position = {
-      x: getRandomInt(0 - radius, viewport_width.value - radius), // bubbles may clip up to half into left or right walls of the page
-      y: getRandomInt(0 - radius, viewport_height.value - radius)
+      x: getRandomInt(0, viewport_width.value), // bubbles may clip up to half into left or right walls of the page
+      y: getRandomInt(0, viewport_height.value)
     };
     const velocity = (radius ** 1.3) * props.velocity_ratio!;
     const color = props.color === "random" ? getRandomColor() : props.color;

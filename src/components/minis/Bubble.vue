@@ -11,7 +11,6 @@ const props = defineProps<BubbleData>();
 
 const bubble_style = computed(() => {
   return {
-    borderRadius: '50%',
     width: `${props.radius * 2}px`,
     height: `${props.radius * 2}px`,
     left: `${props.position.x}px`,
@@ -33,9 +32,10 @@ export type { BubbleData };
 <style scoped>
 
 .bubble {
+  border-radius: 50%;
   position: absolute;
   pointer-events: none;
-  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 </style>

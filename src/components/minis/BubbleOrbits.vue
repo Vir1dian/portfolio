@@ -99,9 +99,11 @@ const animated_bubbles = ref<BubbleDataExtended[]>([]);
 function generateBubbles() {
   const bubble_arr: BubbleDataExtended[] = [];
   for (let i = 0; i < props.count; i++) {
+    const orbit_axis_length = Math.max(props.width, props.height);
+
     const ang_velocity = props.ang_velocity === 'random' ? getRandomFloat(RAND_RANGES.ang_velocity.min, RAND_RANGES.ang_velocity.max) : props.ang_velocity;
     const bubble_radius = props.bubble_radius === 'random' ? getRandomInt(RAND_RANGES.bubble_radius.min, RAND_RANGES.bubble_radius.max) : props.bubble_radius;
-    const orbit_radius = props.orbit_radius === 'fit-maximum' ? props.width/2 - bubble_radius : getRandomInt(0, props.width/2 - bubble_radius);
+    const orbit_radius = props.orbit_radius === 'fit-maximum' ? orbit_axis_length/2 : getRandomInt(0, orbit_axis_length/2);
     // const orbit_tilt = props.orbit_tilt === 'random' ? getRandomFloat(RAND_RANGES.orbit_tilt.min, RAND_RANGES.orbit_tilt.max) : props.orbit_tilt;
     const orbit_tilt = 0;
 
@@ -109,7 +111,7 @@ function generateBubbles() {
     const radius = getApparentRadius(orbit_radius, angle, bubble_radius, observer_distance.value);
     const position = {  // assuming orbit tilt is zero for now
       x: props.width/2 + getApparentDistance(orbit_radius, angle), 
-      y: props.height/2 - bubble_radius,
+      y: props.height/2,
     };
     const color = props.color === "random" ? getRandomColor() : props.color;
 
