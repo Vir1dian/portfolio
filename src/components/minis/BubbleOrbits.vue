@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import type { BubbleData } from './Bubble.vue';
 import Bubble from './Bubble.vue';
 
 const COLOR_PALETTE: string[] = ["f1fffd", "befff7", "95fff2", "6affed"] as const; 
-const OB_ZOOM = 1;  // multiplier for how far the observer is relative to the orbit origin
 const OB_DIST_RATIO = 4;
 const RAND_RANGES = {
   ang_velocity: {
@@ -29,18 +28,35 @@ interface Props {
   bubble_radius?: number | 'random';  // starting bubble radius (how big the bubble appears to be is at phi = 0) in px
   orbit_radius?: 'random' | 'fit-maximum';  // in px
   orbit_tilt?: number | 'random';  // in rad (0.5pi for perfectly vertical, 1pi for flipped upside down, error handle as you would with angles above 2pi rad)
+  zoom?: number;  // multiplier for how far the observer is relative to the orbit origin
   color?: typeof COLOR_PALETTE[number] | "random";
 };
 
 const props = withDefaults(defineProps<Props>(), {
   count: 5,
-  width: 800,
-  height: 450,
+  width: 500,
+  height: 500,
   ang_velocity: 0.75*Math.PI,
-  bubble_radius: 15,
+  bubble_radius: 50,
   orbit_radius: 'fit-maximum',
   orbit_tilt: 0,
+  zoom: 4,
   color: 'random',
+});
+
+const wrapper_dimensions = computed(() => {
+  return {
+    width: `${props.width}px`,
+    height: `${props.height}px`,
+  };
+});
+
+onMounted(() => {
+  generateBubbles();
+  startAnimation();
+});
+onUnmounted(() => {
+  stopAnimation();
 });
 
 // BUBBLE GENERATION
@@ -84,7 +100,7 @@ function getApparentRadius(
 
 // must always be bigger than the maximum orbit radius possible for the given dimensions, or else observer ends up on or inside the orbit, which will cause rendering issues
 const observer_distance = computed(() => {  
-  return OB_DIST_RATIO*Math.max(props.width, props.height)/Math.min(OB_ZOOM, OB_DIST_RATIO);
+  return OB_DIST_RATIO*Math.max(props.width, props.height)/Math.min(props.zoom, OB_DIST_RATIO);
 });
 
 interface BubbleDataExtended extends BubbleData {
@@ -99,10 +115,10 @@ const animated_bubbles = ref<BubbleDataExtended[]>([]);
 function generateBubbles() {
   const bubble_arr: BubbleDataExtended[] = [];
   for (let i = 0; i < props.count; i++) {
-    const orbit_axis_length = Math.max(props.width, props.height);
 
     const ang_velocity = props.ang_velocity === 'random' ? getRandomFloat(RAND_RANGES.ang_velocity.min, RAND_RANGES.ang_velocity.max) : props.ang_velocity;
     const bubble_radius = props.bubble_radius === 'random' ? getRandomInt(RAND_RANGES.bubble_radius.min, RAND_RANGES.bubble_radius.max) : props.bubble_radius;
+    const orbit_axis_length = Math.max(props.width, props.height) - 2*bubble_radius;
     const orbit_radius = props.orbit_radius === 'fit-maximum' ? orbit_axis_length/2 : getRandomInt(0, orbit_axis_length/2);
     // const orbit_tilt = props.orbit_tilt === 'random' ? getRandomFloat(RAND_RANGES.orbit_tilt.min, RAND_RANGES.orbit_tilt.max) : props.orbit_tilt;
     const orbit_tilt = 0;
@@ -154,7 +170,7 @@ function move(bubble: BubbleDataExtended, dt: number, ang_velocity: number) {
   bubble.angle += ang_velocity * dt;
   if (bubble.angle > 2*Math.PI) bubble.angle -= 2*Math.PI;
 
-  const new_radius = getApparentRadius(bubble.orbit_radius, bubble.angle, bubble.orbit_radius, observer_distance.value);
+  const new_radius = getApparentRadius(bubble.orbit_radius, bubble.angle, bubble.bubble_radius, observer_distance.value);
   const new_distance = getApparentDistance(bubble.orbit_radius, bubble.angle);
   
   bubble.radius = new_radius;
@@ -179,7 +195,7 @@ function stopAnimation() {
 
 <template>
 
-  <div class="orbits-wrapper">
+  <div class="orbits-wrapper" :style="wrapper_dimensions">
     <Bubble 
       v-for="(bubble, index) in animated_bubbles" 
       :key="index" 
@@ -191,6 +207,9 @@ function stopAnimation() {
 
 <style scoped>
 
-
+.orbits-wrapper {
+  position: relative;
+  overflow: hidden;
+}
 
 </style>
