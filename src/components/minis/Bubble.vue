@@ -4,7 +4,6 @@ import { computed } from 'vue';
 interface BubbleData {
   radius: number;
   position: { x: number, y: number};
-  velocity: number;  // base speed of bubble when not scrolling
   color: string;
 };
 

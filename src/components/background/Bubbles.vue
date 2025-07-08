@@ -55,9 +55,12 @@ const syncContentDimensions = () => {
   generateBubbles();  // regenerate bubble range to match dimensions
 };
 
-const animated_bubbles = ref<BubbleData[]>([]);
+interface BubbleDataWithVelocity extends BubbleData {
+  velocity: number;  // base speed of bubble when not scrolling
+}
+const animated_bubbles = ref<BubbleDataWithVelocity[]>([]);
 function generateBubbles() {
-  const bubble_arr: BubbleData[] = [];
+  const bubble_arr: BubbleDataWithVelocity[] = [];
   for (let i = 0; i < props.count; i++) {
     const radius = getRandomInt(props.min_radius, props.max_radius);
     const position = {
@@ -99,7 +102,7 @@ function step(timestamp: DOMHighResTimeStamp) {
   frame_id = requestAnimationFrame(step);
 }
 
-function move(bubble: BubbleData, dt: number, multiplier: number) {
+function move(bubble: BubbleDataWithVelocity, dt: number, multiplier: number) {
   const displacement = bubble.velocity * multiplier * dt;
   bubble.position.y -= displacement;  // move upward (smaller y, closer to top)
 
