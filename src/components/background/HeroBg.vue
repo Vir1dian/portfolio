@@ -25,7 +25,7 @@ const herobg_style = computed(() => {
       :width="1080"
       :height="450"
       :ang_velocity="'random'"
-      :orbit_radius="'random'"
+      :orbit_tilt="0.25"
     />
   </div>
 

@@ -24,10 +24,10 @@ interface Props {
   count?: number;  // number of bubbles/orbits
   width?: number;  // width of space to draw the orbit (to offset by size of bubble) - in px
   height?: number;   // height of space to draw the orbit (to offset by size of bubble) - in px
-  ang_velocity?: number | 'random';  // angular velocity of speed, in rad/s
+  ang_velocity?: number | 'random';  // angular velocity of speed, in pi*rad/s
   bubble_radius?: number | 'random';  // starting bubble radius (how big the bubble appears to be is at phi = 0) in px
   orbit_radius?: 'random' | 'fit-maximum';  // in px
-  orbit_tilt?: number | 'random';  // in rad (0.5pi for perfectly vertical, 1pi for flipped upside down, error handle as you would with angles above 2pi rad)
+  orbit_tilt?: number | 'random';  // in pi*rad (0.5pi for perfectly vertical, 1pi for flipped upside down, error handle as you would with angles above 2pi rad)
   zoom?: number;  // multiplier for how far the observer is relative to the orbit origin
   color?: typeof COLOR_PALETTE[number] | "random";
 };
@@ -36,10 +36,10 @@ const props = withDefaults(defineProps<Props>(), {
   count: 5,
   width: 500,
   height: 500,
-  ang_velocity: 0.75*Math.PI,
+  ang_velocity: 0.75,
   bubble_radius: 50,
   orbit_radius: 'fit-maximum',
-  orbit_tilt: 0,
+  orbit_tilt: 'random',
   zoom: 4,
   color: 'random',
 });
@@ -70,6 +70,17 @@ function getRandomColor() {
   return COLOR_PALETTE[Math.floor(Math.random()*COLOR_PALETTE.length)];
 }
 
+/**
+ * Maps an angle to its equivalent in the first quadrant, retaining the same
+ * trigonometric ratios by repeatedly "folding" the angle. 
+ * @param angle Any angle in radians
+ */
+function getQ1Angle(angle: number): number {
+  let relevant_angle = Math.abs(angle);
+  while (relevant_angle > Math.PI/2) relevant_angle = Math.abs(relevant_angle - Math.PI);
+  return relevant_angle;
+}
+
 // Derivation of orbit illusion (pure math):
 // (variables that change to show an illusion of depth while revolving)
 // d - apparent distance from center of bubble to origin
@@ -97,6 +108,33 @@ function getApparentRadius(
 ): number {
   return observer_distance * original_radius / (observer_distance + orbit_radius*Math.sin(angle));
 }
+function getTiltData(width: number, height: number, tilt_angle: number, radius_offset: number, distance: number): { x: number, y: number, r: number } {
+  const x = width/2;
+  const y = height/2;
+  const b = x - radius_offset;
+  const h = y - radius_offset;
+
+  const tilt = getQ1Angle(tilt_angle);
+
+  if (tilt === 0) {
+    return { x: x + distance, y: y, r: b };
+  } else if (tilt === Math.PI/2) {
+    return { x: x, y: y + distance, r: h };
+  } 
+  
+  const full_b_distance = b/Math.cos(tilt);  // distance calculated with the entirety of b as a component
+  const full_h_distance = h/Math.sin(tilt);  // distance calculated with the entirety of h as a component
+  
+  if (full_b_distance < full_h_distance) {
+    const x = b * distance / full_b_distance;
+    const y = x * Math.tan(tilt);
+    return { x: width/2 + x, y: height/2 + y, r: full_b_distance };
+  } else {
+    const y = h * distance / full_h_distance;
+    const x = y / Math.tan(tilt);
+    return { x: width/2 + x, y: height/2 + y, r: full_h_distance };
+  }
+}
 
 // must always be bigger than the maximum orbit radius possible for the given dimensions, or else observer ends up on or inside the orbit, which will cause rendering issues
 const observer_distance = computed(() => {  
@@ -116,18 +154,19 @@ function generateBubbles() {
   const bubble_arr: BubbleDataExtended[] = [];
   for (let i = 0; i < props.count; i++) {
 
-    const ang_velocity = props.ang_velocity === 'random' ? getRandomFloat(RAND_RANGES.ang_velocity.min, RAND_RANGES.ang_velocity.max) : props.ang_velocity;
+    const ang_velocity = props.ang_velocity === 'random' ? getRandomFloat(RAND_RANGES.ang_velocity.min, RAND_RANGES.ang_velocity.max) : props.ang_velocity*Math.PI;
     const bubble_radius = props.bubble_radius === 'random' ? getRandomInt(RAND_RANGES.bubble_radius.min, RAND_RANGES.bubble_radius.max) : props.bubble_radius;
-    const orbit_axis_length = Math.max(props.width, props.height) - 2*bubble_radius;
-    const orbit_radius = props.orbit_radius === 'fit-maximum' ? orbit_axis_length/2 : getRandomInt(0, orbit_axis_length/2);
-    // const orbit_tilt = props.orbit_tilt === 'random' ? getRandomFloat(RAND_RANGES.orbit_tilt.min, RAND_RANGES.orbit_tilt.max) : props.orbit_tilt;
-    const orbit_tilt = 0;
+
+    const orbit_tilt = props.orbit_tilt === 'random' ? getRandomFloat(RAND_RANGES.orbit_tilt.min, RAND_RANGES.orbit_tilt.max) : props.orbit_tilt*Math.PI;
+    const orbit_data = getTiltData(props.width, props.height, orbit_tilt, bubble_radius, 0);
+
+    const orbit_radius = props.orbit_radius === 'fit-maximum' ? orbit_data.r : getRandomInt(0, orbit_data.r);
 
     const angle = getRandomFloat(0, 2*Math.PI);
     const radius = getApparentRadius(orbit_radius, angle, bubble_radius, observer_distance.value);
-    const position = {  // assuming orbit tilt is zero for now
-      x: props.width/2 + getApparentDistance(orbit_radius, angle), 
-      y: props.height/2,
+    const position = {
+      x: orbit_data.x + getApparentDistance(orbit_radius, angle), 
+      y: orbit_data.y,
     };
     const color = props.color === "random" ? getRandomColor() : props.color;
 
@@ -174,7 +213,9 @@ function move(bubble: BubbleDataExtended, dt: number, ang_velocity: number) {
   const new_distance = getApparentDistance(bubble.orbit_radius, bubble.angle);
   
   bubble.radius = new_radius;
-  bubble.position.x = props.width/2 + new_distance;
+  const tilt_data = getTiltData(props.width, props.height, bubble.orbit_tilt, bubble.bubble_radius, new_distance);
+  bubble.position.x = tilt_data.x;
+  bubble.position.y = tilt_data.y;
 }
 
 function startAnimation() {
