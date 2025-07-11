@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import HoverBounce from '../minis/HoverMes/HoverBounce.vue';
 
 interface Props {
   offset_top: number;
@@ -25,7 +26,12 @@ const hero_style = computed(() => {
   <div class="hero" :style="hero_style">
     <div id="hero-left">Welcome, my name is Gavin Torrecampo. I'm a Student Developer! Projects About Contact</div>
     <div id="hero-right">
-      <img src="../../assets/minime.png" alt="My profile picture" id="my-profile-picture">
+      <HoverBounce>
+        <img src="../../assets/minime.png" alt="My profile picture" id="my-profile-picture">
+      </HoverBounce>
+      <HoverBounce>
+        Text
+      </HoverBounce>
     </div>
   </div>
 

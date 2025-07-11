@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { addAnimationCallback, removeAnimationCallback } from '../../utilities/animation';
-import type { BubbleData } from './Bubble.vue';
-import Bubble from './Bubble.vue';
+import type { BubbleData } from '../minis/Bubble.vue';
+import Bubble from '../minis/Bubble.vue';
 
 const COLOR_PALETTE: string[] = ["f1fffd", "befff7", "95fff2", "6affed"] as const; 
 const OB_DIST_RATIO = 4;

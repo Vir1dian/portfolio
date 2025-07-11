@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import BubbleOrbits from '../minis/BubbleOrbits.vue';
+import BubbleOrbits from './BubbleOrbits.vue';
 
 interface Props {
   color: string;
