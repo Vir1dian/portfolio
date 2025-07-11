@@ -22,10 +22,12 @@ const herobg_style = computed(() => {
 
   <div class="hero-background" :style="herobg_style">
     <BubbleOrbits 
+      :count="10"
       :width="1080"
       :height="450"
-      :ang_velocity="'random'"
-      :orbit_tilt="0.25"
+      :ang_velocity="'random-slow'"
+      :bubble_radius="'random-large'"
+      :orbit_tilt="'random'"
     />
   </div>
 
