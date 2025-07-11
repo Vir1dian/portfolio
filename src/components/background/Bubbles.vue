@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import { addAnimationCallback, removeAnimationCallback } from '../../utilities/animation';
 import type { BubbleData } from '../minis/Bubble.vue';
 import Bubble from '../minis/Bubble.vue';
 
@@ -29,10 +30,12 @@ onMounted(() => {
 
   window.addEventListener('resize', syncContentDimensions);
   window.addEventListener('scroll', handleScroll);
-  startAnimation();
+
+  addAnimationCallback(animateBubbles);
 });
 onUnmounted(() => {
-  stopAnimation();
+  removeAnimationCallback(animateBubbles);
+
   window.removeEventListener('scroll', handleScroll);
   window.removeEventListener('resize', syncContentDimensions);
 });
@@ -84,24 +87,7 @@ function generateBubbles() {
 
 
 // BUBBLE BASE ANIMATION (NOT SCROLLING)
-let frame_id: number | undefined = undefined;
-let previous_time: DOMHighResTimeStamp = 0;
-
-function step(timestamp: DOMHighResTimeStamp) {
-
-  if (!previous_time) previous_time = timestamp;
-  const dt = Math.min((timestamp - previous_time) / 1000, 1 / 60);
-  previous_time = timestamp;
-
-  setVelocityMultiplier();
-
-  animated_bubbles.value.forEach(bubble => {
-    move(bubble, dt, velocity_multiplier.value);
-  });
-  
-  frame_id = requestAnimationFrame(step);
-}
-
+// to be used within animateBubbles()
 function move(bubble: BubbleDataWithVelocity, dt: number, multiplier: number) {
   const displacement = bubble.velocity * multiplier * dt;
   bubble.position.y -= displacement;  // move upward (smaller y, closer to top)
@@ -116,21 +102,6 @@ function move(bubble: BubbleDataWithVelocity, dt: number, multiplier: number) {
   }
 }
 
-function startAnimation() {
-  if (!frame_id) {
-    frame_id = 0; // Reset last frame time for smooth start
-    frame_id = requestAnimationFrame(step);
-  }
-};
-
-function stopAnimation() {
-  if (frame_id) {
-    cancelAnimationFrame(frame_id);
-    frame_id = undefined;
-  }
-};
-
-
 // BUBBLE SCROLL ANIMATION (SCROLLING)
 const curr_scroll_y = ref(0);
 let prev_scroll_y = 0;
@@ -142,7 +113,7 @@ function handleScroll() {
   curr_scroll_y.value = window.scrollY;
 };
 
-// to be used within step()
+// to be used within animateBubbles()
 function setVelocityMultiplier() {
   const scroll_delta = curr_scroll_y.value - prev_scroll_y;
   prev_scroll_y = curr_scroll_y.value; // Update previous for next frame request
@@ -170,6 +141,14 @@ function setVelocityMultiplier() {
       )
     }
   }
+}
+
+function animateBubbles(dt: number) {
+  setVelocityMultiplier();
+
+  animated_bubbles.value.forEach(bubble => {
+    move(bubble, dt, velocity_multiplier.value);
+  });
 }
 
 </script>

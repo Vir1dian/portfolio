@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { addAnimationCallback, removeAnimationCallback } from '../../utilities/animation';
 import type { BubbleData } from './Bubble.vue';
 import Bubble from './Bubble.vue';
 
@@ -66,10 +67,10 @@ const wrapper_dimensions = computed(() => {
 
 onMounted(() => {
   generateBubbles();
-  startAnimation();
+  addAnimationCallback(animateOrbits);
 });
 onUnmounted(() => {
-  stopAnimation();
+  removeAnimationCallback(animateOrbits);
 });
 
 // BUBBLE GENERATION
@@ -256,21 +257,6 @@ function generateBubbles() {
 }
 
 // ANIMATION DRIVER
-let frame_id: number | undefined = undefined;
-let previous_time: DOMHighResTimeStamp = 0;
-
-function step(timestamp: DOMHighResTimeStamp) {
-
-  if (!previous_time) previous_time = timestamp;
-  const dt = Math.min((timestamp - previous_time) / 1000, 1 / 60);
-  previous_time = timestamp;
-
-  animated_bubbles.value.forEach(bubble => {
-    move(bubble, dt, bubble.ang_velocity);
-  });
-  
-  frame_id = requestAnimationFrame(step);
-}
 
 function move(bubble: BubbleDataExtended, dt: number, ang_velocity: number) {
   bubble.angle += ang_velocity * dt;
@@ -285,19 +271,11 @@ function move(bubble: BubbleDataExtended, dt: number, ang_velocity: number) {
   bubble.position.y = tilt_data.y;
 }
 
-function startAnimation() {
-  if (!frame_id) {
-    frame_id = 0; // Reset last frame time for smooth start
-    frame_id = requestAnimationFrame(step);
-  }
-};
-
-function stopAnimation() {
-  if (frame_id) {
-    cancelAnimationFrame(frame_id);
-    frame_id = undefined;
-  }
-};
+function animateOrbits(dt: number) {
+  animated_bubbles.value.forEach(bubble => {
+    move(bubble, dt, bubble.ang_velocity);
+  });
+}
 
 </script>
 

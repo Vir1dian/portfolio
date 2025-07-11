@@ -23,7 +23,10 @@ const hero_style = computed(() => {
 <template>
 
   <div class="hero" :style="hero_style">
-    This is the hero
+    <div id="hero-left">Welcome, my name is Gavin Torrecampo. I'm a Student Developer! Projects About Contact</div>
+    <div id="hero-right">
+      <img src="../../assets/minime.png" alt="My profile picture" id="my-profile-picture">
+    </div>
   </div>
 
 </template>
@@ -31,13 +34,26 @@ const hero_style = computed(() => {
 <style scoped>
 
 .hero {
-  display: block;
+  display: flex;
   border-radius: 8px;
   margin-bottom: 32px;
 
   /* border: solid 2px white; */
 
   text-align: justify;
+}
+
+#hero-left {
+  display: inline-block;
+  width: 60%;
+}
+#hero-right {
+  display: inline-block;
+  width: auto;
+}
+
+#my-profile-picture {
+  height: 300px;
 }
 
 </style>
