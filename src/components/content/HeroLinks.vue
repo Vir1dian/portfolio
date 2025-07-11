@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import HoverSlam from '../minis/HoverMes/HoverSlam.vue';
 
-interface SectionLink {
+
+export interface SectionLink {
   id: string;
   title: string;
 }
 
 interface Props {
-  color: string;
   sections: SectionLink[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  color: '',
   sections: () => [],
-});
-
-const nav_style = computed(() => {
-  return {
-    backgroundColor: `#${props.color}`,
-  };
 });
 
 function scrollToSection(id: string) {
@@ -41,69 +34,32 @@ function scrollToSection(id: string) {
 
 <template>
 
-  <!-- initial debug element -->
-  <nav :style="nav_style">
-    <div class="nav-left">
-      <div>
-        <a
-          href="/"
-          @click.prevent="scrollToSection('_start')"
-        >
-          Gavin Torrecampo | Student Developer
-        </a>
-      </div>
-    </div>
-    <div class="nav-right">
-      <div>
-        <a
-          v-for="section in props.sections"
-          :key="section.id"
-          :href="`#section-header-id-${section.id}`"
+  <div class="hero-links-container">
+    <div v-for="section in props.sections" :key="section.id" class="link-block">
+      <HoverSlam :max_tilt="5">
+        <a 
+          :href="`#section-header-id-${section.id}`" 
           @click.prevent="scrollToSection(section.id)"
         >
           {{ section.title }}
         </a>
-      </div>
+      </HoverSlam>
     </div>
-  </nav>
+  </div>
 
 </template>
 
 <style scoped>
 
-.nav-left {
-  display: inline-block;
-  width: 50%;
-}
-
-.nav-right {
-  display: inline-block;
-  width: 50%;
-}
-.nav-right a {
-  margin-left: 16px;
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-
+.hero-links-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 8px;
-
-  background-color: #0E6875;
-  border-bottom: solid 2px #0E6875;
-
-  font-size: 24px;
-
-  z-index: 999;
+  justify-content: space-around;
+}
+.link-block {
+  display: inline-block;
 }
 
-nav a {
+.link-block a {
   background: linear-gradient(90deg, #BD82E5, #C99EFE, #C99EFE, #BD82E5);
   background-size: 200% 100%;
   background-position: 0% 0%;
@@ -111,11 +67,11 @@ nav a {
   color: transparent;
   text-decoration: none;
 
-  animation: fancy-highlight-reversed 0.5s ease-out forwards;
+  animation: fancy-highlight-reversed 0.25s ease-out forwards;
 }
 
-nav a:hover {
-  animation: fancy-highlight 0.5s ease-out forwards;
+.link-block a:hover {
+  animation: fancy-highlight 0.25s ease-out forwards;
 }
 
 @keyframes fancy-highlight {
@@ -124,15 +80,18 @@ nav a:hover {
   }
   to {
     background-position: -100% 0%;
+    font-weight: 900;
   }
 }
 
 @keyframes fancy-highlight-reversed {
   from {
     background-position: -100% 0%;
+    font-weight: 900;
   }
   to {
     background-position: 0% 0%;
   }
 }
+
 </style>

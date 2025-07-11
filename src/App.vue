@@ -27,7 +27,7 @@ const CONTENT_TOP_OFFSET: number = 64;
     <Navbar :color="HERO_NAV_COLOR" :sections="SECTION_HEADERS" />
 
     <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
-      <Hero :offset_top="CONTENT_TOP_OFFSET" />
+      <Hero :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
       <section v-for="header in SECTION_HEADERS" :key="header.id">
         <SectionHeader :title="header.title" :id="header.id" />
         <ProjectCard />
