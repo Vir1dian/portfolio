@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import HoverBounce from '../minis/HoverMes/HoverBounce.vue';
+import HoverSlam from '../minis/HoverMes/HoverSlam.vue';
 
 interface Props {
   offset_top: number;
@@ -24,13 +25,23 @@ const hero_style = computed(() => {
 <template>
 
   <div class="hero" :style="hero_style">
-    <div id="hero-left">Welcome, my name is Gavin Torrecampo. I'm a Student Developer! Projects About Contact</div>
+    <div id="hero-left">
+      Welcome, my name is Gavin Torrecampo. I'm a Student Developer!
+      <div style="display: inline-flex;">
+        <HoverSlam>
+          <span>Projects</span>
+        </HoverSlam>
+      </div>
+      <HoverSlam>
+        <span>About</span>
+      </HoverSlam>
+      <HoverSlam>
+        <span>Contact</span>
+      </HoverSlam>
+    </div>
     <div id="hero-right">
-      <HoverBounce>
+      <HoverBounce :grow_to_multiplier="1.1" :max_tilt="5" :frequency="0.25" :enable_always="true">
         <img src="../../assets/minime.png" alt="My profile picture" id="my-profile-picture">
-      </HoverBounce>
-      <HoverBounce>
-        Text
       </HoverBounce>
     </div>
   </div>
@@ -54,12 +65,16 @@ const hero_style = computed(() => {
   width: 60%;
 }
 #hero-right {
-  display: inline-block;
+  display: inline-flex;
   width: auto;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 #my-profile-picture {
   height: 300px;
+  border-radius: 50%;
 }
 
 </style>

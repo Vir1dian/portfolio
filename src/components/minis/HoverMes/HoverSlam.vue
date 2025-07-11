@@ -2,19 +2,26 @@
 import { computed } from 'vue';
 
 interface Props {
-  
+  grow_to_multiplier?: number;  // the maximum proportional size that the hoverme grows by
+  max_tilt?: number;            // the maximum angle that the hoverme tilts to either side in the bounce, in DEGREES
+  speed?: number;               // how many seconds it takes for the slam animation to finish
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  
+  grow_to_multiplier: 1.2,
+  max_tilt: 10,
+  speed: 0.05,
 });
 
+// hoverme animation 2: bounce (grows like a fist suddenly punching you, tilting slightly to the left on hover)
 
-// allow for various hover animations because I want to 
-// mode 1: bounce (tilts 15 degrees left and right, grows and shrinks slightly, repeatedly while hovering) (like the terraria menu screen title)
-// mode 2: slam (grows like a fist punching you, tilting slightly to the left on hover)
-// mode 3: flow (what we first implemented for the nav links, a gradiant that shifts on hover)
-// if I really like all of them, separate them into multiple files in a folder called HoverMes for optimization
+const style = computed(() => {
+  return {
+    '--grow-to-multiplier': props.grow_to_multiplier,
+    '--tilt-angle': `${-props.max_tilt}deg`,
+    '--animation-duration': `${props.speed}s`,
+  };
+});
 
 </script>
 
@@ -30,6 +37,21 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 
+.hover-slam {
+  transform: rotate(0deg) scale(1);
+  transition: transform 0.5s ease-out;
+  animation: none;
+}
 
+.hoverable-area:hover .hover-slam {
+  animation: hoverslam var(--animation-duration) cubic-bezier(.34,.18,1,.54) forwards;
+  cursor: pointer;
+}
+
+@keyframes hoverslam {
+  to {
+    transform: rotate(var(--tilt-angle)) scale(var(--grow-to-multiplier));
+  }
+}
 
 </style>

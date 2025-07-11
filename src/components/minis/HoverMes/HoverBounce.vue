@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
 // hoverme animation 1: bounce (tilts by some angle left and right, grows and shrink back to normal, repeatedly while hovering)
 // NOTE: best used on text blocks when they are center aligned!
 
-// Style object to set CSS variables
 const style = computed(() => {
   return {
     '--grow-to-multiplier': props.grow_to_multiplier,
@@ -55,6 +54,7 @@ const style = computed(() => {
 
 .hoverable-area:hover .hover-bounce:not(.always-on) {
   animation: hoverbounce var(--animation-duration) ease-in-out infinite running;
+  cursor: pointer;
 }
 
 .hover-bounce.always-on {
