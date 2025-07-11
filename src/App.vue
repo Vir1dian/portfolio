@@ -16,7 +16,7 @@ const SECTION_HEADERS = ref([
   { id: 'contact', title: 'Contact' },
 ]);
 
-const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('0E6875');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
+const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
 
 const CONTENT_TOP_OFFSET: number = 64;
 

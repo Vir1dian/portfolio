@@ -6,34 +6,39 @@ import Bubble from './Bubble.vue';
 const COLOR_PALETTE: string[] = ["f1fffd", "befff7", "95fff2", "6affed"] as const; 
 const OB_DIST_RATIO = 4;
 const RAND_RANGES = {
-  ang_velocity_slow: {
-    min: 0.05*Math.PI,
-    max: 0.50*Math.PI,
-  },
-  ang_velocity_fast: {
-    min: 0.25*Math.PI,
-    max: 1.25*Math.PI,
-  },
-  bubble_radius_small: {
-    min: 25,
-    max: 125,
-  },
-  bubble_radius_large: {
-    min: 200,
-    max: 450,
-  },
+  // ang_velocity_slow: {
+  //   min: 0.05*Math.PI,
+  //   max: 0.50*Math.PI,
+  // },
+  // ang_velocity_fast: {
+  //   min: 0.25*Math.PI,
+  //   max: 1.25*Math.PI,
+  // },
+  // bubble_radius_small: {
+  //   min: 25,
+  //   max: 125,
+  // },
+  // bubble_radius_large: {
+  //   min: 200,
+  //   max: 450,
+  // },
   orbit_tilt: {  // in rads
     min: 0,
     max: 2*Math.PI,
   }  // rand range of orbit radius depends on height and width dimensions
 };
 
+type RandomRange = {
+  min: number,
+  max: number,
+}
+
 interface Props {
   count?: number;  // number of bubbles/orbits
   width?: number;  // width of space to draw the orbit (to offset by size of bubble) - in px
   height?: number;   // height of space to draw the orbit (to offset by size of bubble) - in px
-  ang_velocity?: number | 'random' | 'random-slow';  // angular velocity of speed, in pi*rad/s
-  bubble_radius?: number | 'random' | 'random-large';  // starting bubble radius (how big the bubble appears to be is at phi = 0) in px
+  ang_velocity?: number | RandomRange;  // angular velocity of speed, in pi*rad/s
+  bubble_radius?: number | RandomRange;  // starting bubble radius (how big the bubble appears to be is at phi = 0) in px
   orbit_radius?: 'random' | 'fit-maximum';  // in px
   orbit_tilt?: number | 'random';  // in pi*rad (0.5pi for perfectly vertical, 1pi for flipped upside down, error handle as you would with angles above 2pi rad)
   zoom?: number;  // multiplier for how far the observer is relative to the orbit origin
@@ -216,10 +221,8 @@ function generateBubbles() {
   const bubble_arr: BubbleDataExtended[] = [];
   for (let i = 0; i < props.count; i++) {
 
-    const ang_velocity = props.ang_velocity === 'random' ? getRandomFloat(RAND_RANGES.ang_velocity_fast.min, RAND_RANGES.ang_velocity_fast.max) :
-      props.ang_velocity === 'random-slow' ? getRandomFloat(RAND_RANGES.ang_velocity_slow.min, RAND_RANGES.ang_velocity_slow.max) : props.ang_velocity*Math.PI;
-    const bubble_radius = props.bubble_radius === 'random' ? getRandomInt(RAND_RANGES.bubble_radius_small.min, RAND_RANGES.bubble_radius_small.max) :
-      props.bubble_radius === 'random-large' ? getRandomInt(RAND_RANGES.bubble_radius_large.min, RAND_RANGES.bubble_radius_large.max) : props.bubble_radius;
+    const ang_velocity = typeof props.ang_velocity === 'number' ? props.ang_velocity*Math.PI : getRandomFloat(props.ang_velocity.min, props.ang_velocity.max)*Math.PI;
+    const bubble_radius = typeof props.bubble_radius === 'number' ? props.bubble_radius : getRandomInt(props.bubble_radius.min, props.bubble_radius.max);
 
     const orbit_tilt = props.orbit_tilt === 'random' ? getRandomFloat(RAND_RANGES.orbit_tilt.min, RAND_RANGES.orbit_tilt.max) : props.orbit_tilt*Math.PI;
     const orbit_data = getTiltData(props.width, props.height, orbit_tilt, bubble_radius, 0);

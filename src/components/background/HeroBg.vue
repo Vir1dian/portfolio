@@ -24,10 +24,11 @@ const herobg_style = computed(() => {
     <BubbleOrbits 
       :count="10"
       :width="1080"
-      :height="450"
-      :ang_velocity="'random-slow'"
-      :bubble_radius="'random-large'"
+      :height="650"
+      :ang_velocity="{ min: 0.05, max: 0.25 }"
+      :bubble_radius="{ min: 75, max: 180 }"
       :orbit_tilt="'random'"
+      :zoom="2.5"
     />
   </div>
 
