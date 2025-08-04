@@ -17,6 +17,7 @@ const SECTION_HEADERS = ref([
 ]);
 
 const HERO_NAV_COLOR = ref<'D7FFFA' | '0E6875'>('D7FFFA');  // light | dark for the hero/nav area, ref because this may become programmatic later on for light/dark mode
+const HERO_HEIGHT = '100vh';
 
 const CONTENT_TOP_OFFSET: number = 0;
 
@@ -24,7 +25,7 @@ const is_hero_visible = ref<boolean>(true);
 let observer: IntersectionObserver | null = null;
 
 onMounted(() => {
-  const hero_element = document.getElementById('main-herobg'); // We'll add this ID to your Hero component
+  const hero_element = document.getElementById('main-herobg');
   if (hero_element) {
     observer = new IntersectionObserver(
       (entries) => {
@@ -57,7 +58,7 @@ onUnmounted(() => {
     </Transition>
 
     <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
-      <Hero :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
+      <Hero :height="HERO_HEIGHT" :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
       <section v-for="header in SECTION_HEADERS" :key="header.id">
         <SectionHeader :title="header.title" :id="header.id" />
         <ProjectCard />
@@ -67,7 +68,7 @@ onUnmounted(() => {
 
     <div id="background">
       <Bubbles />
-      <HeroBg :color="HERO_NAV_COLOR" id="main-herobg" />
+      <HeroBg :height="HERO_HEIGHT" :color="HERO_NAV_COLOR" id="main-herobg" />
       <DottedGrid />
       <!-- <Waves /> -->
     </div>

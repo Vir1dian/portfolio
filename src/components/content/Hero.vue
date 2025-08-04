@@ -5,11 +5,13 @@ import type { SectionLink } from './HeroLinks.vue';
 import HeroLinks from './HeroLinks.vue';
 
 interface Props {
+  height: string;  // control over height type (i.e. px, vh, etc.)
   offset_top: number;
   sections: SectionLink[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  height: '100vh',
   offset_top: 0,
   sections: () => [],
 });
@@ -18,7 +20,7 @@ const PADDING_SIZE: number = 16;
 
 const hero_style = computed(() => {
   return {
-    height: `calc(100vh - ${props.offset_top}px - ${PADDING_SIZE * 3}px)`,
+    height: `calc(${props.height} - ${props.offset_top}px - ${PADDING_SIZE * 3}px)`,
     padding: `${PADDING_SIZE}px`,
   };
 });

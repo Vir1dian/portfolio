@@ -4,15 +4,18 @@ import BubbleOrbits from './BubbleOrbits.vue';
 import DottedGrid from './DottedGrid.vue';
 
 interface Props {
+  height: string;  // control over height type (i.e. px, vh, etc.)
   color: string;
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  height: '100vh',
   color: '',
 });
 
 const herobg_style = computed(() => {
   return {
+    height: props.height,
     backgroundColor: `#${props.color}`,
   };
 });
@@ -43,7 +46,6 @@ const herobg_style = computed(() => {
   justify-content: center;
 
   width: 100vw;
-  height: 100vh;
   overflow: hidden;
 
   position: absolute;
