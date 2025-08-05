@@ -59,11 +59,43 @@ onUnmounted(() => {
 
     <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
       <Hero :height="HERO_HEIGHT" :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
-      <section v-for="header in SECTION_HEADERS" :key="header.id">
-        <SectionHeader :title="header.title" :id="header.id" />
-        <ProjectCard />
-        <ProjectCard />
-      </section>
+
+      <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
+      <ProjectCard 
+        title="2D Particle Simulator" 
+        thumbnail="minime.png"
+        content_text="
+          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
+        "
+      />
+      <ProjectCard 
+        title="Limited Matrix Calculator" 
+        thumbnail="selfie1.png"
+        content_text="
+          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
+        "
+      />
+
+      <ProjectCard 
+        title="Plant Tracking App" 
+        thumbnail="vue.svg"
+        content_text="
+          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
+        "
+      />
+      <ProjectCard 
+        title="..." 
+        thumbnail="discord_icon.svg"
+        content_text="
+          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
+        "
+      />
+
+      <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+
+      <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
+
+
     </div>
 
     <div id="background">

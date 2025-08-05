@@ -52,7 +52,7 @@ const hero_style = computed(() => {
 .hero {
   display: flex;
   border-radius: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 64px;
 
   /* border: solid 2px white; */
 
