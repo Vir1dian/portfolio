@@ -28,15 +28,26 @@ const wrapper_style = computed(() => {
   };
 })
 
+const display_text = computed(() => {
+  // Use the title if it exists, otherwise fall back to the link.
+  return props.title || props.link;
+});
+
 </script>
 
 <template>
 
   <!-- initial debug element -->
-  <div class="icon-wrapper" :style="wrapper_style">
-    <img v-if="props.icon" :src="icon_path" :alt="props.icon" class="icon"></img>
-    <div v-if="props.title" class="icon-title">{{ props.title }}</div>
-  </div>
+  <a
+    :href="props.link"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="icon-wrapper"
+    :style="wrapper_style"
+  >
+    <img v-if="props.icon" :src="icon_path" :alt="props.icon" class="icon" />
+    <div v-if="display_text" class="icon-title">{{ display_text }}</div>
+  </a>
 
 </template>
 
@@ -51,6 +62,7 @@ const wrapper_style = computed(() => {
   min-height: 22px;
   min-width: 22px;
   width: min-content;
+  text-decoration: none;
 }
 .icon {
   height: 18px;

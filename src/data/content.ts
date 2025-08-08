@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
   {
     title: "Limited Matrix Calculator",
     thumbnail: "selfie1.png",
-    skills: [SKILLS.js],
+    skills: [SKILLS.css, SKILLS.vue, SKILLS.ts, SKILLS.vue, SKILLS.js, SKILLS.js, SKILLS.css, SKILLS.js],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     demo_link: "https://vir1dian.github.io/Invertible-Matrix-Calculator/",
     repo_link: "https://github.com/Vir1dian/Invertible-Matrix-Calculator",
@@ -53,7 +53,7 @@ const PROJECTS: Project[] = [
   {
     title: "...",
     thumbnail: "ideateassistantdemo.png",
-    skills: [SKILLS.vue, SKILLS.ts],
+    skills: [],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     other_links: [
       { link: 'https://www.thesaurus.com/' }

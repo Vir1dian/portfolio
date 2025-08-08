@@ -43,7 +43,7 @@ const left_style_width = computed(() => {
     <div class="title">{{ props.title }}</div>
     <div class="content-wrapper">
       <div class="content-left" :style="left_style_width">
-        <div class="skills">
+        <div v-if="props.skills" class="skills">
           <LinkChip 
             v-for="skill in props.skills"
             v-bind="skill"
@@ -54,13 +54,13 @@ const left_style_width = computed(() => {
           <!-- ADD v-if for the LinkChip components if theres even existing repo/demo links -->
           <LinkChip
             v-if="props.demo_link"
-            link=""
+            :link="props.demo_link"
             icon="generic_play.svg"
             title="Demo"
           />
           <LinkChip
             v-if="props.repo_link"
-            link=""
+            :link="props.repo_link"
             icon="github.svg"
             title="Repository"
           />
@@ -110,12 +110,19 @@ const left_style_width = computed(() => {
   flex-direction: column;
   width: 60%;
 }
+.skills {
+  margin-bottom: 8px;
+}
+.skills > * {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
 .links {
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: min-content;
-  margin-top: 16px;
 }
 .content-right {
   width: 37.5%;
