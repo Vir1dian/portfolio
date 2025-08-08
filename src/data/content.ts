@@ -18,7 +18,7 @@ const SKILLS: { [key: string]: LinkItem } = {
   vue: { title: 'Vue.js', icon: 'vue.svg', link: 'https://vuejs.org/' },
   ts: { title: 'TypeScript', icon: 'typescript.svg', link: 'https://www.typescriptlang.org/' },
   js: { title: 'JavaScript', icon: 'javascript.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-  html: { title: 'HTML', icon: 'html.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
+  html: { title: 'HTML', icon: 'html5.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
   css: { title: 'CSS', icon: 'css.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
   // more skills here
 };
@@ -52,7 +52,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "...",
-    thumbnail: "icons/discord.svg",
+    thumbnail: "ideateassistantdemo.png",
     skills: [SKILLS.vue, SKILLS.ts],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     other_links: [
