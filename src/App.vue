@@ -67,6 +67,9 @@ onUnmounted(() => {
         content_text="
           Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
         "
+        demo_link="https://vir1dian.github.io/2D-Particle-Simulator/"
+        repo_link="https://github.com/Vir1dian/2D-Particle-Simulator"
+        :other_links="['https://www.wikipedia.org/', 'https://www.thesaurus.com/']"
       />
       <ProjectCard 
         title="Limited Matrix Calculator" 
@@ -74,14 +77,17 @@ onUnmounted(() => {
         content_text="
           Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
         "
+        demo_link="https://vir1dian.github.io/Invertible-Matrix-Calculator/"
+        repo_link="https://github.com/Vir1dian/Invertible-Matrix-Calculator"
       />
 
       <ProjectCard 
         title="Plant Tracking App" 
-        thumbnail="vue.svg"
+        thumbnail=""
         content_text="
           Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
         "
+        :other_links="['https://www.wikipedia.org/', 'https://www.thesaurus.com/']"
       />
       <ProjectCard 
         title="..." 

@@ -34,7 +34,7 @@ const wrapper_style = computed(() => {
 
   <!-- initial debug element -->
   <div class="icon-wrapper" :style="wrapper_style">
-    <img :src="icon_path" :alt="props.icon" class="icon"></img>
+    <img v-if="props.icon" :src="icon_path" :alt="props.icon" class="icon"></img>
     <div v-if="props.title" class="icon-title">{{ props.title }}</div>
   </div>
 
