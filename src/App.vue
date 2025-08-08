@@ -10,6 +10,8 @@ import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 
+import { SKILLS, PROJECTS } from './data/content';
+
 const SECTION_HEADERS = ref([
   { id: 'projects', title: 'Projects' },
   { id: 'about', title: 'About' },
@@ -62,39 +64,9 @@ onUnmounted(() => {
 
       <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
       <ProjectCard 
-        title="2D Particle Simulator" 
-        thumbnail="minime.png"
-        content_text="
-          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
-        "
-        demo_link="https://vir1dian.github.io/2D-Particle-Simulator/"
-        repo_link="https://github.com/Vir1dian/2D-Particle-Simulator"
-        :other_links="['https://www.wikipedia.org/', 'https://www.thesaurus.com/']"
-      />
-      <ProjectCard 
-        title="Limited Matrix Calculator" 
-        thumbnail="selfie1.png"
-        content_text="
-          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
-        "
-        demo_link="https://vir1dian.github.io/Invertible-Matrix-Calculator/"
-        repo_link="https://github.com/Vir1dian/Invertible-Matrix-Calculator"
-      />
-
-      <ProjectCard 
-        title="Plant Tracking App" 
-        thumbnail=""
-        content_text="
-          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
-        "
-        :other_links="['https://www.wikipedia.org/', 'https://www.thesaurus.com/']"
-      />
-      <ProjectCard 
-        title="..." 
-        thumbnail="discord_icon.svg"
-        content_text="
-          Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.
-        "
+        v-for="project in PROJECTS"
+        :key="project.title"
+        v-bind="project"
       />
 
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />

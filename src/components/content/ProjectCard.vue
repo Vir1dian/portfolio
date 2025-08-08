@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import LinkChip from '../minis/LinkChip.vue';
+import type { LinkItem } from '../../data/content';
 
 interface Props {
   title?: string;
   thumbnail?: string;
+  skills?: LinkItem[];
   content_text?: string;
   demo_link?: string;
   repo_link?: string;
-  other_links?: string[];
+  other_links?: LinkItem[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
   title: '',
   thumbnail: '',
+  skills: () => [],
   content_text: '',
   demo_link: '',
   repo_link: '',
@@ -40,27 +43,32 @@ const left_style_width = computed(() => {
     <div class="title">{{ props.title }}</div>
     <div class="content-wrapper">
       <div class="content-left" :style="left_style_width">
-        <div class="skills"></div>
+        <div class="skills">
+          <LinkChip 
+            v-for="skill in props.skills"
+            v-bind="skill"
+          />
+        </div>
         <div class="content-text">{{ props.content_text }}</div>
         <div class="links">
           <!-- ADD v-if for the LinkChip components if theres even existing repo/demo links -->
           <LinkChip
             v-if="props.demo_link"
             link=""
-            icon="play_icon.svg"
+            icon="generic_play.svg"
             title="Demo"
           />
           <LinkChip
             v-if="props.repo_link"
             link=""
-            icon="github_icon.svg"
+            icon="github.svg"
             title="Repository"
           />
           <LinkChip 
-            v-for="link in props.other_links"
-            :link="link"
-            icon="link_icon.svg"
-            :title="link"
+            v-for="link_item in props.other_links"
+            :link="link_item.link"
+            :icon="link_item.icon ? link_item.icon : 'generic_link.svg'"
+            :title="link_item.title"
           />
 
         </div>

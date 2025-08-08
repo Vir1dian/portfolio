@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const icon_path = computed(() => {
-  return new URL(`../../assets/${props.icon}`, import.meta.url).href;
+  return new URL(`../../assets/icons/${props.icon}`, import.meta.url).href;
 });
 
 const wrapper_style = computed(() => {
