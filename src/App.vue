@@ -54,6 +54,9 @@ onUnmounted(() => {
   }
 });
 
+const SKILL_KEYS = Object.keys(SKILLS);
+const COLUMN_COUNT = ref<number>(5);
+
 </script>
 
 <template>
@@ -73,8 +76,10 @@ onUnmounted(() => {
         v-bind="project"
       />
 
+
       <!-- ABOUT -->
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+
       <SectionHeader :title="'Experience'" :id="'experience'" :hierarchy="2" />
       <Card
         :thumbnail="'minime.png'"
@@ -84,12 +89,23 @@ onUnmounted(() => {
         :other_links="[LINKS.test]"
       />
 
-      <div v-if="SKILLS" class="skills">
-        <LinkChip 
-          v-for="skill in SKILLS"
-          v-bind="skill"
-        />
-      </div>
+      <SectionHeader :title="'Skills'" :id="'skills'" :hierarchy="2" />
+      <table id="skills-list">
+        <tbody>
+          <tr v-for="row in Math.ceil(SKILL_KEYS.length / COLUMN_COUNT)" :key="row">
+            <td v-for="col in COLUMN_COUNT" :key="col">
+              <LinkChip 
+                v-if="(row - 1) * COLUMN_COUNT + (col - 1) < SKILL_KEYS.length"
+                v-bind="SKILLS[SKILL_KEYS[(row - 1) * COLUMN_COUNT + (col - 1)]]" 
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <SectionHeader :title="'Academics'" :id="'academics'" :hierarchy="2" />
+
+      <SectionHeader :title="'Awards'" :id="'awards'" :hierarchy="2" />
       
 
       <!-- CONTACT -->
@@ -131,6 +147,15 @@ onUnmounted(() => {
 
   min-height: calc(100vh - 40px);  /* 100vh minus total vertical padding (currently 20px top and 20px bottom) */
 }
+#skills-list {
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+  width: 100%;
+}
+/* #skills-list td {
+  border: 1px solid #304654;
+} */
 
 #background {
   grid-area: stack;
