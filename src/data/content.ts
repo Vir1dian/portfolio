@@ -77,6 +77,22 @@ const PROJECTS: Project[] = [
   // more projects here
 ];
 
+const EXPERIENCE: Project[] = [
+  {
+    title: "PilotCity — Developer",
+    thumbnail: "",
+    skills: [SKILLS.php, SKILLS.js],
+    content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
+    other_links: [
+      { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
+      { link: 'https://www.thesaurus.com/', title: 'Thesaurus' }
+    ]
+  },
+];
+
+const LINKS: { [key: string]: LinkItem } = {
+  test: { title: '', icon: '', link: 'https://www.google.com/' },
+};
 
 export type {
   LinkItem,
@@ -85,4 +101,5 @@ export type {
 export {
   SKILLS,
   PROJECTS,
+  LINKS,
 };

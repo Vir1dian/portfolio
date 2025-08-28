@@ -51,7 +51,6 @@ const left_style_width = computed(() => {
         </div>
         <div class="content-text">{{ props.content_text }}</div>
         <div class="links">
-          <!-- ADD v-if for the LinkChip components if theres even existing repo/demo links -->
           <LinkChip
             v-if="props.demo_link"
             :link="props.demo_link"
@@ -113,7 +112,7 @@ const left_style_width = computed(() => {
 .skills {
   margin-bottom: 8px;
 }
-.skills > * {
+.skills > * {  /* For LinkChip spacing */
   margin-right: 8px;
   margin-bottom: 8px;
 }

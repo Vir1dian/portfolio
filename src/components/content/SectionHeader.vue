@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped>
 
 .section-header {
-  font-size: 32px;
+  font-size: 40px;
   text-align: justify;
   scroll-margin-top: 64px;
   margin-top: 20px;

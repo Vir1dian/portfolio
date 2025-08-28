@@ -9,10 +9,12 @@ import Navbar from './components/content/Navbar.vue';
 import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
+import Card from './components/content/Card.vue';
 import LinkChip from './components/minis/LinkChip.vue';
 
-import { SKILLS, PROJECTS } from './data/content';
+import { SKILLS, PROJECTS, LINKS } from './data/content';
 
+// Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
   { id: 'projects', title: 'Projects' },
   { id: 'about', title: 'About' },
@@ -73,6 +75,14 @@ onUnmounted(() => {
 
       <!-- ABOUT -->
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      <Card
+        :thumbnail="'minime.png'"
+        :title="'Test'"
+        :content_text="'I\'m a barbie girl, in a barbie world.'"
+        :skills="[SKILLS.ts, SKILLS.vite]"
+        :other_links="[LINKS.test]"
+      />
+
       <div v-if="SKILLS" class="skills">
         <LinkChip 
           v-for="skill in SKILLS"
