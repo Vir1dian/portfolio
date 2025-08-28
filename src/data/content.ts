@@ -20,7 +20,22 @@ const SKILLS: { [key: string]: LinkItem } = {
   js: { title: 'JavaScript', icon: 'javascript.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
   html: { title: 'HTML', icon: 'html5.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
   css: { title: 'CSS', icon: 'css.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-  // more skills here
+  php: { title: 'PHP', icon: 'php.svg', link: 'https://www.php.net' },
+  cpp: { title: 'C++', icon: 'cpp.svg', link: 'https://cplusplus.com' },
+  java: { title: 'Java', icon: 'java.svg', link: 'https://java.com/en' },
+  python: { title: 'Python', icon: 'python.svg', link: 'https://www.python.org' },
+
+  nodejs: { title: 'NodeJS', icon: '', link: 'https://nodejs.org/docs/latest/api' },
+  vite: { title: 'Vite', icon: 'vite.svg', link: 'https://v2.vitejs.dev' },
+  vscode: { title: 'VSCode', icon: 'vscode.svg', link: 'https://code.visualstudio.com' },
+
+  alanai: { title: 'Alan AI', icon: '', link: 'https://www.alan.app/docs' },
+  xampp: { title: 'XAMPP', icon: '', link: 'https://www.apachefriends.org' },
+  mariadb: { title: 'MariaDB', icon: '', link: '' },
+  crewai: { title: 'CrewAI', icon: '', link: 'https://docs.crewai.com/en/introduction' },
+  openai: { title: 'OpenAI', icon: '', link: 'https://openai.com/api' },
+  serper: { title: 'Serper', icon: '', link: 'https://serper.dev' },
+  // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
 };
 
 const PROJECTS: Project[] = [
@@ -43,7 +58,7 @@ const PROJECTS: Project[] = [
   {
     title: "Plant Tracking App",
     thumbnail: "",
-    skills: [SKILLS.vue, SKILLS.ts],
+    skills: [SKILLS.php, SKILLS.js],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     other_links: [
       { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
@@ -53,7 +68,7 @@ const PROJECTS: Project[] = [
   {
     title: "...",
     thumbnail: "ideateassistantdemo.png",
-    skills: [],
+    skills: [SKILLS.cpp, SKILLS.java, SKILLS.python, SKILLS.vite, SKILLS.vscode],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     other_links: [
       { link: 'https://www.thesaurus.com/' }
