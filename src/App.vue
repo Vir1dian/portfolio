@@ -9,6 +9,7 @@ import Navbar from './components/content/Navbar.vue';
 import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
+import LinkChip from './components/minis/LinkChip.vue';
 
 import { SKILLS, PROJECTS } from './data/content';
 
@@ -72,6 +73,12 @@ onUnmounted(() => {
 
       <!-- ABOUT -->
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      <div v-if="SKILLS" class="skills">
+        <LinkChip 
+          v-for="skill in SKILLS"
+          v-bind="skill"
+        />
+      </div>
       
 
       <!-- CONTACT -->
