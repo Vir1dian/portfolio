@@ -75,6 +75,7 @@ onUnmounted(() => {
 
       <!-- ABOUT -->
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      <SectionHeader :title="'Experience'" :id="'experience'" :hierarchy="2" />
       <Card
         :thumbnail="'minime.png'"
         :title="'Test'"
@@ -93,6 +94,8 @@ onUnmounted(() => {
 
       <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
+      <SectionHeader :title="'Hello World'" :id="'test1'" :hierarchy="2" />
+      <SectionHeader :title="'Hello World 2'" :id="'test2'" :hierarchy="3" />
 
 
     </div>
