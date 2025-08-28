@@ -62,6 +62,7 @@ onUnmounted(() => {
     <div id="content" :style="{ paddingTop: `${CONTENT_TOP_OFFSET}px` }">
       <Hero :height="HERO_HEIGHT" :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
 
+      <!-- PROJECTS -->
       <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
       <ProjectCard 
         v-for="project in PROJECTS"
@@ -69,8 +70,11 @@ onUnmounted(() => {
         v-bind="project"
       />
 
+      <!-- ABOUT -->
       <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      
 
+      <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
 
 

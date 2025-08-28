@@ -34,6 +34,7 @@ const props = withDefaults(defineProps<Props>(), {
   scroll-margin-top: 64px;
   margin-top: 20px;
   margin-bottom: 20px;
+  border-bottom: dotted 2px #304654;
 }
 
 </style>

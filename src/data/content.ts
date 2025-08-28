@@ -26,17 +26,17 @@ const SKILLS: { [key: string]: LinkItem } = {
 const PROJECTS: Project[] = [
   {
     title: "2D Particle Simulator",
-    thumbnail: "minime.png",
-    skills: [SKILLS.js, SKILLS.html, SKILLS.css], // Reference skills from the master list
-    content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
+    thumbnail: "particle_simulator.png",
+    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css], // Reference skills from the master list
+    content_text: "Browser-based physics simulator in vanilla TypeScript with object-oriented design.\nIncludes real-time rendering, elastic collisions, adjustable parameters, and dynamic input controls and UI components.",
     demo_link: "https://vir1dian.github.io/2D-Particle-Simulator/",
     repo_link: "https://github.com/Vir1dian/2D-Particle-Simulator",
   },
   {
     title: "Limited Matrix Calculator",
-    thumbnail: "selfie1.png",
-    skills: [SKILLS.css, SKILLS.vue, SKILLS.ts, SKILLS.vue, SKILLS.js, SKILLS.js, SKILLS.css, SKILLS.js],
-    content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
+    thumbnail: "matrix_calculator.png",
+    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css],
+    content_text: "Calculator with support for gaussian elimination, determinants, and inverse matrices.\nMultiple ways to input matrices for convenience, produces a step-by-step solution.",
     demo_link: "https://vir1dian.github.io/Invertible-Matrix-Calculator/",
     repo_link: "https://github.com/Vir1dian/Invertible-Matrix-Calculator",
   },
