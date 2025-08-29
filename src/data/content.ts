@@ -44,6 +44,8 @@ const SKILLS: { [key: string]: LinkItem } = {
   crewai: { title: 'CrewAI', icon: 'crewai-short.svg', link: 'https://docs.crewai.com/en/introduction' },
   openai: { title: 'OpenAI', icon: 'openai.svg', link: 'https://platform.openai.com/docs/overview' },
   serper: { title: 'Serper', icon: 'serper.png', link: 'https://serper.dev' },
+
+  figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com' },
   // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
 };
 
@@ -70,8 +72,8 @@ const PROJECTS: Project[] = [
     skills: [SKILLS.php, SKILLS.js],
     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
     other_links: [
-      { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
-      { link: 'https://www.thesaurus.com/', title: 'Thesaurus' }
+      // { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
+      // { link: 'https://www.thesaurus.com/', title: 'Thesaurus' }
     ]
   },
   {
@@ -88,23 +90,23 @@ const PROJECTS: Project[] = [
 
 const EXPERIENCE: CardItem[] = [
   {
-    thumbnail: "minime.png",
+    thumbnail: "pilotcity.jpg",
     title: "PilotCity — Software Developer",
     subtitle: "(July 2023 - present)",
-    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website",
-    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python],
+    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website.",
+    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python, SKILLS.html, SKILLS.js, SKILLS.css],
     other_links: [
       { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
     ]
   },
   {
-    thumbnail: "minime.png",
+    thumbnail: "laspositascollege.jpg",
     title: "Las Positas — Honors Contract Developer",
     subtitle: "(January 2024 - May 2025)",
-    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website",
-    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python],
+    content_text: "Designed and implemented independent software projects under faculty mentorship, applying classroom theory to real-world problems, completing 5 projects over 3 semesters.\nOutlined project scope, milestones, deliverables, and bi-weekly meetings with faculty for semester-based contracts.\nProduced technical documentation and delivered project demonstrations.",
+    skills: [SKILLS.cpp, SKILLS.python, SKILLS.ts, SKILLS.html, SKILLS.js, SKILLS.css],
     other_links: [
-      { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
+      { link: 'https://drive.google.com/drive/folders/1IlT5RfkyBX8W9OiY_PbvvroIF9RUwjIL?usp=sharing', icon: '', title: 'Honors Projects' }, 
     ]
   },
 ];
