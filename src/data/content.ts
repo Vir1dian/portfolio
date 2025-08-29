@@ -106,9 +106,46 @@ const EXPERIENCE: CardItem[] = [
     subtitle: "(January 2024 - May 2025)",
     content_text: "Designed and implemented independent software projects under faculty mentorship, applying classroom theory to real-world problems, completing 5 projects over 3 semesters.\nOutlined project scope, milestones, deliverables, and bi-weekly meetings with faculty for semester-based contracts.\nProduced technical documentation and delivered project demonstrations.",
     skills: [SKILLS.cpp, SKILLS.python, SKILLS.ts, SKILLS.html, SKILLS.js, SKILLS.css],
-    other_links: [
-      { link: 'https://drive.google.com/drive/folders/1IlT5RfkyBX8W9OiY_PbvvroIF9RUwjIL?usp=sharing', icon: '', title: 'Honors Projects' }, 
+    other_links: [ 
+      { link: 'https://www.laspositascollege.edu/honors', icon: '', title: 'LPC Honors Program' }, 
+      { link: 'https://drive.google.com/drive/folders/1IlT5RfkyBX8W9OiY_PbvvroIF9RUwjIL?usp=sharing', icon: '', title: 'My Honors Projects' },
     ]
+  },
+];
+
+const ACADEMICS: CardItem[] = [
+  {
+    thumbnail: "laspositascollege.jpg",
+    title: "AS: Computer Science",
+    subtitle: "May 2025",
+    content_text: "With highest honors (4.0 GPA)",
+  },
+  {
+    thumbnail: "laspositascollege.jpg",
+    title: "AA: Mathematics and Science",
+    subtitle: "May 2025",
+    content_text: "With highest honors (4.0 GPA)",
+  },
+  {
+    thumbnail: "laspositascollege.jpg",
+    title: "Honors Scholar",
+    subtitle: "May 2025",
+    content_text: "Completed 5 honors contracts",
+  },
+  {
+    title: "Highschool Diploma",
+    subtitle: "May 2023",
+    content_text: "John C Kimball Highschool — 4.4 GPA",
+  },
+  {
+    title: "Highschool Department Award for Mathematics",
+    subtitle: "May 2023",
+    content_text: "Single awardee for 2023",
+  },
+  {
+    title: "Avinash Raina Math Competition Podium",
+    subtitle: "April 2023",
+    content_text: "3rd Place Calculus Winner, representing John C Kimball High",
   },
 ];
 
@@ -125,5 +162,6 @@ export {
   SKILLS,
   PROJECTS,
   EXPERIENCE,
+  ACADEMICS,
   LINKS,
 };

@@ -84,7 +84,6 @@ const thumbnail_path = computed(() => {
 .title {
   font-size: 28px;
   font-weight: bolder;
-  white-space: nowrap;
 }
 .subtitle {
   color: #7d8c79;

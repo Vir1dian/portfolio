@@ -12,7 +12,7 @@ import ProjectCard from './components/content/ProjectCard.vue';
 import Card from './components/content/Card.vue';
 import LinkChip from './components/minis/LinkChip.vue';
 
-import { SKILLS, PROJECTS, LINKS, EXPERIENCE } from './data/content';
+import { SKILLS, PROJECTS, EXPERIENCE, ACADEMICS } from './data/content';
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -54,8 +54,9 @@ onUnmounted(() => {
   }
 });
 
-const SKILL_KEYS = Object.keys(SKILLS);
-const COLUMN_COUNT = ref<number>(5);
+// Used in skills list
+const SKILLS_KEYS = Object.keys(SKILLS);
+const COLUMN_COUNT = ref<number>(5);  
 
 </script>
 
@@ -90,20 +91,35 @@ const COLUMN_COUNT = ref<number>(5);
       <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
       <table id="skills-list">
         <tbody>
-          <tr v-for="row in Math.ceil(SKILL_KEYS.length / COLUMN_COUNT)" :key="row">
+          <tr v-for="row in Math.ceil(SKILLS_KEYS.length / COLUMN_COUNT)" :key="row">
             <td v-for="col in COLUMN_COUNT" :key="col">
               <LinkChip 
-                v-if="(row - 1) * COLUMN_COUNT + (col - 1) < SKILL_KEYS.length"
-                v-bind="SKILLS[SKILL_KEYS[(row - 1) * COLUMN_COUNT + (col - 1)]]" 
+                v-if="(row - 1) * COLUMN_COUNT + (col - 1) < SKILLS_KEYS.length"
+                v-bind="SKILLS[SKILLS_KEYS[(row - 1) * COLUMN_COUNT + (col - 1)]]" 
               />
             </td>
           </tr>
         </tbody>
       </table>
 
-      <SectionHeader :title="'Academics'" :id="'academics'" :hierarchy="2" />
-
-      <SectionHeader :title="'Awards'" :id="'awards'" :hierarchy="2" />
+      <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
+      <!-- <Card 
+        v-for="academic in ACADEMICS" 
+        :key="academic.title"
+        v-bind="academic"
+      /> -->
+      <table id="academics-list">
+        <tbody>
+          <tr v-for="row in Math.ceil(ACADEMICS.length / 2)" :key="row">
+            <td v-for="col in 2" :key="col">
+              <Card 
+                v-if="(row - 1) * 2 + (col - 1) < ACADEMICS.length"
+                v-bind="ACADEMICS[(row - 1) * 2 + (col - 1)]" 
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
       
 
       <!-- CONTACT -->
@@ -151,9 +167,18 @@ const COLUMN_COUNT = ref<number>(5);
   table-layout: fixed;
   width: 100%;
 }
-/* #skills-list td {
-  border: 1px solid #304654;
-} */
+#academics-list {
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+  width: 100%;
+}
+#academics-list td {
+  vertical-align: bottom;
+}
+#academics-list td > * {
+  margin-bottom: 0;
+}
 
 #background {
   grid-area: stack;
