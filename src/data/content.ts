@@ -4,6 +4,15 @@ interface LinkItem {
   title?: string;
 }
 
+interface CardItem {
+  thumbnail?: string;
+  title?: string;
+  subtitle?: string;
+  content_text?: string;
+  skills?: LinkItem[];
+  other_links?: LinkItem[];
+}
+
 interface Project {
   title?: string;
   thumbnail?: string;
@@ -77,18 +86,28 @@ const PROJECTS: Project[] = [
   // more projects here
 ];
 
-// const EXPERIENCE: Project[] = [
-//   {
-//     title: "PilotCity — Developer",
-//     thumbnail: "",
-//     skills: [SKILLS.php, SKILLS.js],
-//     content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
-//     other_links: [
-//       { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
-//       { link: 'https://www.thesaurus.com/', title: 'Thesaurus' }
-//     ]
-//   },
-// ];
+const EXPERIENCE: CardItem[] = [
+  {
+    thumbnail: "minime.png",
+    title: "PilotCity — Software Developer",
+    subtitle: "(July 2023 - present)",
+    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website",
+    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python],
+    other_links: [
+      { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
+    ]
+  },
+  {
+    thumbnail: "minime.png",
+    title: "Las Positas — Honors Contract Developer",
+    subtitle: "(January 2024 - May 2025)",
+    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website",
+    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python],
+    other_links: [
+      { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
+    ]
+  },
+];
 
 const LINKS: { [key: string]: LinkItem } = {
   test: { title: '', icon: '', link: 'https://www.google.com/' },
@@ -97,9 +116,11 @@ const LINKS: { [key: string]: LinkItem } = {
 export type {
   LinkItem,
   Project,
+  CardItem,
 };
 export {
   SKILLS,
   PROJECTS,
+  EXPERIENCE,
   LINKS,
 };

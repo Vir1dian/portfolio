@@ -6,6 +6,7 @@ import type { LinkItem } from '../../data/content';
 interface Props {
   thumbnail?: string;
   title?: string;
+  subtitle?: string;
   content_text?: string;
   skills?: LinkItem[];
   other_links?: LinkItem[];
@@ -14,6 +15,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   thumbnail: '',
   title: '',
+  subtitle: '',
   content_text: '',
   skills: () => [],
   other_links: () => [],
@@ -30,7 +32,10 @@ const thumbnail_path = computed(() => {
   <div class="card">
     <div class="content-top">
       <img v-if="props.thumbnail" :src="thumbnail_path" :alt="props.thumbnail" class="thumbnail" />
-      <div class="title">{{ props.title ?? 'Card Title' }}</div>
+      <div class="title-wrapper">
+        <div class="title">{{ props.title || 'Card Title' }}</div>
+        <div class="subtitle">{{ props.subtitle }}</div>
+      </div>
     </div>
     <div class="content">
       <div class="content-text">{{ props.content_text }}</div>
@@ -73,13 +78,16 @@ const thumbnail_path = computed(() => {
   margin-bottom: 16px;
 }
 .thumbnail {
-  height: 40px;
+  height: 48px;
   margin-right: 16px;
 }
 .title {
-  width: min-content;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bolder;
+  white-space: nowrap;
+}
+.subtitle {
+  color: #7d8c79;
 }
 .content {
   display: flex;

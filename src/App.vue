@@ -12,7 +12,7 @@ import ProjectCard from './components/content/ProjectCard.vue';
 import Card from './components/content/Card.vue';
 import LinkChip from './components/minis/LinkChip.vue';
 
-import { SKILLS, PROJECTS, LINKS } from './data/content';
+import { SKILLS, PROJECTS, LINKS, EXPERIENCE } from './data/content';
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -82,14 +82,12 @@ const COLUMN_COUNT = ref<number>(5);
 
       <SectionHeader :title="'Experience'" :id="'experience'" :hierarchy="2" />
       <Card
-        :thumbnail="'minime.png'"
-        :title="'Test'"
-        :content_text="'I\'m a barbie girl, in a barbie world.'"
-        :skills="[SKILLS.ts, SKILLS.vite]"
-        :other_links="[LINKS.test]"
+        v-for="role in EXPERIENCE"
+        :key="role.title"
+        v-bind="role"
       />
 
-      <SectionHeader :title="'Skills'" :id="'skills'" :hierarchy="2" />
+      <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
       <table id="skills-list">
         <tbody>
           <tr v-for="row in Math.ceil(SKILL_KEYS.length / COLUMN_COUNT)" :key="row">
