@@ -46,6 +46,8 @@ const SKILLS: { [key: string]: LinkItem } = {
   serper: { title: 'Serper', icon: 'serper.png', link: 'https://serper.dev' },
 
   figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com' },
+  docker: { title: 'Docker', icon: 'docker.svg', link: 'https://docs.docker.com' },
+  postman: { title: 'Postman', icon: 'postman.svg', link: 'https://www.postman.com/product/what-is-postman' },
   // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
 };
 
@@ -53,7 +55,7 @@ const PROJECTS: Project[] = [
   {
     title: "2D Particle Simulator",
     thumbnail: "particle_simulator.png",
-    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css], // Reference skills from the master list
+    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite], // Reference skills from the master list
     content_text: "Browser-based physics simulator in vanilla TypeScript with object-oriented design.\nIncludes real-time rendering, elastic collisions, adjustable parameters, and dynamic input controls and UI components.",
     demo_link: "https://vir1dian.github.io/2D-Particle-Simulator/",
     repo_link: "https://github.com/Vir1dian/2D-Particle-Simulator",
@@ -61,7 +63,7 @@ const PROJECTS: Project[] = [
   {
     title: "Limited Matrix Calculator",
     thumbnail: "matrix_calculator.png",
-    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css],
+    skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite],
     content_text: "Calculator with support for gaussian elimination, determinants, and inverse matrices.\nMultiple ways to input matrices for convenience, produces a step-by-step solution.",
     demo_link: "https://vir1dian.github.io/Invertible-Matrix-Calculator/",
     repo_link: "https://github.com/Vir1dian/Invertible-Matrix-Calculator",
@@ -69,20 +71,19 @@ const PROJECTS: Project[] = [
   {
     title: "Plant Tracking App",
     thumbnail: "",
-    skills: [SKILLS.php, SKILLS.js],
-    content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
+    skills: [SKILLS.php, SKILLS.js, SKILLS.xampp, SKILLS.mariadb],
+    content_text: "Full-stack plant tracking web application.\nRelational database to manage plant care information and user accounts.\nCRUD operations for plant profiles, database queries connected to user-facing features.",
     other_links: [
-      // { link: 'https://www.wikipedia.org/', icon: 'vue.svg', title: 'Wikipedia' }, 
-      // { link: 'https://www.thesaurus.com/', title: 'Thesaurus' }
+      { link: 'https://youtu.be/McTq_UwB-OU', title: 'Demo Video' }
     ]
   },
   {
-    title: "...",
-    thumbnail: "ideateassistantdemo.png",
-    skills: [SKILLS.cpp, SKILLS.java, SKILLS.python, SKILLS.vite, SKILLS.vscode, SKILLS.nodejs, SKILLS.alanai, SKILLS.xampp],
-    content_text: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.",
+    title: "Assistant Chef",
+    thumbnail: "",
+    skills: [SKILLS.alanai, SKILLS.js, SKILLS.html, SKILLS.css],
+    content_text: "Small-scale web application featuring voice commands, powered by Alan AI API.\nRecipe browsing and filtering from a data set, text-to-speech capabilities, and timer control.\nCollaborated project.",
     other_links: [
-      { link: 'https://www.thesaurus.com/' }
+      { link: 'https://youtu.be/tZiAHS_4ay0', title: 'Demo Video' }
     ]
   },
   // more projects here
@@ -94,7 +95,7 @@ const EXPERIENCE: CardItem[] = [
     title: "PilotCity — Software Developer",
     subtitle: "(July 2023 - present)",
     content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website.",
-    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python, SKILLS.html, SKILLS.js, SKILLS.css],
+    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python, SKILLS.docker, SKILLS.html, SKILLS.js, SKILLS.css],
     other_links: [
       { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
     ]
