@@ -11,8 +11,9 @@ import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 import Card from './components/content/Card.vue';
 import LinkChip from './components/minis/LinkChip.vue';
+import SkillsList from './components/content/SkillsList.vue';
 
-import { SKILLS, PROJECTS, EXPERIENCE, ACADEMICS } from './data/content';
+import { SKILLS, PROJECTS, EXPERIENCE, ACADEMICS, CONTACTS } from './data/content';
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -54,10 +55,6 @@ onUnmounted(() => {
   }
 });
 
-// Used in skills list
-const SKILLS_KEYS = Object.keys(SKILLS);
-const COLUMN_COUNT = ref<number>(5);  
-
 </script>
 
 <template>
@@ -89,18 +86,7 @@ const COLUMN_COUNT = ref<number>(5);
       />
 
       <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
-      <table id="skills-list">
-        <tbody>
-          <tr v-for="row in Math.ceil(SKILLS_KEYS.length / COLUMN_COUNT)" :key="row">
-            <td v-for="col in COLUMN_COUNT" :key="col">
-              <LinkChip 
-                v-if="(row - 1) * COLUMN_COUNT + (col - 1) < SKILLS_KEYS.length"
-                v-bind="SKILLS[SKILLS_KEYS[(row - 1) * COLUMN_COUNT + (col - 1)]]" 
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <SkillsList />
 
       <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
       <!-- <Card 
@@ -124,13 +110,19 @@ const COLUMN_COUNT = ref<number>(5);
 
       <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
-      <SectionHeader :title="'Hello World'" :id="'test1'" :hierarchy="2" />
-      <SectionHeader :title="'Hello World 2'" :id="'test2'" :hierarchy="3" />
+      <Card 
+        v-for="contact in CONTACTS" 
+        :key="contact.title" 
+        v-bind="contact"
+      />
+      <!-- Message Board -->
+      <!-- IDEA: Retro game inventory - See sketches -->
 
 
     </div>
 
     <div id="background">
+      <!-- IDEA: TV Lines Overlay -->
       <Bubbles />
       <HeroBg :height="HERO_HEIGHT" :color="HERO_NAV_COLOR" id="main-herobg" />
       <DottedGrid />
@@ -160,12 +152,6 @@ const COLUMN_COUNT = ref<number>(5);
   margin-right: auto;
 
   min-height: calc(100vh - 40px);  /* 100vh minus total vertical padding (currently 20px top and 20px bottom) */
-}
-#skills-list {
-  border-collapse: collapse;
-  text-align: left;
-  table-layout: fixed;
-  width: 100%;
 }
 #academics-list {
   border-collapse: collapse;

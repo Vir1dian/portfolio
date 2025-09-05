@@ -149,6 +149,27 @@ const ACADEMICS: CardItem[] = [
   },
 ];
 
+const CONTACTS: CardItem[] = [
+  {
+    thumbnail: "",
+    title: "Text",
+    subtitle: "",
+    content_text: "",
+  },
+  {
+    thumbnail: "",
+    title: "LinkedIn",
+    subtitle: "",
+    content_text: "",
+  },
+  {
+    thumbnail: "",
+    title: "GitHub",
+    subtitle: "",
+    content_text: "",
+  },
+]
+
 const LINKS: { [key: string]: LinkItem } = {
   test: { title: '', icon: '', link: 'https://www.google.com/' },
 };
@@ -163,5 +184,6 @@ export {
   PROJECTS,
   EXPERIENCE,
   ACADEMICS,
+  CONTACTS,
   LINKS,
 };

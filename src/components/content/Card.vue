@@ -39,20 +39,19 @@ const thumbnail_path = computed(() => {
     </div>
     <div class="content">
       <div class="content-text">{{ props.content_text }}</div>
-      <div v-if="props.skills" class="skills">
+      <div v-if="props.skills.length" class="skills">
         <LinkChip 
           v-for="skill in props.skills"
           v-bind="skill"
         />
       </div>
-      <div class="links">
+      <div class="links" v-if="props.other_links.length">
         <LinkChip 
           v-for="link_item in props.other_links"
           :link="link_item.link"
           :icon="link_item.icon ? link_item.icon : 'generic_link.svg'"
           :title="link_item.title"
         />
-
       </div>
     </div>
   </div>
