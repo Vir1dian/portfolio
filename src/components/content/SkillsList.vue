@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { SKILLS } from '../../data/content';
+import type { LinkItem } from '../../data/content';
 
 // interface Props {};
 // const props = withDefaults(defineProps<Props>(), {});
@@ -21,11 +23,30 @@ function getRandomString(length: number) {
   return result;
 }
 
+const search_text = defineModel({ default: '' });
+const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
+  if (!search_text.value) {
+    return SKILLS;
+  }
+  const filtered_set: { [key: string]: LinkItem } = {};
+  const search_text_lower = search_text.value.toLowerCase();
+  Object.keys(SKILLS).forEach(key => {
+    const skill_name_lower = SKILLS[key].title?.toLowerCase();
+    if (skill_name_lower?.includes(search_text_lower)) filtered_set[key] = SKILLS[key];
+  });
+  return filtered_set;
+});
+
 </script>
 
 <template>
 
   <div class="wrapper">
+    <div id="searchbar-wrapper">
+      <img src="../../assets/icons/generic_search.svg" alt="search" class="icon" />
+      <span>Gavin Torrecampo/About/Technical Skills/</span>
+      <input type="text" v-model="search_text" />
+    </div>
     <table>
       <thead>
         <tr>
@@ -38,7 +59,7 @@ function getRandomString(length: number) {
       </thead>
       <tbody>
         <tr 
-          v-for="skill in SKILLS" 
+          v-for="skill in filtered_skills" 
           @click="redirectTo(skill.link)"
           :key="skill.title"
         >
@@ -74,6 +95,29 @@ function getRandomString(length: number) {
   border: solid 2px #0E6875;
 
   text-align: justify;
+}
+#searchbar-wrapper {
+  display: inline-flex;
+  border-radius: 8px; 
+  padding-left: 4px;
+  margin-bottom: 8px;
+
+  align-items: center;
+
+  background-color: white;
+  border: solid 2px #0E6875;
+
+  font-size: 18px;
+}
+#searchbar-wrapper input {
+  outline: none;
+  border: none;
+
+  margin-right: 4px;
+
+  font-family: Freemono, monospace;
+  font-size: 18px;
+  color: #0E6875;
 }
 table {
   border-collapse: collapse;
