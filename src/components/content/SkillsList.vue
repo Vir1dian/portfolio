@@ -12,6 +12,15 @@ function redirectTo(link: string | undefined) {
   if (link) window.open(link, '_blank');
 }
 
+function getRandomString(length: number) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
 </script>
 
 <template>
@@ -22,6 +31,9 @@ function redirectTo(link: string | undefined) {
         <tr>
           <th colspan="2">Name</th>
           <th>Link</th>
+          <th>Date Modified</th>
+          <th>Type</th>
+          <th>Size</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +48,9 @@ function redirectTo(link: string | undefined) {
           </td>
           <td class="item-title">{{ skill.title }}</td>
           <td class="item-link">{{ skill.link }}</td>
+          <td class="item-filler">{{ getRandomString(13) }}</td>
+          <td class="item-filler">{{ getRandomString(6) }}</td>
+          <td class="item-filler">{{ getRandomString(6) }}</td>
         </tr>
       </tbody>
     </table>
@@ -44,6 +59,10 @@ function redirectTo(link: string | undefined) {
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'SGA';
+  src: url('../../assets/fonts/robotica-sga.otf'); 
+}
 
 .wrapper {
   display: block;
@@ -60,18 +79,19 @@ table {
   border-collapse: collapse;
 }
 th {
-  color: #7d8c79;
+  color: #c5cec3;
 }
 th:not(:first-child) {
   border-left: solid 1px #7d8c79;
 }
 tr:not(thead tr):hover {
-  background-color: #95fff2;
+  background-color: #95fff380;
   cursor: default;
 }
 td, th {
   padding: 2px;
   padding-left: 8px;
+  padding-right: 8px;
   vertical-align: middle;
 }
 .item-icon {
@@ -84,6 +104,11 @@ td, th {
   font-weight: lighter;
   font-family: monospace;
   color: #7d8c79;
+}
+.item-filler {
+  font-family: SGA;
+  font-size: 12px;
+  color: #c5cec380;
 }
 .icon {
   height: 24px;
