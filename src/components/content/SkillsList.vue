@@ -2,26 +2,12 @@
 import { computed } from 'vue';
 import { SKILLS } from '../../data/content';
 import type { LinkItem } from '../../data/content';
+import { getAssetPath, redirectTo, getRandomString } from '../../utilities/utilities';
 
 // interface Props {};
 // const props = withDefaults(defineProps<Props>(), {});
 
-function getIconPath(name: string) {
-  return new URL(`../../assets/icons/${name}`, import.meta.url).href;
-};
 
-function redirectTo(link: string | undefined) {
-  if (link) window.open(link, '_blank');
-}
-
-function getRandomString(length: number) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
 
 const search_text = defineModel({ default: '' });
 const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
@@ -64,8 +50,8 @@ const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
           :key="skill.title"
         >
           <td class="item-icon">
-            <img v-if="skill.icon" :src="getIconPath(skill.icon)" :alt="skill.icon" class="icon" />
-            <img v-else :src="getIconPath('generic_link.svg')" :alt="'icon'" class="icon" />
+            <img v-if="skill.icon" :src="getAssetPath(skill.icon, 'icons')" :alt="skill.icon" class="icon" />
+            <img v-else :src="getAssetPath('generic_link.svg', 'icons')" :alt="'icon'" class="icon" />
           </td>
           <td class="item-title">{{ skill.title }}</td>
           <td class="item-link">{{ skill.link }}</td>

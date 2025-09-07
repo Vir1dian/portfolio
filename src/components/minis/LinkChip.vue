@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { getAssetPath } from '../../utilities/utilities';
 
 interface Props {
   link?: string;
@@ -18,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const icon_path = computed(() => {
-  return new URL(`../../assets/icons/${props.icon}`, import.meta.url).href;
+  return getAssetPath(props.icon, 'icons');
 });
 
 const wrapper_style = computed(() => {

@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import LinkChip from '../minis/LinkChip.vue';
 import type { LinkItem } from '../../data/content';
+import { getAssetPath } from '../../utilities/utilities';
 
 interface Props {
   thumbnail?: string;
@@ -22,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const thumbnail_path = computed(() => {
-  return new URL(`../../assets/${props.thumbnail}`, import.meta.url).href;
+  return getAssetPath(props.thumbnail);
 });
 
 </script>

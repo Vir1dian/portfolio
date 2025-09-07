@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import HoverBounce from '../minis/HoverMes/HoverBounce.vue';
 import type { SectionLink } from './HeroLinks.vue';
 import HeroLinks from './HeroLinks.vue';
+import { getAssetPath } from '../../utilities/utilities';
 
 interface Props {
   height: string;  // control over height type (i.e. px, vh, etc.)
@@ -40,7 +41,7 @@ const hero_style = computed(() => {
     </div>
     <div class="hero-right">
       <HoverBounce :grow_to_multiplier="1.1" :max_tilt="5" :frequency="0.25" :enable_always="true">
-        <img src="../../assets/minime.png" alt="My profile picture" class="my-profile-picture">
+        <img :src="getAssetPath('minime.png')" alt="My profile picture" class="my-profile-picture">
       </HoverBounce>
     </div>
   </div>
