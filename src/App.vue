@@ -11,9 +11,10 @@ import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 import Card from './components/content/Card.vue';
 import SkillsList from './components/content/SkillsList.vue';
+import ContactsList from './components/content/ContactsList.vue';
 import MessageBoard from './components/content/MessageBoard.vue';
 
-import { PROJECTS, EXPERIENCE, ACADEMICS, CONTACTS } from './data/content';
+import { PROJECTS, EXPERIENCE, ACADEMICS } from './data/content';
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -111,11 +112,7 @@ onUnmounted(() => {
       <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
       <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
-      <!-- <Card 
-        v-for="contact in CONTACTS" 
-        :key="contact.title" 
-        v-bind="contact"
-      /> -->
+      <ContactsList />
 
       <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
       <MessageBoard />

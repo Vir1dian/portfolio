@@ -1,14 +1,20 @@
 <script setup lang="ts">
+import Shortcut from '../minis/Shortcut.vue';
+import { CONTACTS } from '../../data/content';
+
+// interface Props {};
+// const props = withDefaults(defineProps<Props>(), {});
 
 </script>
 
 <template>
 
   <div class="wrapper">
-    <!-- Windows 7 Desktop with the Contacts as Shortcuts with the names underneath and the translucent hover style -->
-    <form>
-      
-    </form>
+    <Shortcut 
+      v-for="contact in CONTACTS" 
+      :key="contact.title"
+      v-bind="contact"
+    />
   </div>
 
 </template>
@@ -16,15 +22,8 @@
 <style scoped>
 
 .wrapper {
-  display: block;
-  border-radius: 8px;
-  padding: 16px;
+  display: flex;
   margin-bottom: 32px;
-
-  background-color: #d7fffa80;
-  border: solid 2px #0E6875;
-
-  text-align: justify;
 }
 
 </style>

@@ -149,25 +149,37 @@ const ACADEMICS: CardItem[] = [
   },
 ];
 
-const CONTACTS: CardItem[] = [
+const CONTACTS: (LinkItem & { copy_to_clipboard?: boolean })[] = [
   {
-    thumbnail: "",
+    link: "4088599853",
+    icon: "sms.svg",
     title: "Text",
-    subtitle: "",
-    content_text: "",
+    copy_to_clipboard: true,
   },
   {
-    thumbnail: "",
+    link: "https://www.linkedin.com/in/gavin-torrecampo-a93164267",
+    icon: "linkedin.png",
     title: "LinkedIn",
-    subtitle: "",
-    content_text: "",
+    copy_to_clipboard: false,
   },
   {
-    thumbnail: "",
+    link: "https://github.com/Vir1dian",
+    icon: "github.svg",
     title: "GitHub",
-    subtitle: "",
-    content_text: "",
+    copy_to_clipboard: false,
   },
+  {
+    link: "gav.torrecampo@gmail.com",
+    icon: "gmail.svg",
+    title: "Gmail",
+    copy_to_clipboard: true,
+  },
+  // {
+  //   link: "",
+  //   icon: "generic_link.svg",
+  //   title: "TEEEEEEEEEEEEEEEEEEEEEST",
+  //   copy_to_clipboard: true,
+  // },
 ]
 
 const LINKS: { [key: string]: LinkItem } = {
