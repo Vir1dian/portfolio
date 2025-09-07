@@ -6,12 +6,8 @@
 
   <form id="message-form">
     <div class="wrapper">
-      <!-- Windows 7 Hotmail style -->
-      <!-- To: Gavin Torrecampo (cosmetic field, to complete the email look) -->
-      <!-- From: Insert name here -->
-      <!-- Subject: Insert title here -->
-      <!-- text space -->
         <button type="submit" form="message-form">Send</button>
+        <!-- <button>Save Draft</button> Idea: Save drafts using local storage?! -->
         <button>Cancel</button>
         <div class="wrapper-2">
           <div class="label-wrapper">
@@ -26,7 +22,7 @@
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject">
           </div>
-          <div class="content-ribbon">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aut quo odio nobis et doloribus.</div>
+          <div class="content-ribbon">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
           <div class="content-wrapper">
             <textarea id="content" name="content" rows="5"></textarea>
           </div>
@@ -37,6 +33,10 @@
 </template>
 
 <style scoped>
+@font-face {
+  font-family: 'SGA';
+  src: url('../../assets/fonts/robotica-sga.otf'); 
+}
 
 .wrapper {
   display: block;
@@ -52,10 +52,17 @@
 
 button {
   border: none;
+  border-bottom: solid 2px transparent;
   background: none;
+  margin-right: 8px;
 
   font-family: Freemono, monospace;
   font-size: 16px;
+}
+button:hover {
+  cursor: pointer;
+  border-bottom: solid 2px #0E6875;
+  /* background-color: #6affed; */
 }
 
 .wrapper-2 {
@@ -95,6 +102,9 @@ input {
   border: solid 1px #0E6875;
   background-color: #befff7;
   padding: 4px;
+  padding-left: 12px;
+
+  font-family: SGA;
 }
 .content-wrapper {
   display: flex;

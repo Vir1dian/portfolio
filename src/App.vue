@@ -110,11 +110,14 @@ onUnmounted(() => {
 
       <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
+      <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
       <!-- <Card 
         v-for="contact in CONTACTS" 
         :key="contact.title" 
         v-bind="contact"
       /> -->
+
+      <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
       <MessageBoard />
 
 
