@@ -10,10 +10,10 @@ import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
 import Card from './components/content/Card.vue';
-import LinkChip from './components/minis/LinkChip.vue';
 import SkillsList from './components/content/SkillsList.vue';
+import MessageBoard from './components/content/MessageBoard.vue';
 
-import { SKILLS, PROJECTS, EXPERIENCE, ACADEMICS, CONTACTS } from './data/content';
+import { PROJECTS, EXPERIENCE, ACADEMICS, CONTACTS } from './data/content';
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -110,13 +110,12 @@ onUnmounted(() => {
 
       <!-- CONTACT -->
       <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
-      <Card 
+      <!-- <Card 
         v-for="contact in CONTACTS" 
         :key="contact.title" 
         v-bind="contact"
-      />
-      <!-- Message Board -->
-      <!-- IDEA: Retro game inventory - See sketches -->
+      /> -->
+      <MessageBoard />
 
 
     </div>
