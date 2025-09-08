@@ -160,9 +160,13 @@ onUnmounted(() => {
 }
 #academics-list td {
   vertical-align: bottom;
+  height: 1px;
+  /* Kind of hacky, so that the Cards fill the entire table cell and look even */
 }
 #academics-list td > * {
   margin-bottom: 0;
+  height: calc(100% - 16px - 16px - 2px - 2px);
+  /* Offset for 16px top and bottom paddings, 2px top and bottom border (see Card.vue styling) */
 }
 
 #background {
