@@ -23,7 +23,7 @@ const icon_path = computed(() => {
 });
 
 const display_text = computed(() => {
-  if (copied.value) return 'Copied to clipboard!';
+  if (copied.value) return 'Copied to clipboard';
   return props.title || props.link;
 });
 
