@@ -94,16 +94,25 @@ function scrollToSection(id: string) {
   }
 }
 
-@media screen and (max-width: 1920px) {
 
-}
-@media screen and (max-width: 1280px) {
-  
-}
-@media screen and (max-width: 768px) {
+@media screen and (768px < width <= 864px) {
   .hero-links-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  }
+}
+@media screen and (364px < width <= 768px) {
+  .hero-links-container {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+@media screen and (width <= 364px) {
+  .hero-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

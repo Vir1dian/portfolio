@@ -194,19 +194,19 @@ onUnmounted(() => {
 
 @media screen and (max-width: 1920px) {
   #content {
-    background-color: blue;
+    /* background-color: blue; */
     width: 70%;
   }
 }
 @media screen and (max-width: 1280px) {
   #content {
-    background-color: red;
+    /* background-color: red; */
     width: 80%;
   }
 }
 @media screen and (max-width: 768px) {
   #content {
-    background-color: green;
+    /* background-color: green; */
     width: 90%;
   }
 }
