@@ -7,6 +7,10 @@
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* --phone-max-width: 600px;
+  --tablet-max-width: 1024px;
+  --desktop-max-width: 1440px; */
 }
 
 html, body {

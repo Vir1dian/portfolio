@@ -90,11 +90,6 @@ onUnmounted(() => {
       <SkillsList />
 
       <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
-      <!-- <Card 
-        v-for="academic in ACADEMICS" 
-        :key="academic.title"
-        v-bind="academic"
-      /> -->
       <table id="academics-list">
         <tbody>
           <tr v-for="row in Math.ceil(ACADEMICS.length / 2)" :key="row">
@@ -143,14 +138,13 @@ onUnmounted(() => {
   grid-area: stack;
   position: relative; 
   z-index: 1;
-  padding: 20px; 
   box-sizing: border-box;
-
-  width: 1080px;  /* 1280, 1140, 1080, 960 */
+  /* background-color: coral; */
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 
-  min-height: calc(100vh - 40px);  /* 100vh minus total vertical padding (currently 20px top and 20px bottom) */
+  min-height: 100vh;
 }
 #academics-list {
   border-collapse: collapse;
@@ -197,4 +191,24 @@ onUnmounted(() => {
 .slide-leave-to {
   transform: translateY(-100%);
 }
+
+@media (max-width: 1440px) {
+  #content {
+    /* background-color: blue; */
+    width: 70%;
+  }
+}
+@media (max-width: 1024px) {
+  #content {
+    /* background-color: red; */
+    width: 80%;
+  }
+}
+@media (max-width: 600px) {
+  #content {
+    /* background-color: green; */
+    width: 90%;
+  }
+}
+
 </style>

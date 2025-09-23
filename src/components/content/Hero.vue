@@ -92,4 +92,23 @@ const hero_style = computed(() => {
   border-radius: 20%;
 }
 
+@media (max-width: 1440px) {
+  .my-profile-picture {
+    height: 300px;
+    border-radius: 20%;
+  }
+}
+@media (max-width: 1024px) {
+  .my-profile-picture {
+    height: 200px;
+    border-radius: 20%;
+  }
+}
+@media (max-width: 600px) {
+  .my-profile-picture {
+    height: 100px;
+    border-radius: 20%;
+  }
+}
+
 </style>
