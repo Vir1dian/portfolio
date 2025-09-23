@@ -94,4 +94,17 @@ function scrollToSection(id: string) {
   }
 }
 
+@media screen and (max-width: 1920px) {
+
+}
+@media screen and (max-width: 1280px) {
+  
+}
+@media screen and (max-width: 768px) {
+  .hero-links-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 </style>

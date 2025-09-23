@@ -68,16 +68,16 @@ onUnmounted(() => {
       <Hero :height="HERO_HEIGHT" :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
 
       <!-- PROJECTS -->
-      <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
+      <!-- <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
       <ProjectCard 
         v-for="project in PROJECTS"
         :key="project.title"
         v-bind="project"
-      />
+      /> -->
 
 
       <!-- ABOUT -->
-      <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      <!-- <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
 
       <SectionHeader :title="'Experience'" :id="'experience'" :hierarchy="2" />
       <Card
@@ -101,16 +101,16 @@ onUnmounted(() => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
       
 
       <!-- CONTACT -->
-      <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
+      <!-- <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
       <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
       <ContactsList />
 
       <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
-      <MessageBoard />
+      <MessageBoard /> -->
 
 
     </div>
@@ -192,21 +192,21 @@ onUnmounted(() => {
   transform: translateY(-100%);
 }
 
-@media (max-width: 1440px) {
+@media screen and (max-width: 1920px) {
   #content {
-    /* background-color: blue; */
+    background-color: blue;
     width: 70%;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   #content {
-    /* background-color: red; */
+    background-color: red;
     width: 80%;
   }
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
   #content {
-    /* background-color: green; */
+    background-color: green;
     width: 90%;
   }
 }

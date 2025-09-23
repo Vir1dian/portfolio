@@ -92,21 +92,30 @@ const hero_style = computed(() => {
   border-radius: 20%;
 }
 
-@media (max-width: 1440px) {
+@media screen and (max-width: 1920px) {
   .my-profile-picture {
     height: 300px;
     border-radius: 20%;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   .my-profile-picture {
     height: 200px;
     border-radius: 20%;
   }
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .hero {
+    display: flex;
+    border-radius: 8px;
+    margin-bottom: 64px;
+
+    /* border: solid 2px white; */
+
+    flex-direction: column-reverse;
+  }
   .my-profile-picture {
-    height: 100px;
+    height: 300px;
     border-radius: 20%;
   }
 }
