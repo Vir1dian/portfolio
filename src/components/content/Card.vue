@@ -92,6 +92,9 @@ const thumbnail_path = computed(() => {
   display: flex;
   flex-direction: column;
 }
+.content-text {
+  font-size: 18px;
+}
 .skills {
   margin-top: 16px;
   border-bottom: dotted 2px #304654;
@@ -106,6 +109,31 @@ const thumbnail_path = computed(() => {
   flex-direction: column;
   gap: 8px;
   width: min-content;
+}
+
+@media screen and (max-width: 1920px) {
+  .title {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 20px;
+  }
+  .content-text {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 16px;
+  }
+  .content-text {
+    font-size: 14px;
+  }
+  .skills {
+    margin-top: 8px;
+  }
 }
 
 </style>

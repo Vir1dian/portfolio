@@ -77,7 +77,7 @@ onUnmounted(() => {
 
 
       <!-- ABOUT -->
-      <!-- <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
+      <SectionHeader :title="SECTION_HEADERS[1].title" :id="SECTION_HEADERS[1].id" />
 
       <SectionHeader :title="'Experience'" :id="'experience'" :hierarchy="2" />
       <Card
@@ -86,10 +86,10 @@ onUnmounted(() => {
         v-bind="role"
       />
 
-      <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
-      <SkillsList />
+      <!-- <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
+      <SkillsList /> -->
 
-      <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
+      <!-- <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
       <table id="academics-list">
         <tbody>
           <tr v-for="row in Math.ceil(ACADEMICS.length / 2)" :key="row">

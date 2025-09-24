@@ -110,6 +110,9 @@ const left_style_width = computed(() => {
   flex-direction: column;
   width: 60%;
 }
+.content-text {
+  font-size: 18px;
+}
 .skills {
   margin-bottom: 8px;
 }
@@ -131,7 +134,22 @@ const left_style_width = computed(() => {
   max-width: 100%;
 }
 
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 18px;
+  }
+  .content-text {
+    font-size: 16px;
+  }
+}
 @media screen and (max-width: 768px) {
+  .title {
+    font-size: 16px;
+  }
+  .content-text {
+    font-size: 14px;
+  }
+
   .content-wrapper {
     flex-direction: column-reverse;
   }
@@ -140,6 +158,12 @@ const left_style_width = computed(() => {
   }
   .content-right {
     margin-bottom: 16px;
+  }
+  .skills {
+    margin-bottom: 0;
+  }
+  .links {
+    margin-top: 8px;
   }
 }
 
