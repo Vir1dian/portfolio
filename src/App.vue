@@ -68,12 +68,12 @@ onUnmounted(() => {
       <Hero :height="HERO_HEIGHT" :offset_top="CONTENT_TOP_OFFSET" :sections="SECTION_HEADERS" />
 
       <!-- PROJECTS -->
-      <!-- <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
+      <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
       <ProjectCard 
         v-for="project in PROJECTS"
         :key="project.title"
         v-bind="project"
-      /> -->
+      />
 
 
       <!-- ABOUT -->

@@ -131,4 +131,16 @@ const left_style_width = computed(() => {
   max-width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column-reverse;
+  }
+  .content-left, .content-right {
+    width: 100%;
+  }
+  .content-right {
+    margin-bottom: 16px;
+  }
+}
+
 </style>
