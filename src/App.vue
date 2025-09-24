@@ -86,8 +86,8 @@ onUnmounted(() => {
         v-bind="role"
       />
 
-      <!-- <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
-      <SkillsList /> -->
+      <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
+      <SkillsList />
 
       <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
       <table id="academics-list">

@@ -30,7 +30,9 @@ const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
   <div class="wrapper">
     <div id="searchbar-wrapper">
       <img src="../../assets/icons/generic_search.svg" alt="search" class="icon" />
-      <span>Gavin Torrecampo/About/Technical Skills/</span>
+      <span class="full-searchbar-filler">Gavin Torrecampo/About/Technical Skills/</span>
+      <span class="half-searchbar-filler">../Technical Skills/</span>
+      <span class="mini-searchbar-filler">../</span>
       <input type="text" v-model="search_text" />
     </div>
     <table>
@@ -105,6 +107,13 @@ const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
   font-size: 18px;
   color: #0E6875;
 }
+.full-searchbar-filler {
+  display: inline;
+}
+.half-searchbar-filler, .mini-searchbar-filler {
+  display: none;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -143,6 +152,38 @@ td, th {
 .icon {
   height: 24px;
   display: flex;
+}
+
+
+@media screen and (max-width: 1024px) {
+  th:nth-child(3),  /* th is one off due to the first th being colspan=2 */
+  td:nth-child(4) {
+    display: none;
+  }
+}
+@media screen and (max-width: 864px) {
+  .full-searchbar-filler, .mini-searchbar-filler {
+    display: none;
+  }
+  .half-searchbar-filler {
+    display: inline;
+  }
+  th:nth-child(4), th:nth-child(5),  /* th is one off due to the first th being colspan=2 */
+  td:nth-child(5), td:nth-child(6) {
+    display: none;
+  }
+}
+@media screen and (max-width: 584px) {
+  .full-searchbar-filler, .half-searchbar-filler {
+    display: none;
+  }
+  .mini-searchbar-filler {
+    display: inline;
+  }
+  th:nth-child(2),
+  td:nth-child(3) {
+    display: none;
+  }
 }
 
 </style>
