@@ -71,6 +71,9 @@ const thumbnail_path = computed(() => {
   border: solid 2px #0E6875;
 
   text-align: justify;
+
+  container-type: inline-size;  
+  /* For container query */
 }
 .content-top {
   display: flex;
@@ -133,6 +136,16 @@ const thumbnail_path = computed(() => {
   }
   .skills {
     margin-top: 8px;
+  }
+}
+
+@container (max-width: 168px) {
+  .content-top {
+    flex-direction: column;
+  }
+  .thumbnail {
+    margin-right: 0;
+    margin-bottom: 8px;
   }
 }
 
