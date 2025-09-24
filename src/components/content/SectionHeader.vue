@@ -25,7 +25,7 @@ const icon_path = computed(() => {
 <template>
 
   <div :id="`section-header-id-${props.id}`" :class="`section-header heirarchy-${props.hierarchy}`">
-    <span class="heirarchy-indicator">{{ '\u2217'.repeat(props.hierarchy) }}</span>
+    <span class="heirarchy-indicator">{{ '\u273B'.repeat(props.hierarchy) }}</span>
     <img v-if="props.icon && props.icon_pos === 'prepend'" :src="icon_path" :alt="props.icon" class="icon" />
     <span class="header-text">{{ props.title }}</span>
     <img v-if="props.icon && props.icon_pos === 'append'" :src="icon_path" :alt="props.icon" class="icon" />
@@ -64,7 +64,7 @@ const icon_path = computed(() => {
   top: 50%;
   left: -8px;
 
-  font-size: 40px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
 }
@@ -95,7 +95,7 @@ const icon_path = computed(() => {
 
     margin-right: 8px;
 
-    font-size: 32px;
+    font-size: 16px;
   }
 }
 

@@ -90,18 +90,13 @@ onUnmounted(() => {
       <SkillsList />
 
       <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
-      <table id="academics-list">
-        <tbody>
-          <tr v-for="row in Math.ceil(ACADEMICS.length / 2)" :key="row">
-            <td v-for="col in 2" :key="col">
-              <Card 
-                v-if="(row - 1) * 2 + (col - 1) < ACADEMICS.length"
-                v-bind="ACADEMICS[(row - 1) * 2 + (col - 1)]" 
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="academics-list">
+        <Card 
+          v-for="academic in ACADEMICS"
+          :key="academic.title"
+          v-bind="academic"
+        />
+      </div>
       
 
       <!-- CONTACT -->
@@ -109,7 +104,7 @@ onUnmounted(() => {
       <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
       <ContactsList />
 
-      <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
+      <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="3" />
       <MessageBoard />
 
 
@@ -147,20 +142,13 @@ onUnmounted(() => {
   min-height: 100vh;
 }
 #academics-list {
-  border-collapse: collapse;
-  text-align: left;
-  table-layout: fixed;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
 }
-#academics-list td {
-  vertical-align: bottom;
-  height: 1px;
-  /* Kind of hacky, so that the Cards fill the entire table cell and look even */
-}
-#academics-list td > * {
+#academics-list > * {
   margin-bottom: 0;
-  height: calc(100% - 16px - 16px - 2px - 2px);
-  /* Offset for 16px top and bottom paddings, 2px top and bottom border (see Card.vue styling) */
+  background-color: #95fff2;
 }
 
 #background {
