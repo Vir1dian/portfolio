@@ -8,9 +8,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --phone-max-width: 600px;
-  --tablet-max-width: 1024px;
-  --desktop-max-width: 1440px; */
+  /* --desktop-max-width: 1920px;
+  --tablet-max-width: 1280px;
+  --phone-max-width: 600px; */
 }
 
 html, body {

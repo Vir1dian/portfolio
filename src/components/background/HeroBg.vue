@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import BubbleOrbits from './BubbleOrbits.vue';
 import DottedGrid from './DottedGrid.vue';
 
@@ -20,6 +20,23 @@ const herobg_style = computed(() => {
   };
 });
 
+const bubble_orbits_dimensions = ref<{ width: number; height: number }>({ width: window.innerWidth, height: window.innerHeight });
+const bubble_radii_range = { min: 75, max: 180 };
+function resizeOrbits() {
+  bubble_orbits_dimensions.value.width = window.innerWidth * 0.8;
+  bubble_orbits_dimensions.value.height = window.innerHeight * 0.8;
+  bubble_radii_range.min = Math.min(75, window.innerWidth * 0.05);
+  bubble_radii_range.max = Math.min(180, window.innerWidth * 0.15);
+}
+
+onMounted(() => {
+  resizeOrbits();
+  window.addEventListener('resize', resizeOrbits);
+});
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeOrbits);
+});
+
 </script>
 
 <template>
@@ -28,10 +45,10 @@ const herobg_style = computed(() => {
     <DottedGrid :color="'6AFFED'" class="herobg-grid" />
     <BubbleOrbits 
       :count="10"
-      :width="1440"
-      :height="650"
+      :width="bubble_orbits_dimensions.width"
+      :height="bubble_orbits_dimensions.height"
       :ang_velocity="{ min: 0.05, max: 0.25 }"
-      :bubble_radius="{ min: 75, max: 180 }"
+      :bubble_radius="{ min: bubble_radii_range.min, max: bubble_radii_range.max }"
       :orbit_tilt="'random'"
       :zoom="2.5"
     />

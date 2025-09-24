@@ -75,4 +75,29 @@ const display_text = computed(() => {
   white-space: nowrap;
 }
 
+@media screen and (max-width: 1920px) {
+  .icon {
+    height: 18px;
+  }
+  .icon-title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .icon {
+    height: 16px;
+  }
+  .icon-title {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .icon {
+    height: 14px;
+  }
+  .icon-title {
+    font-size: 14px;
+  }
+}
+
 </style>

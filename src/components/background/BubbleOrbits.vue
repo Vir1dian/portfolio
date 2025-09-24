@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { addAnimationCallback, removeAnimationCallback } from '../../utilities/animation';
 import type { BubbleData } from '../minis/Bubble.vue';
 import Bubble from '../minis/Bubble.vue';
@@ -72,6 +72,13 @@ onMounted(() => {
 onUnmounted(() => {
   removeAnimationCallback(animateOrbits);
 });
+
+watch(
+  () => [props.width, props.height], 
+  () => {
+    generateBubbles();
+  }
+);
 
 // BUBBLE GENERATION
 function getRandomInt(min: number, max: number): number {
@@ -254,6 +261,8 @@ function generateBubbles() {
   bubble_arr.sort((a, b) => a.radius - b.radius);
 
   animated_bubbles.value = bubble_arr;
+
+  // console.log('Generated bubbles using data... width: ', props.width, ' height: ', props.height, ' observer distance: ', observer_distance.value);
 }
 
 // ANIMATION DRIVER

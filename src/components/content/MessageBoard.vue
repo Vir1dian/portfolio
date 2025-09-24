@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 // interface Props {};
 // const props = withDefaults(defineProps<Props>(), {});
 
@@ -33,6 +33,25 @@ async function handleSubmit(event: Event) {
   }
 }
 
+// Responsive design: Check if mobile to update input properties
+const is_mobile = ref<boolean>(false);
+let media_query: MediaQueryList | null = null;
+function checkIsMobile() {
+  if (media_query) {
+    is_mobile.value = media_query.matches;
+  }
+}
+onMounted(() => {
+  media_query = window.matchMedia('(max-width: 600px)');
+  is_mobile.value = media_query.matches;
+  media_query.addEventListener('change', checkIsMobile);
+});
+onUnmounted(() => {
+  if (media_query) {
+    media_query.removeEventListener('change', checkIsMobile);
+  }
+});
+
 </script>
 
 <template>
@@ -48,21 +67,21 @@ async function handleSubmit(event: Event) {
         <div class="wrapper-2">
           <div class="label-wrapper">
             <label for="sender">From:</label>
-            <input type="text" id="sender" name="sender" v-model="sender" required>
+            <input type="text" id="sender" name="sender" v-model="sender" :placeholder="is_mobile ? 'From':''" required>
           </div>
           <div class="label-wrapper">
             <!-- Cosmetic field to complete the email look -->
             <label for="reciever">To:</label>
-            <input type="text" id="reciever" value="Gavin Torrecampo" readonly>
+            <input type="text" id="reciever" :value="is_mobile ? '(To) Gavin Torrecampo' : 'Gavin Torrecampo'" readonly>
           </div>
           <div class="label-wrapper">
             <label for="subject">Subject:</label>
-            <input type="text" id="subject" name="subject" v-model="subject" required>
+            <input type="text" id="subject" name="subject" v-model="subject" :placeholder="is_mobile ? 'Subject':''" required>
           </div>
           <!-- Cosmetic element to imitate text editor ribbon -->
           <div class="content-ribbon">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
           <div class="content-wrapper">
-            <textarea id="content" name="content" rows="5" v-model="content" required></textarea>
+            <textarea id="content" name="content" rows="5" v-model="content" :placeholder="is_mobile ? 'Content':''" required></textarea>
           </div>
         </div>
     </div>
@@ -133,6 +152,8 @@ input {
   font-family: Freemono, monospace;
   font-size: 16px;
   color: #242424;
+
+  min-width: 0;
 }
 
 .content-ribbon {
@@ -156,6 +177,18 @@ textarea {
   font-family: Freemono, monospace;
   font-size: 16px;
   color: #242424;
+}
+
+@media screen and (max-width: 600px) {
+  .content-ribbon {
+    display: none;
+  }
+  label {
+    display: none;
+  }
+  input {
+    padding-left: 4px;
+  }
 }
 
 </style>

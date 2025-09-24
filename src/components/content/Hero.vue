@@ -73,7 +73,7 @@ const hero_style = computed(() => {
   display: block;
 
   font-size: 40px;
-  text-align: justify;
+  text-align: left;
 }
 .hero-moretext {
   margin-top: 48px;
@@ -92,22 +92,55 @@ const hero_style = computed(() => {
   border-radius: 20%;
 }
 
-@media (max-width: 1440px) {
+@media screen and (max-width: 1920px) {
   .my-profile-picture {
     height: 300px;
     border-radius: 20%;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   .my-profile-picture {
     height: 200px;
     border-radius: 20%;
   }
+  .hero-text {
+    font-size: 32px;
+  }
+  .hero-moretext {
+    margin-top: 36px;
+    font-size: 32px;
+  }
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .hero {
+    display: flex;
+    border-radius: 8px;
+    margin-bottom: 64px;
+
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-left {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+
+    padding: 4px;
+  }
   .my-profile-picture {
-    height: 100px;
+    height: 150px;
     border-radius: 20%;
+    margin-top: 36px;
+  }
+  .hero-text {
+    font-size: 20px;
+    text-align: center;
+  }
+  .hero-moretext {
+    margin-top: 16px;
+    font-size: 24px;
   }
 }
 

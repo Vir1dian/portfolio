@@ -192,19 +192,19 @@ onUnmounted(() => {
   transform: translateY(-100%);
 }
 
-@media (max-width: 1440px) {
+@media screen and (max-width: 1920px) {
   #content {
     /* background-color: blue; */
     width: 70%;
   }
 }
-@media (max-width: 1024px) {
+@media screen and (max-width: 1280px) {
   #content {
     /* background-color: red; */
     width: 80%;
   }
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
   #content {
     /* background-color: green; */
     width: 90%;

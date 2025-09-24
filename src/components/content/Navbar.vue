@@ -43,26 +43,43 @@ function scrollToSection(id: string) {
 
   <!-- initial debug element -->
   <nav :style="nav_style">
-    <div class="nav-left">
-      <div>
-        <a
-          href="/"
-          @click.prevent="scrollToSection('_start')"
-        >
-          Gavin Torrecampo | Student Developer
-        </a>
+    <div class="subwrapper">
+      <div class="nav-left">
+        <div>
+          <a
+            href="/"
+            @click.prevent="scrollToSection('_start')"
+            class="full-title"
+          >
+            Gavin Torrecampo | Student Developer
+          </a>
+          <a
+            href="/"
+            @click.prevent="scrollToSection('_start')"
+            class="half-title"
+          >
+            Gavin Torrecampo
+          </a>
+          <a
+            href="/"
+            @click.prevent="scrollToSection('_start')"
+            class="mini-title"
+          >
+            Gavin T
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="nav-right">
-      <div>
-        <a
-          v-for="section in props.sections"
-          :key="section.id"
-          :href="`#section-header-id-${section.id}`"
-          @click.prevent="scrollToSection(section.id)"
-        >
-          {{ section.title }}
-        </a>
+      <div class="nav-right">
+        <div>
+          <a
+            v-for="section in props.sections"
+            :key="section.id"
+            :href="`#section-header-id-${section.id}`"
+            @click.prevent="scrollToSection(section.id)"
+          >
+            {{ section.title }}
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -71,16 +88,28 @@ function scrollToSection(id: string) {
 
 <style scoped>
 
+.subwrapper {
+  width: 60%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .nav-left {
   display: inline-block;
-  width: 50%;
+}
+.full-title {
+  display: inline-block;
+}
+.half-title, .mini-title {
+  display: none;
 }
 
 .nav-right {
   display: inline-block;
-  width: 50%;
 }
-.nav-right a {
+.nav-right a:not(:first-child) {
   margin-left: 16px;
 }
 
@@ -133,6 +162,47 @@ nav a:hover {
   }
   to {
     background-position: 0% 0%;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .subwrapper {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  nav {
+    font-size: 18px;
+  }
+  .subwrapper {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 768px) {
+  nav {
+    font-size: 14px;
+  }
+  .subwrapper {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .full-title {
+    display: none;
+  }
+  .half-title {
+    display: inline-block;  
+  }
+}
+@media screen and (max-width: 364px) {
+  .half-title {
+    display: none;
+  }
+  .mini-title {
+    display: inline-block;  
+  }
+  .nav-right a:not(:first-child) {
+    margin-left: 8px;
   }
 }
 </style>

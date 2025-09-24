@@ -24,6 +24,7 @@ import { CONTACTS } from '../../data/content';
 .wrapper {
   display: flex;
   margin-bottom: 32px;
+  flex-wrap: wrap;
 }
 
 </style>
