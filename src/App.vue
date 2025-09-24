@@ -105,12 +105,12 @@ onUnmounted(() => {
       
 
       <!-- CONTACT -->
-      <!-- <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
+      <SectionHeader :title="SECTION_HEADERS[2].title" :id="SECTION_HEADERS[2].id" />
       <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
       <ContactsList />
 
       <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
-      <MessageBoard /> -->
+      <MessageBoard />
 
 
     </div>
