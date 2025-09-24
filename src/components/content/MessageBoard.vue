@@ -115,6 +115,9 @@ button {
 
   font-family: Freemono, monospace;
   font-size: 16px;
+
+  color: #0E6875;
+  font-weight: bold;
 }
 button:hover {
   cursor: pointer;

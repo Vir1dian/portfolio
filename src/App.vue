@@ -109,7 +109,7 @@ onUnmounted(() => {
       <SectionHeader :title="'Accounts'" :id="'accounts'" :hierarchy="2" />
       <ContactsList />
 
-      <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="2" />
+      <SectionHeader :title="'Send Me A Message!'" :id="'message'" :hierarchy="3" />
       <MessageBoard />
 
 

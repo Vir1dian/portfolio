@@ -87,6 +87,7 @@ const thumbnail_path = computed(() => {
 .title {
   font-size: 28px;
   font-weight: bolder;
+  text-align: left;
 }
 .subtitle {
   color: #7d8c79;
@@ -94,6 +95,7 @@ const thumbnail_path = computed(() => {
 .content {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 .content-text {
   font-size: 18px;
