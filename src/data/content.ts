@@ -48,6 +48,7 @@ const SKILLS: { [key: string]: LinkItem } = {
   figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com' },
   docker: { title: 'Docker', icon: 'docker.svg', link: 'https://docs.docker.com' },
   postman: { title: 'Postman', icon: 'postman.svg', link: 'https://www.postman.com/product/what-is-postman' },
+  skill: { title: 'Formspree', icon: 'formspree.svg', link: 'https://formspree.io' },
   // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
 };
 
