@@ -27,7 +27,7 @@ const icon_path = computed(() => {
   <div :id="`section-header-id-${props.id}`" :class="`section-header heirarchy-${props.hierarchy}`">
     <span class="heirarchy-indicator">{{ '\u2217'.repeat(props.hierarchy) }}</span>
     <img v-if="props.icon && props.icon_pos === 'prepend'" :src="icon_path" :alt="props.icon" class="icon" />
-    <span>{{ props.title }}</span>
+    <span class="header-text">{{ props.title }}</span>
     <img v-if="props.icon && props.icon_pos === 'append'" :src="icon_path" :alt="props.icon" class="icon" />
   </div>
 
@@ -53,6 +53,10 @@ const icon_path = computed(() => {
 .heirarchy-3 {
   font-size: 24px;
 }
+.header-text {
+  display: inline-block;
+  text-align: left;
+}
 
 .heirarchy-indicator {
   position: absolute;
@@ -63,6 +67,36 @@ const icon_path = computed(() => {
   font-size: 40px;
   font-weight: bold;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .section-header {
+    display: flex;
+    font-size: 24px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .heirarchy-1 {
+    font-size: 32px;
+  }
+  .heirarchy-2 {
+    font-size: 24px;
+  }
+  .heirarchy-3 {
+    font-size: 20px;
+  }
+
+  .heirarchy-indicator {
+    position: relative;
+    transform: translate(0, 0);
+    top: 0; 
+    left: 0;
+
+    margin-right: 8px;
+
+    font-size: 32px;
+  }
 }
 
 </style>
