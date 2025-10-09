@@ -155,6 +155,7 @@ input {
   font-family: Freemono, monospace;
   font-size: 16px;
   color: #242424;
+  color-scheme: light;
 
   min-width: 0;
 }
@@ -180,6 +181,7 @@ textarea {
   font-family: Freemono, monospace;
   font-size: 16px;
   color: #242424;
+  color-scheme: light;
 }
 
 @media screen and (max-width: 600px) {

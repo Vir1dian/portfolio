@@ -33,7 +33,7 @@ const hero_style = computed(() => {
   <div class="hero" :style="hero_style">
     <div class="hero-left">
       <div class="hero-text">
-        Hello, my name is Gavin Torrecampo. I'm a Software Engineer!
+        Hello, my name is Gavin Torrecampo. I'm a Software Developer!
       </div>
       <div class="hero-moretext">
         <HeroLinks :sections="props.sections" />
