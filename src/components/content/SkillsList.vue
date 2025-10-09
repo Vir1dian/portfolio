@@ -106,6 +106,7 @@ const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
   font-family: Freemono, monospace;
   font-size: 18px;
   color: #0E6875;
+  color-scheme: light;
 }
 .full-searchbar-filler {
   display: inline;

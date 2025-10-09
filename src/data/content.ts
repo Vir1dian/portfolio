@@ -33,21 +33,28 @@ const SKILLS: { [key: string]: LinkItem } = {
   cpp: { title: 'C++', icon: 'cpp.svg', link: 'https://cplusplus.com' },
   java: { title: 'Java', icon: 'java.svg', link: 'https://java.com/en' },
   python: { title: 'Python', icon: 'python.svg', link: 'https://www.python.org' },
+  react: { title: 'React', icon: 'react.svg', link: 'https://react.dev' },
 
   nodejs: { title: 'NodeJS', icon: 'nodejs.svg', link: 'https://nodejs.org/docs/latest/api' },
   vite: { title: 'Vite', icon: 'vite.svg', link: 'https://v2.vitejs.dev' },
+  expo: { title: 'Expo', icon: 'expo.svg', link: 'https://docs.expo.dev' },
+
+  docker: { title: 'Docker', icon: 'docker.svg', link: 'https://docs.docker.com' },
+  postman: { title: 'Postman', icon: 'postman.svg', link: 'https://www.postman.com/product/what-is-postman' },
+  xampp: { title: 'XAMPP', icon: 'xampp.png', link: 'https://www.apachefriends.org' },
   vscode: { title: 'VSCode', icon: 'vscode.svg', link: 'https://code.visualstudio.com' },
 
-  alanai: { title: 'Alan AI', icon: 'alanai.png', link: 'https://www.alan.app/docs' },
-  xampp: { title: 'XAMPP', icon: 'xampp.png', link: 'https://www.apachefriends.org' },
   mariadb: { title: 'MariaDB', icon: 'mariadb.svg', link: 'https://mariadb.com' },
+  appwrite: { title: 'Appwrite', icon: 'appwrite.svg', link: 'https://appwrite.io'},
+  dbml: { title: 'DBML', icon: 'dbml.png', link: 'https://dbml.dbdiagram.io/home' }, 
+
+  alanai: { title: 'Alan AI', icon: 'alanai.png', link: 'https://www.alan.app/docs' },
   crewai: { title: 'CrewAI', icon: 'crewai-short.svg', link: 'https://docs.crewai.com/en/introduction' },
   openai: { title: 'OpenAI', icon: 'openai.svg', link: 'https://platform.openai.com/docs/overview' },
   serper: { title: 'Serper', icon: 'serper.png', link: 'https://serper.dev' },
 
   figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com' },
-  docker: { title: 'Docker', icon: 'docker.svg', link: 'https://docs.docker.com' },
-  postman: { title: 'Postman', icon: 'postman.svg', link: 'https://www.postman.com/product/what-is-postman' },
+  formspree: { title: 'Formspree', icon: 'formspree.svg', link: 'https://formspree.io' },
   // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
 };
 
