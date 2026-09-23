@@ -99,10 +99,10 @@ const PROJECTS: Project[] = [
 const EXPERIENCE: CardItem[] = [
   {
     thumbnail: "pilotcity.jpg",
-    title: "PilotCity — Software Developer",
-    subtitle: "(July 2023 - present)",
-    content_text: "Designed and developed components for PilotCity\'s website using Vue and Typescript to expand its services to cater for both student and employers. R&D role: developed pipelines for AI assistant models using CrewAI with Python to improve user participation and retention in PilotCity\'s website.",
-    skills: [SKILLS.vue, SKILLS.ts, SKILLS.crewai, SKILLS.python, SKILLS.docker, SKILLS.html, SKILLS.js, SKILLS.css],
+    title: "PilotCity — Developer (part-time)",
+    subtitle: "(Summers 2023 & 2025)",
+    content_text: "Designed Figma mockups and built Vue/Vuetify pages in TypeScript for the platform's student internship-placement programs.\nPrototyped multi-agent LLM scripts in Python using CrewAI, OpenAI, and Serper APIs.",
+    skills: [SKILLS.vue, SKILLS.ts, SKILLS.figma, SKILLS.crewai, SKILLS.python],
     other_links: [
       { link: 'https://pilotcity.com', icon: '', title: 'PilotCity Homepage' }, 
     ]
