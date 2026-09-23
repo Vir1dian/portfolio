@@ -243,6 +243,12 @@ const CONTACTS: (LinkItem & { copy_to_clipboard?: boolean })[] = [
     copy_to_clipboard: false,
   },
   {
+    link: "https://itch.io/profile/vir1dian",
+    icon: "itchio.svg",
+    title: "itch.io",
+    copy_to_clipboard: false,
+  },
+  {
     link: "gav.torrecampo@gmail.com",
     icon: "gmail.svg",
     title: "Gmail",
