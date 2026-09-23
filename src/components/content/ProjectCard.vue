@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import LinkChip from '../minis/LinkChip.vue';
-import type { LinkItem } from '../../data/content';
-import { getAssetPath } from '../../utilities/utilities';
+import type { LinkItem, ProjectCategory } from '../../data/content';
+import { getImagePath } from '../../utilities/utilities';
 
 interface Props {
   title?: string;
+  category?: ProjectCategory;
   thumbnail?: string;
+  role?: string;
+  team?: string;
+  date?: string;
   skills?: LinkItem[];
   content_text?: string;
+  highlights?: string[];
   demo_link?: string;
   repo_link?: string;
   other_links?: LinkItem[];
@@ -16,16 +21,26 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   title: '',
+  category: 'other',
   thumbnail: '',
+  role: '',
+  team: '',
+  date: '',
   skills: () => [],
   content_text: '',
+  highlights: () => [],
   demo_link: '',
   repo_link: '',
   other_links: () => [],
 });
 
 const thumbnail_path = computed(() => {
-  return getAssetPath(props.thumbnail);
+  return getImagePath(props.thumbnail);
+});
+
+// 'Role · Team · Date', skipping any that are empty
+const meta_text = computed(() => {
+  return [props.role, props.team, props.date].filter(Boolean).join(' \u00B7 ');
 });
 
 const left_style_width = computed(() => {
@@ -41,16 +56,25 @@ const left_style_width = computed(() => {
 <template>
 
   <div class="project-card">
-    <div class="title">{{ props.title }}</div>
+    <div class="title-wrapper">
+      <div class="title">{{ props.title }}</div>
+      <div v-if="meta_text" class="meta">{{ meta_text }}</div>
+    </div>
     <div class="content-wrapper">
       <div class="content-left" :style="left_style_width">
-        <div v-if="props.skills" class="skills">
+        <div v-if="props.skills.length" class="skills">
           <LinkChip 
             v-for="skill in props.skills"
-            v-bind="skill"
+            :key="skill.title"
+            :link="skill.link"
+            :icon="skill.icon"
+            :title="skill.title"
           />
         </div>
-        <div class="content-text">{{ props.content_text }}</div>
+        <div v-if="props.content_text" class="content-text">{{ props.content_text }}</div>
+        <ul v-if="props.highlights.length" class="highlights">
+          <li v-for="(item, i) in props.highlights" :key="i">{{ item }}</li>
+        </ul>
         <div class="links">
           <LinkChip
             v-if="props.demo_link"
@@ -94,12 +118,20 @@ const left_style_width = computed(() => {
 
   text-align: justify;
 }
-.title {
+.title-wrapper {
   width: 100%;
   border-bottom: dotted 2px #304654;
   padding-bottom: 8px;
   margin-bottom: 16px;
+}
+.title {
   font-size: 20px;
+}
+.meta {
+  margin-top: 4px;
+  font-size: 16px;
+  color: #7d8c79;
+  text-align: left;
 }
 .content-wrapper {
   display: flex;
@@ -112,6 +144,17 @@ const left_style_width = computed(() => {
 }
 .content-text {
   font-size: 18px;
+  white-space: pre-line;  /* honor '\n' in content strings */
+  text-align: left;
+}
+.highlights {
+  margin: 8px 0 0 0;
+  padding-left: 24px;
+  font-size: 18px;
+  text-align: left;
+}
+.highlights li {
+  margin-bottom: 4px;
 }
 .skills {
   margin-bottom: 8px;
@@ -138,7 +181,10 @@ const left_style_width = computed(() => {
   .title {
     font-size: 18px;
   }
-  .content-text {
+  .meta {
+    font-size: 14px;
+  }
+  .content-text, .highlights {
     font-size: 16px;
   }
 }
@@ -146,8 +192,14 @@ const left_style_width = computed(() => {
   .title {
     font-size: 16px;
   }
-  .content-text {
+  .meta {
+    font-size: 12px;
+  }
+  .content-text, .highlights {
     font-size: 14px;
+  }
+  .highlights {
+    padding-left: 18px;
   }
 
   .content-wrapper {

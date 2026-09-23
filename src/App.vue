@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 import Bubbles from './components/background/Bubbles.vue';
 import HeroBg from './components/background/HeroBg.vue';
@@ -9,12 +9,21 @@ import Navbar from './components/content/Navbar.vue';
 import Hero from './components/content/Hero.vue';
 import SectionHeader from './components/content/SectionHeader.vue';
 import ProjectCard from './components/content/ProjectCard.vue';
+import FeaturedProjectCard from './components/content/FeaturedProjectCard.vue';
 import Card from './components/content/Card.vue';
 import SkillsList from './components/content/SkillsList.vue';
 import ContactsList from './components/content/ContactsList.vue';
 import MessageBoard from './components/content/MessageBoard.vue';
 
-import { PROJECTS, EXPERIENCE, ACADEMICS } from './data/content';
+import { FEATURED, PROJECTS, EXPERIENCE, ACADEMICS } from './data/content';
+
+// Project buckets. Sub-headers only appear once there's more than one bucket,
+// so an all-'other' list renders exactly like the old flat list.
+const GAME_PROJECTS = computed(() => PROJECTS.filter(p => p.category === 'game'));
+const OTHER_PROJECTS = computed(() => PROJECTS.filter(p => p.category !== 'game'));
+const SHOW_PROJECT_SUBHEADERS = computed(() =>
+  [FEATURED.length, GAME_PROJECTS.value.length, OTHER_PROJECTS.value.length].filter(n => n > 0).length > 1
+);
 
 // Used both by SectionHeader and Navbar components to sync scroll-to features
 const SECTION_HEADERS = ref([
@@ -69,11 +78,33 @@ onUnmounted(() => {
 
       <!-- PROJECTS -->
       <SectionHeader :title="SECTION_HEADERS[0].title" :id="SECTION_HEADERS[0].id" />
-      <ProjectCard 
-        v-for="project in PROJECTS"
-        :key="project.title"
-        v-bind="project"
-      />
+
+      <template v-if="FEATURED.length">
+        <SectionHeader v-if="SHOW_PROJECT_SUBHEADERS" :title="'Featured'" :id="'featured'" :hierarchy="2" />
+        <FeaturedProjectCard
+          v-for="project in FEATURED"
+          :key="project.title"
+          v-bind="project"
+        />
+      </template>
+
+      <template v-if="GAME_PROJECTS.length">
+        <SectionHeader v-if="SHOW_PROJECT_SUBHEADERS" :title="'Game Projects'" :id="'game-projects'" :hierarchy="2" />
+        <ProjectCard
+          v-for="project in GAME_PROJECTS"
+          :key="project.title"
+          v-bind="project"
+        />
+      </template>
+
+      <template v-if="OTHER_PROJECTS.length">
+        <SectionHeader v-if="SHOW_PROJECT_SUBHEADERS" :title="'Other Projects'" :id="'other-projects'" :hierarchy="2" />
+        <ProjectCard
+          v-for="project in OTHER_PROJECTS"
+          :key="project.title"
+          v-bind="project"
+        />
+      </template>
 
 
       <!-- ABOUT -->
@@ -86,9 +117,6 @@ onUnmounted(() => {
         v-bind="role"
       />
 
-      <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
-      <SkillsList />
-
       <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
       <div id="academics-list">
         <Card 
@@ -97,6 +125,9 @@ onUnmounted(() => {
           v-bind="academic"
         />
       </div>
+
+      <SectionHeader :title="'Technical Skills'" :id="'skills'" :hierarchy="2" />
+      <SkillsList />
       
 
       <!-- CONTACT -->

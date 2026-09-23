@@ -1,66 +1,130 @@
+// ==========================================================================
+// TYPES
+// ==========================================================================
+
 interface LinkItem {
   link?: string;
   icon?: string;
   title?: string;
 }
 
+// Groups mirror the resume's Skills section. A skill with no group can still
+// be used as a chip on project/experience cards but is hidden from the
+// Technical Skills table.
+const SKILL_GROUPS = ['Languages', 'Engines & Frameworks', 'Tools'] as const;
+type SkillGroup = typeof SKILL_GROUPS[number];
+
+interface Skill extends LinkItem {
+  group?: SkillGroup;
+}
+
 interface CardItem {
   thumbnail?: string;
   title?: string;
   subtitle?: string;
-  content_text?: string;
+  content_text?: string;     // short summary; '\n' renders as a line break
+  highlights?: string[];     // rendered as a bullet list under content_text
   skills?: LinkItem[];
   other_links?: LinkItem[];
 }
 
+type ProjectCategory = 'game' | 'other';
+
 interface Project {
   title?: string;
-  thumbnail?: string;
+  category?: ProjectCategory;  // 'game' -> Game Projects, anything else -> Other Projects
+  thumbnail?: string;          // file in src/assets, or 'projects/<file>' for src/assets/projects
+  role?: string;               // e.g. 'Game design & UI'
+  team?: string;               // e.g. '5-person team, 72-hour jam'
+  date?: string;               // e.g. 'UCLA Fiat Ludum 2026'
   skills?: LinkItem[];
-  content_text?: string;
+  content_text?: string;       // one- or two-line summary; '\n' renders as a line break
+  highlights?: string[];       // bullet list of what YOU did
   demo_link?: string;
   repo_link?: string;
   other_links?: LinkItem[];
 }
 
-const SKILLS: { [key: string]: LinkItem } = {
-  vue: { title: 'Vue', icon: 'vue.svg', link: 'https://vuejs.org' },
-  ts: { title: 'TypeScript', icon: 'typescript.svg', link: 'https://www.typescriptlang.org' },
-  js: { title: 'JavaScript', icon: 'javascript.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-  html: { title: 'HTML', icon: 'html5.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
-  css: { title: 'CSS', icon: 'css.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+interface Stat {
+  value: string;   // e.g. '94%'
+  label: string;   // e.g. 'of non-merge commits'
+}
+
+interface FeaturedProject extends Project {
+  stats?: Stat[];            // scale-numbers strip
+  diagram?: string;          // same path rules as thumbnail
+  diagram_caption?: string;
+}
+
+// Site-wide text, read by Hero, Navbar, and the document title.
+interface SiteText {
+  name: string;
+  tagline: string;
+  hero_text: string;
+}
+
+// ==========================================================================
+// CONTENT
+// ==========================================================================
+
+const SITE: SiteText = {
+  name: 'Gavin Torrecampo',
+  tagline: 'Student Developer',
+  hero_text: "Hello, my name is Gavin Torrecampo. I'm a Software Developer!",
+};
+
+const SKILLS: { [key: string]: Skill } = {
+  // --- Languages ---
+  csharp: { title: 'C#', icon: 'csharp.svg', link: 'https://learn.microsoft.com/en-us/dotnet/csharp', group: 'Languages' },
+  cpp: { title: 'C++', icon: 'cpp.svg', link: 'https://cplusplus.com', group: 'Languages' },
+  ts: { title: 'TypeScript', icon: 'typescript.svg', link: 'https://www.typescriptlang.org', group: 'Languages' },
+  js: { title: 'JavaScript', icon: 'javascript.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', group: 'Languages' },
+  python: { title: 'Python', icon: 'python.svg', link: 'https://www.python.org', group: 'Languages' },
+  html: { title: 'HTML', icon: 'html5.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML', group: 'Languages' },
+  css: { title: 'CSS', icon: 'css.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS', group: 'Languages' },
+
+  // --- Engines & Frameworks ---
+  unity: { title: 'Unity', icon: 'unity.svg', link: 'https://unity.com', group: 'Engines & Frameworks' },
+  threejs: { title: 'Three.js', icon: 'threejs.svg', link: 'https://threejs.org', group: 'Engines & Frameworks' },
+  react: { title: 'React', icon: 'react.svg', link: 'https://react.dev', group: 'Engines & Frameworks' },
+  vue: { title: 'Vue', icon: 'vue.svg', link: 'https://vuejs.org', group: 'Engines & Frameworks' },
+  vite: { title: 'Vite', icon: 'vite.svg', link: 'https://v2.vitejs.dev', group: 'Engines & Frameworks' },
+
+  // --- Tools ---
+  git: { title: 'Git', icon: 'git.svg', link: 'https://git-scm.com', group: 'Tools' },
+  figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com', group: 'Tools' },
+  aseprite: { title: 'Aseprite', icon: 'aseprite.svg', link: 'https://www.aseprite.org', group: 'Tools' },
+  trello: { title: 'Trello', icon: 'trello.svg', link: 'https://trello.com', group: 'Tools' },
+
+  // --- Chip-only (no group: hidden from the Technical Skills table) ---
   php: { title: 'PHP', icon: 'php.svg', link: 'https://www.php.net' },
-  cpp: { title: 'C++', icon: 'cpp.svg', link: 'https://cplusplus.com' },
   java: { title: 'Java', icon: 'java.svg', link: 'https://java.com/en' },
-  python: { title: 'Python', icon: 'python.svg', link: 'https://www.python.org' },
-  react: { title: 'React', icon: 'react.svg', link: 'https://react.dev' },
-
   nodejs: { title: 'NodeJS', icon: 'nodejs.svg', link: 'https://nodejs.org/docs/latest/api' },
-  vite: { title: 'Vite', icon: 'vite.svg', link: 'https://v2.vitejs.dev' },
   expo: { title: 'Expo', icon: 'expo.svg', link: 'https://docs.expo.dev' },
-
   docker: { title: 'Docker', icon: 'docker.svg', link: 'https://docs.docker.com' },
   postman: { title: 'Postman', icon: 'postman.svg', link: 'https://www.postman.com/product/what-is-postman' },
   xampp: { title: 'XAMPP', icon: 'xampp.png', link: 'https://www.apachefriends.org' },
   vscode: { title: 'VSCode', icon: 'vscode.svg', link: 'https://code.visualstudio.com' },
-
   mariadb: { title: 'MariaDB', icon: 'mariadb.svg', link: 'https://mariadb.com' },
   appwrite: { title: 'Appwrite', icon: 'appwrite.svg', link: 'https://appwrite.io'},
-  dbml: { title: 'DBML', icon: 'dbml.png', link: 'https://dbml.dbdiagram.io/home' }, 
-
+  dbml: { title: 'DBML', icon: 'dbml.png', link: 'https://dbml.dbdiagram.io/home' },
   alanai: { title: 'Alan AI', icon: 'alanai.png', link: 'https://www.alan.app/docs' },
   crewai: { title: 'CrewAI', icon: 'crewai-short.svg', link: 'https://docs.crewai.com/en/introduction' },
   openai: { title: 'OpenAI', icon: 'openai.svg', link: 'https://platform.openai.com/docs/overview' },
   serper: { title: 'Serper', icon: 'serper.png', link: 'https://serper.dev' },
-
-  figma: { title: 'Figma', icon: 'figma.svg', link: 'https://www.figma.com' },
   formspree: { title: 'Formspree', icon: 'formspree.svg', link: 'https://formspree.io' },
-  // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com' },
+  // skill: { title: 'skillname', icon: 'skill.svg', link: 'https://skill.com', group: 'Tools' },
 };
+
+// Large case-study cards shown above all other projects. Empty = section hidden.
+const FEATURED: FeaturedProject[] = [
+  // featured projects here
+];
 
 const PROJECTS: Project[] = [
   {
     title: "2D Particle Simulator",
+    category: 'other',
     thumbnail: "particle_simulator.png",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite], // Reference skills from the master list
     content_text: "Browser-based physics simulator in vanilla TypeScript with object-oriented design.\nIncludes real-time rendering, elastic collisions, adjustable parameters, and dynamic input controls and UI components.",
@@ -69,6 +133,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Limited Matrix Calculator",
+    category: 'other',
     thumbnail: "matrix_calculator.png",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite],
     content_text: "Calculator with support for gaussian elimination, determinants, and inverse matrices.\nMultiple ways to input matrices for convenience, produces a step-by-step solution.",
@@ -77,6 +142,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Plant Tracking App",
+    category: 'other',
     thumbnail: "",
     skills: [SKILLS.php, SKILLS.js, SKILLS.xampp, SKILLS.mariadb],
     content_text: "Full-stack plant tracking web application.\nRelational database to manage plant care information and user accounts.\nCRUD operations for plant profiles, database queries connected to user-facing features.",
@@ -86,6 +152,7 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Assistant Chef",
+    category: 'other',
     thumbnail: "",
     skills: [SKILLS.alanai, SKILLS.js, SKILLS.html, SKILLS.css],
     content_text: "Small-scale web application featuring voice commands, powered by Alan AI API.\nRecipe browsing and filtering from a data set, text-to-speech capabilities, and timer control.\nCollaborated project.",
@@ -195,11 +262,20 @@ const LINKS: { [key: string]: LinkItem } = {
 
 export type {
   LinkItem,
+  Skill,
+  SkillGroup,
   Project,
+  ProjectCategory,
+  FeaturedProject,
+  Stat,
   CardItem,
+  SiteText,
 };
 export {
+  SITE,
+  SKILL_GROUPS,
   SKILLS,
+  FEATURED,
   PROJECTS,
   EXPERIENCE,
   ACADEMICS,

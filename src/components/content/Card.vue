@@ -9,6 +9,7 @@ interface Props {
   title?: string;
   subtitle?: string;
   content_text?: string;
+  highlights?: string[];
   skills?: LinkItem[];
   other_links?: LinkItem[];
 };
@@ -18,6 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   title: '',
   subtitle: '',
   content_text: '',
+  highlights: () => [],
   skills: () => [],
   other_links: () => [],
 });
@@ -39,11 +41,17 @@ const thumbnail_path = computed(() => {
       </div>
     </div>
     <div class="content">
-      <div class="content-text">{{ props.content_text }}</div>
+      <div v-if="props.content_text" class="content-text">{{ props.content_text }}</div>
+      <ul v-if="props.highlights.length" class="highlights">
+        <li v-for="(item, i) in props.highlights" :key="i">{{ item }}</li>
+      </ul>
       <div v-if="props.skills.length" class="skills">
         <LinkChip 
           v-for="skill in props.skills"
-          v-bind="skill"
+          :key="skill.title"
+          :link="skill.link"
+          :icon="skill.icon"
+          :title="skill.title"
         />
       </div>
       <div class="links" v-if="props.other_links.length">
@@ -99,6 +107,15 @@ const thumbnail_path = computed(() => {
 }
 .content-text {
   font-size: 18px;
+  white-space: pre-line;  /* honor '\n' in content strings */
+}
+.highlights {
+  margin: 8px 0 0 0;
+  padding-left: 24px;
+  font-size: 18px;
+}
+.highlights li {
+  margin-bottom: 4px;
 }
 .skills {
   margin-top: 16px;
@@ -125,7 +142,7 @@ const thumbnail_path = computed(() => {
   .title {
     font-size: 20px;
   }
-  .content-text {
+  .content-text, .highlights {
     font-size: 16px;
   }
 }
@@ -133,8 +150,11 @@ const thumbnail_path = computed(() => {
   .title {
     font-size: 16px;
   }
-  .content-text {
+  .content-text, .highlights {
     font-size: 14px;
+  }
+  .highlights {
+    padding-left: 18px;
   }
   .skills {
     margin-top: 8px;

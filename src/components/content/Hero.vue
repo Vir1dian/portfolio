@@ -4,6 +4,7 @@ import HoverBounce from '../minis/HoverMes/HoverBounce.vue';
 import type { SectionLink } from './HeroLinks.vue';
 import HeroLinks from './HeroLinks.vue';
 import { getAssetPath } from '../../utilities/utilities';
+import { SITE } from '../../data/content';
 
 interface Props {
   height: string;  // control over height type (i.e. px, vh, etc.)
@@ -33,7 +34,7 @@ const hero_style = computed(() => {
   <div class="hero" :style="hero_style">
     <div class="hero-left">
       <div class="hero-text">
-        Hello, my name is Gavin Torrecampo. I'm a Software Developer!
+        {{ SITE.hero_text }}
       </div>
       <div class="hero-moretext">
         <HeroLinks :sections="props.sections" />

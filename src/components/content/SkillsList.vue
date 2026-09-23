@@ -1,26 +1,33 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { SKILLS } from '../../data/content';
-import type { LinkItem } from '../../data/content';
+import { SKILLS, SKILL_GROUPS } from '../../data/content';
+import type { Skill } from '../../data/content';
 import { getAssetPath, redirectTo, getRandomString } from '../../utilities/utilities';
 
 // interface Props {};
 // const props = withDefaults(defineProps<Props>(), {});
 
+// Only grouped skills are listed; order follows SKILL_GROUPS, then the
+// order skills are declared in SKILLS.
+const LISTED_SKILLS: Skill[] = SKILL_GROUPS.flatMap(group =>
+  Object.values(SKILLS).filter(skill => skill.group === group)
+);
 
+// Filler columns are randomized once so they don't reshuffle while typing.
+const FILLER: { [title: string]: string[] } = Object.fromEntries(
+  LISTED_SKILLS.map(skill => [skill.title ?? '', [getRandomString(13), getRandomString(6)]])
+);
 
 const search_text = defineModel({ default: '' });
-const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
+const filtered_skills = computed<Skill[]>(() => {
   if (!search_text.value) {
-    return SKILLS;
+    return LISTED_SKILLS;
   }
-  const filtered_set: { [key: string]: LinkItem } = {};
   const search_text_lower = search_text.value.toLowerCase();
-  Object.keys(SKILLS).forEach(key => {
-    const skill_name_lower = SKILLS[key].title?.toLowerCase();
-    if (skill_name_lower?.includes(search_text_lower)) filtered_set[key] = SKILLS[key];
-  });
-  return filtered_set;
+  return LISTED_SKILLS.filter(skill =>
+    skill.title?.toLowerCase().includes(search_text_lower) ||
+    skill.group?.toLowerCase().includes(search_text_lower)
+  );
 });
 
 </script>
@@ -57,9 +64,9 @@ const filtered_skills = computed<{ [key: string]: LinkItem }>(() => {
           </td>
           <td class="item-title">{{ skill.title }}</td>
           <td class="item-link">{{ skill.link }}</td>
-          <td class="item-filler">{{ getRandomString(13) }}</td>
-          <td class="item-filler">{{ getRandomString(6) }}</td>
-          <td class="item-filler">{{ getRandomString(6) }}</td>
+          <td class="item-filler">{{ FILLER[skill.title ?? '']?.[0] }}</td>
+          <td class="item-type">{{ skill.group }}</td>
+          <td class="item-filler">{{ FILLER[skill.title ?? '']?.[1] }}</td>
         </tr>
       </tbody>
     </table>
@@ -150,6 +157,11 @@ td, th {
   font-size: 12px;
   color: #c5cec380;
 }
+.item-type {
+  font-size: 14px;
+  color: #7d8c79;
+  white-space: nowrap;
+}
 .icon {
   height: 24px;
   display: flex;
@@ -169,8 +181,9 @@ td, th {
   .half-searchbar-filler {
     display: inline;
   }
-  th:nth-child(4), th:nth-child(5),  /* th is one off due to the first th being colspan=2 */
-  td:nth-child(5), td:nth-child(6) {
+  /* Hide the filler columns (Date Modified, Size) but keep Type */
+  th:nth-child(4), th:nth-child(6),  /* th is one off due to the first th being colspan=2 */
+  td:nth-child(5), td:nth-child(7) {
     display: none;
   }
 }

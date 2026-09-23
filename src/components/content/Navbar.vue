@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { SITE } from '../../data/content';
+
+// 'Gavin Torrecampo' -> 'Gavin T'
+const NAME_PARTS = SITE.name.trim().split(/\s+/);
+const SHORT_NAME = NAME_PARTS.length > 1
+  ? `${NAME_PARTS[0]} ${NAME_PARTS.at(-1)?.charAt(0) ?? ''}`
+  : SITE.name;
 
 interface SectionLink {
   id: string;
@@ -51,21 +58,21 @@ function scrollToSection(id: string) {
             @click.prevent="scrollToSection('_start')"
             class="full-title"
           >
-            Gavin Torrecampo | Student Developer
+            {{ SITE.name }} | {{ SITE.tagline }}
           </a>
           <a
             href="/"
             @click.prevent="scrollToSection('_start')"
             class="half-title"
           >
-            Gavin Torrecampo
+            {{ SITE.name }}
           </a>
           <a
             href="/"
             @click.prevent="scrollToSection('_start')"
             class="mini-title"
           >
-            Gavin T
+            {{ SHORT_NAME }}
           </a>
         </div>
       </div>
