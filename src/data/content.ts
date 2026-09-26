@@ -128,7 +128,7 @@ const FEATURED: FeaturedProject[] = [
     category: 'game',
     thumbnail: "spiritide.png",
     role: "Project lead & sole technical owner",
-    team: "10+ volunteers for two quarters, now solo", // TODO: add program name once confirmed (SRS official name)
+    team: "Began in ACM Studio's Students Run Studios with 10+ volunteers; now a standalone project",
     date: "Oct 2025 – present",
     skills: [SKILLS.unity, SKILLS.csharp, SKILLS.git, SKILLS.figma, SKILLS.trello, SKILLS.python],
     stats: [
