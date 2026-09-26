@@ -148,6 +148,7 @@ const PROJECTS: Project[] = [
   {
     title: "Plan(et) B",
     category: 'game',
+    thumbnail: "planetB.png",
     role: "Game design, UI & gameplay programming",
     team: "5-person team, 72-hour jam",
     date: "UCLA Fiat Ludum 2026",
@@ -166,6 +167,7 @@ const PROJECTS: Project[] = [
   {
     title: "MonoSpace",
     category: 'game',
+    thumbnail: "monospace.png",
     role: "Team organizer, sprite artist & programmer",
     team: "4-person team, 72-hour jam",
     date: "UCLA ACM Studio Jam 2025",
@@ -184,6 +186,7 @@ const PROJECTS: Project[] = [
   {
     title: "Terrarium",
     category: 'other',
+    thumbnail: "terrarium.png",
     role: "Architect: codebase, physics, cameras & UI",
     team: "3-person team",
     date: "UCLA CS 174A Computer Graphics, Winter 2026",
@@ -196,10 +199,14 @@ const PROJECTS: Project[] = [
       "Designed an extensible prop class hierarchy and a lighting rig (ambient, directional, spot) with shadow mapping.",
     ],
     repo_link: "https://github.com/Maxwe59/Terrarium",
+    other_links: [
+      { link: 'https://docs.google.com/presentation/d/1poVF76AKUVLlwarWX06Z3d2gOsRZuW2Bk0PKL-LvzAU/edit?usp=sharing', title: 'Slideshow Presentation' }
+    ]
   },
   {
     title: "BruinEats",
     category: 'other',
+    thumbnail: "bruineats.png",
     role: "Front-end & UI design",
     team: "5-person team",
     date: "UCLA CS 35L Software Construction, Winter 2026",
@@ -211,6 +218,9 @@ const PROJECTS: Project[] = [
       "Built a mock data layer with randomized generators so the UI shipped ahead of the backend; the backend team adopted it as their data-structure reference.",
     ],
     repo_link: "https://github.com/julianlaxamana/CS35LProject",
+    other_links: [
+      { link: 'https://docs.google.com/presentation/d/1FUm7pg--XTwk82oMa1YCyoVUGP-jy_1Upzzf3gEd75o/edit?usp=sharing', title: 'Slideshow Presentation' }
+    ]
   },
   {
     title: "2D Particle Simulator",
