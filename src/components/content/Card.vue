@@ -99,6 +99,7 @@ const thumbnail_path = computed(() => {
 }
 .subtitle {
   color: #7d8c79;
+  text-align: left;
 }
 .content {
   display: flex;

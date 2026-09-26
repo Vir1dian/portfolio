@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import LinkChip from '../minis/LinkChip.vue';
-import type { LinkItem, ProjectCategory } from '../../data/content';
+import type { LinkItem, ProjectCategory, ThumbnailLayout } from '../../data/content';
 import { getImagePath } from '../../utilities/utilities';
 
 interface Props {
   title?: string;
   category?: ProjectCategory;
   thumbnail?: string;
+  layout?: ThumbnailLayout;
   role?: string;
   team?: string;
   date?: string;
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   title: '',
   category: 'other',
   thumbnail: '',
+  layout: 'side',
   role: '',
   team: '',
   date: '',
@@ -43,8 +45,10 @@ const meta_text = computed(() => {
   return [props.role, props.team, props.date].filter(Boolean).join(' \u00B7 ');
 });
 
+const is_top_layout = computed(() => props.layout === 'top');
+
 const left_style_width = computed(() => {
-  if (!props.thumbnail) {
+  if (!props.thumbnail || is_top_layout.value) {
     return {
       width: '100%',
     };
@@ -59,6 +63,9 @@ const left_style_width = computed(() => {
     <div class="title-wrapper">
       <div class="title">{{ props.title }}</div>
       <div v-if="meta_text" class="meta">{{ meta_text }}</div>
+    </div>
+    <div v-if="props.thumbnail && is_top_layout" class="thumbnail-top">
+      <img :src="thumbnail_path" :alt="props.title">
     </div>
     <div class="content-wrapper">
       <div class="content-left" :style="left_style_width">
@@ -97,8 +104,8 @@ const left_style_width = computed(() => {
 
         </div>
       </div>
-      <div v-if="props.thumbnail" class="content-right">
-        <img :src="thumbnail_path" :alt="props.thumbnail">
+      <div v-if="props.thumbnail && !is_top_layout" class="content-right">
+        <img :src="thumbnail_path" :alt="props.title">
       </div>
     </div>
   </div>
@@ -132,6 +139,18 @@ const left_style_width = computed(() => {
   font-size: 16px;
   color: #7d8c79;
   text-align: left;
+}
+.thumbnail-top {
+  margin-bottom: 16px;
+}
+.thumbnail-top img {
+  /* Fills the card width until it hits max-height, then stays centered */
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  object-position: center;
 }
 .content-wrapper {
   display: flex;
@@ -202,6 +221,9 @@ const left_style_width = computed(() => {
     padding-left: 18px;
   }
 
+  .thumbnail-top img {
+    max-height: 220px;
+  }
   .content-wrapper {
     flex-direction: column-reverse;
   }

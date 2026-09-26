@@ -30,10 +30,15 @@ interface CardItem {
 
 type ProjectCategory = 'game' | 'other';
 
+// 'side' (default): thumbnail beside the text; suits portrait/square images and short entries.
+// 'top': thumbnail centered above the skills, text, and links, scaling up to a max height; suits wide images and long entries.
+type ThumbnailLayout = 'side' | 'top';
+
 interface Project {
   title?: string;
   category?: ProjectCategory;  // 'game' -> Game Projects, anything else -> Other Projects
   thumbnail?: string;          // file in src/assets, or 'projects/<file>' for src/assets/projects
+  layout?: ThumbnailLayout;    // where the thumbnail sits; defaults to 'side'
   role?: string;               // e.g. 'Game design & UI'
   team?: string;               // e.g. '5-person team, 72-hour jam'
   date?: string;               // e.g. 'UCLA Fiat Ludum 2026'
@@ -121,6 +126,7 @@ const FEATURED: FeaturedProject[] = [
   {
     title: "Spiritide",
     category: 'game',
+    thumbnail: "spiritide.png",
     role: "Project lead & sole technical owner",
     team: "10+ volunteers for two quarters, now solo", // TODO: add program name once confirmed (SRS official name)
     date: "Oct 2025 – present",
@@ -149,6 +155,7 @@ const PROJECTS: Project[] = [
     title: "Plan(et) B",
     category: 'game',
     thumbnail: "planetB.png",
+    layout: 'top',
     role: "Game design, UI & gameplay programming",
     team: "5-person team, 72-hour jam",
     date: "UCLA Fiat Ludum 2026",
@@ -168,6 +175,7 @@ const PROJECTS: Project[] = [
     title: "MonoSpace",
     category: 'game',
     thumbnail: "monospace.png",
+    layout: 'top',
     role: "Team organizer, sprite artist & programmer",
     team: "4-person team, 72-hour jam",
     date: "UCLA ACM Studio Jam 2025",
@@ -187,6 +195,7 @@ const PROJECTS: Project[] = [
     title: "Terrarium",
     category: 'other',
     thumbnail: "terrarium.png",
+    layout: 'top',
     role: "Architect: codebase, physics, cameras & UI",
     team: "3-person team",
     date: "UCLA CS 174A Computer Graphics, Winter 2026",
@@ -209,6 +218,7 @@ const PROJECTS: Project[] = [
     title: "BruinEats",
     category: 'other',
     thumbnail: "bruineats.png",
+    layout: 'side',
     role: "Front-end & UI design",
     team: "5-person team",
     date: "UCLA CS 35L Software Construction, Winter 2026",
@@ -230,6 +240,7 @@ const PROJECTS: Project[] = [
     title: "2D Particle Simulator",
     category: 'other',
     thumbnail: "particle_simulator.png",
+    layout: 'side',
     role: "Independent honors project",
     date: "Las Positas College Honors Contract, 2025",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite], // Reference skills from the master list
@@ -244,6 +255,7 @@ const PROJECTS: Project[] = [
     title: "Limited Matrix Calculator",
     category: 'other',
     thumbnail: "matrix_calculator.png",
+    layout: 'side',
     role: "Independent honors project",
     date: "Las Positas College Honors Contract, 2024",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite],
@@ -303,27 +315,28 @@ const EXPERIENCE: CardItem[] = [
 
 const ACADEMICS: CardItem[] = [
   {
-    title: "BS: Computer Science, UCLA",
+    title: "UCLA",
     subtitle: "Expected June 2027",
-    content_text: "Relevant coursework: Computer Graphics (CS 174A), Software Construction (CS 35L), Algorithms & Complexity (CS 180), Operating Systems (CS 111), Machine Learning (CS M146)\nIn progress: Computer Networks (CS 118)",
+    content_text: "BS: Computer Science\nRelevant coursework:",
+    highlights: [
+      "Computer Graphics (CS 174A)",
+      "Software Construction (CS 35L)",
+      "Algorithms & Complexity (CS 180)",
+      "Operating Systems (CS 111)",
+      "Machine Learning (CS M146)",
+      "Computer Networks (CS 118), in progress",
+    ],
   },
   {
     // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
-    title: "AS: Computer Science",
+    title: "Las Positas College",
     subtitle: "May 2025",
-    content_text: "With highest honors (4.0 GPA)",
-  },
-  {
-    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
-    title: "AA: Mathematics and Science",
-    subtitle: "May 2025",
-    content_text: "With highest honors (4.0 GPA)",
-  },
-  {
-    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
-    title: "Honors Scholar",
-    subtitle: "May 2025",
-    content_text: "Completed 5 honors contracts",
+    highlights: [
+      "AS: Computer Science",
+      "AA: Mathematics and Science",
+      "With highest honors (4.0 GPA)",
+      "Honors Scholar - Completed 5 honors contracts",
+    ],
   },
 ];
 
@@ -376,6 +389,7 @@ export type {
   SkillGroup,
   Project,
   ProjectCategory,
+  ThumbnailLayout,
   FeaturedProject,
   Stat,
   CardItem,

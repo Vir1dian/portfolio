@@ -5,7 +5,7 @@ import { SITE } from '../../data/content';
 // 'Gavin Torrecampo' -> 'Gavin T'
 const NAME_PARTS = SITE.name.trim().split(/\s+/);
 const SHORT_NAME = NAME_PARTS.length > 1
-  ? `${NAME_PARTS[0]} ${NAME_PARTS.at(-1)?.charAt(0) ?? ''}`
+  ? `${NAME_PARTS[0]} ${NAME_PARTS[NAME_PARTS.length - 1]?.charAt(0) ?? ''}`
   : SITE.name;
 
 interface SectionLink {

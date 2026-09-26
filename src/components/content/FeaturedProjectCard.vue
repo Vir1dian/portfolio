@@ -61,7 +61,10 @@ const has_links = computed(() => {
         <div class="title">{{ props.title }}</div>
         <div v-if="meta_text" class="meta">{{ meta_text }}</div>
       </div>
-      <img v-if="props.thumbnail" :src="getImagePath(props.thumbnail)" :alt="props.title" class="thumbnail" />
+    </div>
+
+    <div v-if="props.thumbnail" class="thumbnail-top">
+      <img :src="getImagePath(props.thumbnail)" :alt="props.title" />
     </div>
 
     <div v-if="props.stats.length" class="stats">
@@ -158,10 +161,17 @@ const has_links = computed(() => {
   font-size: 16px;
   color: #7d8c79;
 }
-.thumbnail {
-  max-height: 96px;
-  max-width: 35%;
-  border-radius: 8px;
+.thumbnail-top {
+  margin-bottom: 16px;
+}
+.thumbnail-top img {
+  /* Fills the card width until it hits max-height, then stays centered */
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .stats {
@@ -243,12 +253,8 @@ const has_links = computed(() => {
     padding: 16px;
     box-shadow: 4px 4px 0 #BD82E5;
   }
-  .header {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-  .thumbnail {
-    max-width: 100%;
+  .thumbnail-top img {
+    max-height: 240px;
   }
   .title {
     font-size: 20px;

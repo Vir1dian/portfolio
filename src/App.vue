@@ -117,7 +117,7 @@ onUnmounted(() => {
         v-bind="role"
       />
 
-      <SectionHeader :title="'Academics and Awards'" :id="'academics'" :hierarchy="2" />
+      <SectionHeader :title="'Academics'" :id="'academics'" :hierarchy="2" />
       <div id="academics-list">
         <Card 
           v-for="academic in ACADEMICS"
@@ -227,6 +227,10 @@ onUnmounted(() => {
   #content {
     /* background-color: green; */
     width: 90%;
+  }
+  #academics-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
