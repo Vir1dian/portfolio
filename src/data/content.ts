@@ -69,8 +69,8 @@ interface SiteText {
 
 const SITE: SiteText = {
   name: 'Gavin Torrecampo',
-  tagline: 'Student Developer',
-  hero_text: "Hello, my name is Gavin Torrecampo. I'm a Software Developer!",
+  tagline: 'Game Developer',
+  hero_text: "Hi, I'm Gavin, a UCLA Computer Science senior (June 2027) who designs and documents game systems before building them, so teams can build faster.",
 };
 
 const SKILLS: { [key: string]: Skill } = {
@@ -118,10 +118,100 @@ const SKILLS: { [key: string]: Skill } = {
 
 // Large case-study cards shown above all other projects. Empty = section hidden.
 const FEATURED: FeaturedProject[] = [
-  // featured projects here
+  {
+    title: "Spiritide",
+    category: 'game',
+    role: "Project lead & sole technical owner",
+    team: "10+ volunteers for two quarters, now solo", // TODO: add program name once confirmed (SRS official name)
+    date: "Oct 2025 – present",
+    skills: [SKILLS.unity, SKILLS.csharp, SKILLS.git, SKILLS.figma, SKILLS.trello, SKILLS.python],
+    stats: [
+      { value: "94%", label: "of ~950 non-merge commits authored" },
+      { value: "17", label: "compiler-enforced, acyclic assemblies" },
+      { value: "~100", label: "data-driven effect assets" },
+      { value: "~116 pp", label: "GDD in 29 version-controlled files" },
+      { value: "10+", label: "volunteers onboarded" },
+    ],
+    content_text: "A top-down action roguelike in Unity 6. This case study covers how the project is designed, built, and run; the game itself stays under wraps for now.",
+    highlights: [
+      "Maintain the design as a ~116-page GDD split into 29 version-controlled files, with permanent rule IDs cited in code comments so every design change is a reviewable diff.",
+      "Architected the Unity/C# codebase as 17 compiler-enforced, acyclic assemblies with a shared gameplay event bus and a single damage pipeline.",
+      "Built a data-driven ability system where ScriptableObject actions compose reusable effects and combos are authored as input trees; ~100 effect assets across 3 playable characters and 1 enemy.",
+      "Recruited and onboarded 10+ volunteers across art, writing, and development: wrote the onboarding guide (with a first-PR exercise), Git/Unity practices, and asset naming standards, and ran weekly Trello sprints.",
+      "Scoped two quarters of content through a team vote on candidates rated 1–3 for code, art, and writing complexity, cutting to 4 characters, 5 enemies, 1 boss, and 1 stage.",
+      "Designed an AI-assisted planning workflow: one-page vertical-slice specs with a definition of done and a cut line, capped context, and read-only access to game code, so every change is reviewed and applied by hand.",
+    ],
+  },
 ];
 
 const PROJECTS: Project[] = [
+  {
+    title: "Plan(et) B",
+    category: 'game',
+    role: "Game design, UI & gameplay programming",
+    team: "5-person team, 72-hour jam",
+    date: "UCLA Fiat Ludum 2026",
+    skills: [SKILLS.unity, SKILLS.csharp],
+    content_text: "An asymmetric co-op game: a robot that survives only in daylight and an alien that survives only at night must rebuild their spaceship before the sun swallows the planet.",
+    highlights: [
+      "Designed the core rules (day/night survival constraints, resource processing, three-stage ship repair) in a planner doc with mechanics diagrams and storyboarded UI flows the team built from.",
+      "Tracked ~60 planned assets and set feature and asset deadlines for the 72-hour jam.",
+      "Designed and wrote an Overcooked-inspired carry and processing system in C# (one-item carry, processor-based crafting), scoped to fit the jam.",
+      "Created every HUD element, integrated them in the Unity editor, and built the game-state manager with seams for transitions and HUD updates.",
+    ],
+    other_links: [
+      { link: "https://itch.io/jam/ucla-fiat-ludum-2026/rate/4474876", icon: "itchio.svg", title: "itch.io" },
+    ],
+  },
+  {
+    title: "MonoSpace",
+    category: 'game',
+    role: "Team organizer, sprite artist & programmer",
+    team: "4-person team, 72-hour jam",
+    date: "UCLA ACM Studio Jam 2025",
+    skills: [SKILLS.unity, SKILLS.csharp, SKILLS.aseprite, SKILLS.git],
+    // TODO: content_text: one-line premise
+    highlights: [
+      "Recruited the team, assigned roles, scheduled meetings, and trained teammates on Git and Unity.",
+      "Created all character animations and sprite variants in Aseprite.",
+      "Implemented map decoration and character animation scripts in C#; top contributor with 57 of 109 commits.",
+    ],
+    repo_link: "https://github.com/Maxwe59/MonoSpace",
+    other_links: [
+      { link: "https://itch.io/jam/studio-jam-2025/rate/4049412", icon: "itchio.svg", title: "itch.io" },
+    ],
+  },
+  {
+    title: "Terrarium",
+    category: 'other',
+    role: "Architect: codebase, physics, cameras & UI",
+    team: "3-person team",
+    date: "UCLA CS 174A Computer Graphics, Winter 2026",
+    skills: [SKILLS.threejs, SKILLS.js],
+    content_text: "An interactive 3D simulation of a pet praying mantis hunting a boids-driven locust swarm. Teammates built the mantis's procedural animation and the boids AI; I built the foundation they ran on.",
+    highlights: [
+      "Architected the class-based codebase and shared spatial framework (world bounds, physics, props) that teammates' systems were built on, giving them a working stage and an early demo.",
+      "Built raycast-based surface-clinging physics so the mantis walks on walls, ceilings, and props, fixing corner jitter by prioritizing the downward surface.",
+      "Implemented isometric, third-person, and first-person cameras in a multi-viewport HUD with per-frame scissor/viewport rendering.",
+      "Designed an extensible prop class hierarchy and a lighting rig (ambient, directional, spot) with shadow mapping.",
+    ],
+    repo_link: "https://github.com/Maxwe59/Terrarium",
+  },
+  {
+    title: "BruinEats",
+    category: 'other',
+    role: "Front-end & UI design",
+    team: "5-person team",
+    date: "UCLA CS 35L Software Construction, Winter 2026",
+    skills: [SKILLS.figma, SKILLS.react, SKILLS.js, SKILLS.css, SKILLS.vite],
+    content_text: "A mobile-first replacement for UCLA Dining's nested menus: current menus, nutrition, ratings and reviews, favorites, and a per-venue \"where should I eat\" score.",
+    highlights: [
+      "Designed the complete interactive Figma prototype (a dozen-plus mobile screens), annotating each component's logic before implementation began.",
+      "Built the dashboard, search/sort/filter, and item detail views, including a double-thumb rating slider, on an atomic-design component structure.",
+      "Built a mock data layer with randomized generators so the UI shipped ahead of the backend; the backend team adopted it as their data-structure reference.",
+    ],
+    repo_link: "https://github.com/julianlaxamana/CS35LProject",
+  },
   {
     title: "2D Particle Simulator",
     category: 'other',
