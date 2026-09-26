@@ -279,7 +279,7 @@ const PROJECTS: Project[] = [
 
 const EXPERIENCE: CardItem[] = [
   {
-    thumbnail: "pilotcity.jpg",
+    // thumbnail: "pilotcity.jpg", // hidden: third-party logo
     title: "PilotCity — Developer (part-time)",
     subtitle: "(Summers 2023 & 2025)",
     content_text: "Designed Figma mockups and built Vue/Vuetify pages in TypeScript for the platform's student internship-placement programs.\nPrototyped multi-agent LLM scripts in Python using CrewAI, OpenAI, and Serper APIs.",
@@ -289,7 +289,7 @@ const EXPERIENCE: CardItem[] = [
     ]
   },
   {
-    thumbnail: "laspositascollege.jpg",
+    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
     title: "Las Positas — Honors Contract Developer",
     subtitle: "(January 2024 - May 2025)",
     content_text: "Designed and implemented independent software projects under faculty mentorship, applying classroom theory to real-world problems, completing 5 projects over 3 semesters.\nOutlined project scope, milestones, deliverables, and bi-weekly meetings with faculty for semester-based contracts.\nProduced technical documentation and delivered project demonstrations.",
@@ -303,37 +303,27 @@ const EXPERIENCE: CardItem[] = [
 
 const ACADEMICS: CardItem[] = [
   {
-    thumbnail: "laspositascollege.jpg",
+    title: "BS: Computer Science, UCLA",
+    subtitle: "Expected June 2027",
+    content_text: "Relevant coursework: Computer Graphics (CS 174A), Software Construction (CS 35L), Algorithms & Complexity (CS 180), Operating Systems (CS 111), Machine Learning (CS M146)\nIn progress: Computer Networks (CS 118)",
+  },
+  {
+    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
     title: "AS: Computer Science",
     subtitle: "May 2025",
     content_text: "With highest honors (4.0 GPA)",
   },
   {
-    thumbnail: "laspositascollege.jpg",
+    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
     title: "AA: Mathematics and Science",
     subtitle: "May 2025",
     content_text: "With highest honors (4.0 GPA)",
   },
   {
-    thumbnail: "laspositascollege.jpg",
+    // thumbnail: "laspositascollege.jpg", // hidden: third-party logo
     title: "Honors Scholar",
     subtitle: "May 2025",
     content_text: "Completed 5 honors contracts",
-  },
-  {
-    title: "Highschool Diploma",
-    subtitle: "May 2023",
-    content_text: "John C Kimball Highschool — 4.4 GPA",
-  },
-  {
-    title: "Highschool Department Award for Mathematics",
-    subtitle: "May 2023",
-    content_text: "Single awardee for 2023",
-  },
-  {
-    title: "Avinash Raina Math Competition Podium",
-    subtitle: "April 2023",
-    content_text: "3rd Place Calculus Winner, representing John C Kimball High",
   },
 ];
 
