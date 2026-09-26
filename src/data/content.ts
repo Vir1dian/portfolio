@@ -172,7 +172,7 @@ const PROJECTS: Project[] = [
     team: "4-person team, 72-hour jam",
     date: "UCLA ACM Studio Jam 2025",
     skills: [SKILLS.unity, SKILLS.csharp, SKILLS.aseprite, SKILLS.git],
-    // TODO: content_text: one-line premise
+    content_text: "A one-button arcade survival game: using only the spacebar, play moves from a random queue to keep a young axolotl ahead of the Big Fish while dodging a heron and a charging carp.",
     highlights: [
       "Recruited the team, assigned roles, scheduled meetings, and trained teammates on Git and Unity.",
       "Created all character animations and sprite variants in Aseprite.",
@@ -196,11 +196,13 @@ const PROJECTS: Project[] = [
       "Architected the class-based codebase and shared spatial framework (world bounds, physics, props) that teammates' systems were built on, giving them a working stage and an early demo.",
       "Built raycast-based surface-clinging physics so the mantis walks on walls, ceilings, and props, fixing corner jitter by prioritizing the downward surface.",
       "Implemented isometric, third-person, and first-person cameras in a multi-viewport HUD with per-frame scissor/viewport rendering.",
+      "Built a live tuning dashboard (FPS meter and sliders for swarm size, speed, perception, and flocking weights) so users could reshape the boids' behavior in real time, replacing a single add-locust button after peer feedback flagged limited interactivity.",
       "Designed an extensible prop class hierarchy and a lighting rig (ambient, directional, spot) with shadow mapping.",
     ],
     repo_link: "https://github.com/Maxwe59/Terrarium",
     other_links: [
-      { link: 'https://docs.google.com/presentation/d/1poVF76AKUVLlwarWX06Z3d2gOsRZuW2Bk0PKL-LvzAU/edit?usp=sharing', title: 'Slideshow Presentation' }
+      { link: 'https://docs.google.com/presentation/d/1poVF76AKUVLlwarWX06Z3d2gOsRZuW2Bk0PKL-LvzAU/edit?usp=sharing', title: 'Slideshow Presentation' },
+      { link: 'https://drive.google.com/file/d/1aasrduStIDW1XkcC5oRr4FAq9wbyQqyn/view?usp=sharing', title: 'Final Report' },
     ]
   },
   {
@@ -213,32 +215,44 @@ const PROJECTS: Project[] = [
     skills: [SKILLS.figma, SKILLS.react, SKILLS.js, SKILLS.css, SKILLS.vite],
     content_text: "A mobile-first replacement for UCLA Dining's nested menus: current menus, nutrition, ratings and reviews, favorites, and a per-venue \"where should I eat\" score.",
     highlights: [
-      "Designed the complete interactive Figma prototype (a dozen-plus mobile screens), annotating each component's logic before implementation began.",
+      "Designed the complete interactive Figma prototype (a dozen-plus mobile screens) on a mobile-first layout I recommended, annotating each component's logic before implementation began.",
       "Built the dashboard, search/sort/filter, and item detail views, including a double-thumb rating slider, on an atomic-design component structure.",
       "Built a mock data layer with randomized generators so the UI shipped ahead of the backend; the backend team adopted it as their data-structure reference.",
     ],
     repo_link: "https://github.com/julianlaxamana/CS35LProject",
     other_links: [
-      { link: 'https://docs.google.com/presentation/d/1FUm7pg--XTwk82oMa1YCyoVUGP-jy_1Upzzf3gEd75o/edit?usp=sharing', title: 'Slideshow Presentation' }
+      { link: 'https://www.figma.com/design/Mm38fFgABTwnSLjrPDqI8J/UCLA-Projects?node-id=0-1', icon: 'figma.svg', title: 'Figma Prototype' },
+      { link: 'https://docs.google.com/presentation/d/1FUm7pg--XTwk82oMa1YCyoVUGP-jy_1Upzzf3gEd75o/edit?usp=sharing', title: 'Slideshow Presentation' },
+      { link: 'https://drive.google.com/file/d/1sH8pCRhBBo0gw_fKAj3MdgJFium7qGoi/view?usp=sharing', title: 'Final Report' },
     ]
   },
   {
     title: "2D Particle Simulator",
     category: 'other',
     thumbnail: "particle_simulator.png",
+    role: "Independent honors project",
+    date: "Las Positas College Honors Contract, 2025",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite], // Reference skills from the master list
     content_text: "Browser-based physics simulator in vanilla TypeScript with object-oriented design.\nIncludes real-time rendering, elastic collisions, adjustable parameters, and dynamic input controls and UI components.",
     demo_link: "https://vir1dian.github.io/2D-Particle-Simulator/",
     repo_link: "https://github.com/Vir1dian/2D-Particle-Simulator",
+    other_links: [
+      { link: 'https://drive.google.com/file/d/1YmdwoyZPKD1tcLbsKLPkwI9yVLSk-Znd/view?usp=sharing', title: 'Honors Report' }
+    ]
   },
   {
     title: "Limited Matrix Calculator",
     category: 'other',
     thumbnail: "matrix_calculator.png",
+    role: "Independent honors project",
+    date: "Las Positas College Honors Contract, 2024",
     skills: [SKILLS.ts, SKILLS.js, SKILLS.html, SKILLS.css, SKILLS.vite],
     content_text: "Calculator with support for gaussian elimination, determinants, and inverse matrices.\nMultiple ways to input matrices for convenience, produces a step-by-step solution.",
     demo_link: "https://vir1dian.github.io/Invertible-Matrix-Calculator/",
     repo_link: "https://github.com/Vir1dian/Invertible-Matrix-Calculator",
+    other_links: [
+      { link: 'https://drive.google.com/file/d/1zwLgnYZsZQYjs5bEX0u1-RT_ruEFALHs/view?usp=sharing', title: 'Honors Report' }
+    ]
   },
   {
     title: "Plant Tracking App",
