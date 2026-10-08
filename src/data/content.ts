@@ -75,7 +75,7 @@ interface SiteText {
 const SITE: SiteText = {
   name: 'Gavin Torrecampo',
   tagline: 'Game Developer',
-  hero_text: "Hi, I'm Gavin, a UCLA Computer Science senior (June 2027) who designs and documents game systems before building them, so teams can build faster.",
+  hero_text: "Hi, I'm Gavin. I design systems, then build them, mostly for games. UCLA CS '27.",
 };
 
 const SKILLS: { [key: string]: Skill } = {
